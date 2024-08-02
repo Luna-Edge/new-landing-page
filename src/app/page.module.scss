@@ -1,4 +1,4 @@
-@import "@/app/styles/variables";
+@import "@/styles/variables";
 
 .main {
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-  font-family: $mainFontSemiBold;
+  font-family: $main-font;
 }
 
 .testFont {
