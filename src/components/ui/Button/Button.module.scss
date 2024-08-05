@@ -6,7 +6,7 @@
     font-family: $main-font-semi-bold;
     background-color: $background-alternative-grey;
     padding: 20px 64px;
-    border-radius: 32px;
+    border-radius: $main-border-radius;
     cursor: pointer;
     transition: background-color $main-delay ease-out;
 

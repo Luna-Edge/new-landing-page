@@ -1,0 +1,28 @@
+@import "@/styles/variables";
+
+.card {
+    max-width: 600px;
+    background-color: $background-alternative-grey;
+    border-radius: $main-border-radius;
+    padding: 24px 25px;
+    min-height: 327px;
+}
+
+.symbol {
+    background-color: $dark-grey;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.title {
+    margin-top: 24px;
+    font-weight: 400;
+    font-size: clamp(24px, 4vw, 32px);
+}
+
+.text {
+    margin-top: 51px;
+    font-size: clamp(14px, 2.5vw, 18px);
+
+}
