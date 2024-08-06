@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 
-import "./globals.css";
+import "./globals.scss";
 import "../styles/fonts/LufgaFont.css";
-
-// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "LUNA EDGE",

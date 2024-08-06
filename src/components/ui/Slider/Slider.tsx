@@ -24,6 +24,7 @@ const Slider = ({ slidesInformation }: SliderProps) => {
         grabCursor={true}
         centeredSlides={true}
         slidesPerView={"auto"}
+        speed={500}
         coverflowEffect={{
           rotate: -25,
           stretch: 0,
