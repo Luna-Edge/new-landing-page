@@ -1,0 +1,33 @@
+@import "@/styles/variables";
+
+.label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.label_text {
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 19px 20px;
+    background-color: $background-alternative-grey;
+    border-radius: $main-border-radius;
+    border: none;
+    font-family: $main-font;
+    font-size: 18px;
+
+    &:focus {
+        outline-style: solid;
+        outline-color: $dark-grey;
+    }
+
+    &::placeholder {
+        font-family: $main-font;
+        font-size: 18px;
+        color: $placeholder-color;
+    }
+}

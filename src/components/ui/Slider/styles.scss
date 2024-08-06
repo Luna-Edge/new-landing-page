@@ -1,0 +1,30 @@
+@import "@/styles/mixins";
+
+.swiper {
+    max-width: 100%;
+
+    @include hd-desktop-bp() {
+        max-width: 1516px;
+    }
+}
+
+.swiper-slide {
+    max-width: 300px;
+
+    @include tablet-bp() {
+        max-width: 400px;
+    }
+
+    @include desktop-bp() {
+        max-width: 500px;
+    }
+
+    @include hd-desktop-bp() {
+        max-width: 600px;
+    }
+}
+
+.swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+    background-image: none !important;
+}
