@@ -1,0 +1,13 @@
+.css-1fzpoyk:nth-child(3) .carrousel-card {
+    transform: rotateY(20deg) scale(1.1, 1.6);
+    opacity: 0.6;
+    transition: transform 0.2s 0.05s linear;
+    cursor: pointer;
+}
+
+.css-1fzpoyk:nth-child(1) .carrousel-card {
+    transform: rotateY(-20deg) scale(1.1, 1.6);
+    opacity: 0.6;
+    transition: transform 0.2s 0.05s linear;
+    cursor: pointer;
+}

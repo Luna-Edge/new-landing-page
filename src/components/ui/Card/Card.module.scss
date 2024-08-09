@@ -1,11 +1,29 @@
 @import "@/styles/variables";
+@import "@/styles/mixins";
+
+.card_wrapper {
+    perspective: 600px;
+    transform-style: preserve-3d;
+}
 
 .card {
-    max-width: 600px;
+    width: 250px;
     background-color: $background-alternative-grey;
     border-radius: $main-border-radius;
     padding: 24px 25px;
     min-height: 327px;
+
+    @include tablet-bp() {
+        width: 300px;
+    }
+
+    @include desktop-bp() {
+        width: 400px;
+    }
+
+    @include hd-desktop-bp() {
+        width: 600px;
+    }
 }
 
 .symbol {
@@ -24,5 +42,4 @@
 .text {
     margin-top: 51px;
     font-size: clamp(14px, 2.5vw, 18px);
-
 }

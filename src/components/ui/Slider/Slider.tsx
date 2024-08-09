@@ -38,7 +38,7 @@ const Slider = ({ slidesInformation }: SliderProps) => {
         {slidesInformation.map((slide) => {
           return (
             <SwiperSlide key={slide.id}>
-              <Card title={slide.title} text={slide.text} />
+              {/* <Card title={slide.title} text={slide.text} /> */}
             </SwiperSlide>
           );
         })}
