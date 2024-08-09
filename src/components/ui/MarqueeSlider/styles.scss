@@ -1,5 +1,23 @@
+@import "@/styles/mixins";
+
 .swiper-wrapper {
     -webkit-transition-timing-function: linear !important;
     -o-transition-timing-function: linear !important;
     transition-timing-function: linear !important;
+}
+
+.swiper-slide {
+    max-width: 300px;
+
+    @include tablet-bp() {
+        max-width: 400px;
+    }
+
+    @include desktop-bp() {
+        max-width: 500px;
+    }
+
+    @include hd-desktop-bp() {
+        max-width: 600px;
+    }
 }

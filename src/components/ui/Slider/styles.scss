@@ -28,3 +28,11 @@
 .swiper-slide-shadow-right {
     background-image: none !important;
 }
+
+.mySwiper .swiper-slide {
+    opacity: 0.4 !important;
+}
+
+.mySwiper .swiper-slide-active {
+    opacity: 1 !important;
+}
