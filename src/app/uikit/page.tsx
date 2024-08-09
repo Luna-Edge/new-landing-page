@@ -1,14 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
+const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
+  ssr: false,
+});
 import Button from "@/components/ui/Button/Button";
 import Input from "@/components/ui/Input/Input";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
-import Slider from "@/components/ui/Slider/Slider";
 import Textarea from "@/components/ui/Textarea/Textarea";
 
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
-import { SLIDES_INFORMATION } from "@/components/ui/Slider/constants";
-import Carrousel from "@/components/ui/Carrousel/Carrousel";
 import { CARROUSEL_INFORMATION } from "@/components/ui/Carrousel/constants";
 
 const UiKit = () => {
@@ -35,9 +37,6 @@ const UiKit = () => {
         <Textarea placeholder="Placeholder" />
         <Carrousel
           cards={CARROUSEL_INFORMATION}
-          // height="500px"
-          // width="1350px"
-          // margin="0 auto"
           offset={1}
           showArrows={false}
         />
