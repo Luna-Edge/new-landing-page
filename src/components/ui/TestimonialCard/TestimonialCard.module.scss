@@ -1,0 +1,49 @@
+@import '/src/styles/variables.scss';
+
+.testimonial_card {
+  width: 100%;
+  aspect-ratio: 394 / 461;
+  padding: 32px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+
+  background-color: $navy-blue;
+  border: 1px solid #111833;
+  border-radius: 32px;
+}
+
+.testimonial {
+  font-family: $main-font;
+  font-size: 18px;
+  color: white;
+}
+
+.author {
+ display: flex;
+ flex-direction: column;
+}
+
+.author_image {
+  width: 54px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.author_name {
+  font-family: $main-font-semi-bold;
+  font-size: 20px;
+  margin-top: 8px;
+  color: white;
+}
+
+.author_position {
+  font-family: $main-font;
+  font-size: 14px;
+  margin-top: 4px;
+  color: white;
+}

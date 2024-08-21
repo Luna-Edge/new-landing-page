@@ -9,9 +9,11 @@ import Button from "@/components/ui/Button/Button";
 import Input from "@/components/ui/Input/Input";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import Textarea from "@/components/ui/Textarea/Textarea";
+import TestimonialCard from "@/components/ui/TestimonialCard/TestimonialCard";
 
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
 import { CARROUSEL_INFORMATION } from "@/components/ui/Carrousel/constants";
+import { TESTIMONIALS } from "./libs/utils/constants";
 
 const UiKit = () => {
   return (
@@ -25,6 +27,7 @@ const UiKit = () => {
           justifyContent: "center",
           paddingTop: "40px",
           paddingBottom: "40px",
+          backgroundColor: "black",
         }}
       >
         <Button handleButtonClick={() => {}}>Test</Button>
@@ -40,6 +43,16 @@ const UiKit = () => {
           offset={1}
           showArrows={false}
         />
+        <div
+          style={{
+            display: "flex",
+            gap: "17px",
+          }}
+        >
+          {TESTIMONIALS.map((testimonial) => (
+            <TestimonialCard key={testimonial.testimonial} {...testimonial} />
+          ))}
+        </div>
       </div>
     </main>
   );
