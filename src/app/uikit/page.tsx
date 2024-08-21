@@ -36,10 +36,8 @@ const UiKit = () => {
           backgroundColor: "black",
         }}
       >
-        <Button handleButtonClick={() => {}}>Test</Button>
-        <Button isLarge handleButtonClick={() => {}}>
-          Test
-        </Button>
+        <Button>Test</Button>
+        <Button isLarge>Test</Button>
         <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
         {/* <Slider slidesInformation={SLIDES_INFORMATION} /> */}
         <Input placeholder="Placeholder" />

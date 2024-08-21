@@ -2,18 +2,23 @@
 @import "@/styles/mixins";
 
 .button {
-    all: unset;
-    font-size: $button-font-size;
-    font-family: $main-font-semi-bold;
-    background-color: $background-alternative-grey;
     padding: 20px 64px;
+
+    border: 2px solid #152BD5;
     border-radius: $main-border-radius;
     cursor: pointer;
-    transition: background-color $main-delay ease-out;
 
-    &:hover,
-    &:focus {
-        background-color: $dark-grey;
+    background: linear-gradient(100.42deg, #1480FF 6.96%, #121AD8 118.62%);
+    color: white;
+
+    font-size: $button-font-size;
+    font-family: $main-font-semi-bold;
+    font-size: 18px;
+
+    transition: transform 0.3s;
+
+    &:active {
+        transform: scale(0.95);
     }
 }
 
