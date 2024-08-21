@@ -16,7 +16,7 @@
   &:hover {
     box-shadow: 4px 4px 10px 0px #668bc10d inset;
 
-    border-color: #1480ff;
+    border-color: $active-border;
     background: linear-gradient(180deg, #111C42 0%, #152264 100%);
   }
 }
