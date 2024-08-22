@@ -14,8 +14,6 @@ type ScrollingText = {
 const ScrollingText = ({
   altText,
   icon,
-  height = 24,
-  width = 24,
   text,
   loading = "lazy",
 }: ScrollingText) => {
@@ -23,13 +21,12 @@ const ScrollingText = ({
     <div className={styles.container}>
       <Image
         className={styles.image}
-        height={height}
-        width={width}
         src={icon}
         alt={altText}
         loading={loading}
       />
       <p className={styles.text}>{text}</p>
+      <div />
     </div>
   );
 };

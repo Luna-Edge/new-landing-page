@@ -7,17 +7,5 @@
 }
 
 .swiper-slide {
-    max-width: 300px;
-
-    @include tablet-bp() {
-        max-width: 400px;
-    }
-
-    @include desktop-bp() {
-        max-width: 500px;
-    }
-
-    @include hd-desktop-bp() {
-        max-width: 600px;
-    }
+    width: fit-content;
 }

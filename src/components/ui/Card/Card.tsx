@@ -2,6 +2,9 @@
 
 import classNames from "@/utils/classNames/classNames";
 
+import Image from "next/image";
+import MedalStar from '../../../../public/icons/medal_star.svg';
+
 import styles from "./Card.module.scss";
 import "./styles.scss";
 
@@ -16,7 +19,7 @@ const Card = ({ title, text }: CardProps) => {
   return (
     <div className={styles.card_wrapper}>
       <div className={cardStyles}>
-        <div className={styles.symbol} />
+        <Image className={styles.image} src={MedalStar} alt="Medal star" />
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.text}>{text}</p>
       </div>
