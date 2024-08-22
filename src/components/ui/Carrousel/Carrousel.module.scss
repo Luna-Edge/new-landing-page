@@ -1,8 +1,17 @@
 .container {
-    width: 1350px;
+    width: 1250px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    height: 500px;
+    height: 550px;
+    //color: #121AD8;
+}
+.title {
+    //margin-bottom: 64px;
+    margin-left: 32px;
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    align-self: start;
 }

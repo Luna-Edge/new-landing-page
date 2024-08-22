@@ -57,8 +57,9 @@ const UiKit = () => {
         <Textarea placeholder="Placeholder" />
         <Carrousel
           cards={CARROUSEL_INFORMATION}
-          offset={1}
-          showArrows={false}
+          // offset={1}
+          // showArrows={false}
+          carrouselTitle={'What is Luna Edge about?'}
         />
         <div
           style={{
