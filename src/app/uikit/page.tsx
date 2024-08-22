@@ -1,6 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { Canvas } from "@react-three/fiber";
+import { useRef } from "react";
+import { Group, Object3DEventMap } from "three";
 
 // components
 const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
@@ -12,6 +15,7 @@ import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import Textarea from "@/components/ui/Textarea/Textarea";
 import TestimonialCard from "@/components/ui/TestimonialCard/TestimonialCard";
 import ServiceCard from "@/components/ui/ServiceCard/ServiceCard";
+import Sphere from "@/components/ui/Sphere/Sphere";
 
 // constants
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
@@ -22,6 +26,15 @@ import { TESTIMONIALS } from "./libs/utils/constants";
 import SoftwareDevelopment from "./libs/images/icons/SoftwareDevelopment.png";
 
 const UiKit = () => {
+  const sphereRef = useRef<Group<Object3DEventMap>>(null);
+
+  const onSphereFrame = () => {
+    if (sphereRef.current) {
+      sphereRef.current.rotation.x += 0.0007;
+      sphereRef.current.rotation.y += 0.0007;
+    }
+  };
+
   return (
     <main>
       <div
@@ -77,6 +90,16 @@ const UiKit = () => {
             }}
           />
         </div>
+
+        <Canvas
+          style={{
+            height: "100vh",
+            widows: "100vw",
+          }}
+          camera={{ position: [0, 0, 20] }}
+        >
+          <Sphere onFrame={onSphereFrame} ref={sphereRef} />
+        </Canvas>
       </div>
     </main>
   );
