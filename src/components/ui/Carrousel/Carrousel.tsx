@@ -35,8 +35,8 @@ export default function Carrousel({
 
   return (<>
         {carrouselTitle && <h3 className={styles.title}>{carrouselTitle}</h3>}
-        <div className={styles.container}>
 
+        <div className={styles.container}>
           <Swiper
               slidesPerView={"auto"}
               effect={'coverflow'}

@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./page.module.scss";
+import 'swiper/css/effect-coverflow';
 import {useEffect, useRef, useState} from "react";
 import Lenis from "lenis";
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
@@ -15,6 +16,23 @@ import { INTERACTIVE_GRID_BACKGROUND_GRID_SIZE } from "./libs/utils/constants";
 import Button from "@/components/ui/Button/Button";
 import Sphere from "@/components/ui/Sphere/Sphere";
 import {Group, Object3DEventMap} from "three";
+import AboutSection from "@/components/ui/AboutSection/AboutSection";
+import {CARROUSEL_INFORMATION} from "@/components/ui/Carrousel/constants";
+import dynamic from "next/dynamic";
+import {Swiper, SwiperSlide} from "swiper/react";
+import {EffectCoverflow} from "swiper/modules";
+import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
+import {MARQUEE_SLIDES_INFORMATION} from "@/components/ui/MarqueeSlider/constants";
+import Input from "@/components/ui/Input/Input";
+import Textarea from "@/components/ui/Textarea/Textarea";
+import {TESTIMONIALS} from "@/app/uikit/libs/utils/constants";
+import TestimonialCard from "@/components/ui/TestimonialCard/TestimonialCard";
+import ServiceCard from "@/components/ui/ServiceCard/ServiceCard";
+import SoftwareDevelopment from "@/app/uikit/libs/images/icons/SoftwareDevelopment.png";
+
+const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
+  ssr: false,
+});
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -103,7 +121,7 @@ export default function Home() {
 
             <Canvas
                 className={styles.header_Grid}
-                camera={{ position: [0, 0, 5] }}
+                camera={{position: [0, 0, 5]}}
             >
               <InteractiveGridBackground
                   gridSize={10}
@@ -123,13 +141,13 @@ export default function Home() {
                       Math.PI,
                     ]}
                 />
-                <meshBasicMaterial color="#080E2C" />
+                <meshBasicMaterial color="#080E2C"/>
               </mesh>
             </Canvas>
 
             <div className={styles.header_ContentInner}>
               <div className={styles.header_Left}>
-                <Image className={styles.header_Logo} src={Logo} alt="logo" />
+                <Image className={styles.header_Logo} src={Logo} alt="logo"/>
                 <h1 className={styles.header_Title}>
                   Transforming Ideas into{" "}
                   <span className={styles.header_DigitalSolutions}>
@@ -145,7 +163,7 @@ export default function Home() {
                 <Button className={styles.header_CaseStudies}>
                   <div className={styles.header_CaseStudies_header}>
                     <p>Case studies</p>
-                    <Image src={ArrowRight} alt="arrow-right" />
+                    <Image src={ArrowRight} alt="arrow-right"/>
                   </div>
                   <div className={styles.header_CaseStudies_main}>
                     <div></div>
@@ -167,15 +185,15 @@ export default function Home() {
                 </Button>
                 <Button className={styles.header_Button}>
                   About us
-                  <Image src={ArrowRight} alt="arrow-right" />
+                  <Image src={ArrowRight} alt="arrow-right"/>
                 </Button>
                 <Button className={styles.header_Button}>
                   Our services
-                  <Image src={ArrowRight} alt="arrow-right" />
+                  <Image src={ArrowRight} alt="arrow-right"/>
                 </Button>
                 <Button>
                   Get in touch
-                  <Image src={ArrowRight} alt="arrow-right" />
+                  <Image src={ArrowRight} alt="arrow-right"/>
                 </Button>
               </div>
             </div>
@@ -187,10 +205,19 @@ export default function Home() {
               bottom: canvasPosition,
             }}
         >
-          <CameraController position={[0, 0, cameraPosition]} />
-          <Sphere onFrame={onSphereFrame} ref={sphereRef} />
+          <CameraController position={[0, 0, cameraPosition]}/>
+          <Sphere onFrame={onSphereFrame} ref={sphereRef}/>
         </Canvas>
-        <div ref={firstSectionObserverRef} />
+        <div ref={firstSectionObserverRef}/>
+        <AboutSection/>
+
+            <Carrousel
+                cards={CARROUSEL_INFORMATION}
+                // offset={1}
+                // showArrows={false}
+                carrouselTitle={'What is Luna Edge about?'}
+            />
+              <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION}/>
       </main>
   );
 }
