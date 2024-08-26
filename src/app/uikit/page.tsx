@@ -50,7 +50,6 @@ const UiKit = () => {
         }}
       >
         <Button>Test</Button>
-        <Button isLarge>Test</Button>
         <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
         {/* <Slider slidesInformation={SLIDES_INFORMATION} /> */}
         <Input placeholder="Placeholder" />

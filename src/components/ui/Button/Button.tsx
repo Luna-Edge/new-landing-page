@@ -15,16 +15,13 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = ({
   type = BUTTON_TYPES.BUTTON,
   children,
-  isLarge = false,
   className = "",
 }: ButtonProps) => {
   return (
     <button
       type={type}
       className={classNames(styles.button, {
-        [styles.large]: isLarge,
-        className,
-      })}
+      }, [className])}
     >
       {children}
     </button>

@@ -3,12 +3,171 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 100vh;
-  font-family: $main-font;
+  min-height: 4000vh;
+
+  background: #030514;
 }
 
-.testFont {
-  font-size: 26px;
+.header {
+  width: 100vw;
+  height: 110vh;
+
+  &_Content {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    transform-origin: center bottom;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  &_ImageBG {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &_Grid {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  &_ContentInner {
+    padding: 32px;
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &_Logo {
+    width: 11vw;
+    height: 4vh;
+  }
+
+  &_Title {
+    margin-top: 137px;
+
+    display: flex;
+    flex-direction: column;
+
+    color: white;
+    font-family: $main-font-semi-bold;
+    font-size: 3.9vw;
+  }
+
+  &_DigitalSolutions {
+    color: $active-border;
+  }
+
+  &_Description {
+    max-width: 40vw;
+    margin-top: 24px;
+    font-weight: $main-font;
+    font-size: 1.5vw;
+    color: white;
+  }
+
+  &_Right {
+    width: 23vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    & > :first-child {
+      height: 54vh;
+
+      background: white;
+      border: none;
+    }
+
+    & > :last-child {
+      display: flex;
+      justify-content: space-between;
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+  &_CaseStudies {
+    display: flex;
+    flex-direction: column;
+
+    &_header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      color: black;
+
+      p {
+        font-family: $main-font-semi-bold;
+      }
+    }
+
+    &_main {
+      margin-top: 44px;
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      & > :first-child {
+        position: absolute;
+        background: #d9d9d9;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+      }
+
+      & > :nth-child(2) {
+        position: absolute;
+        background: #e5e5e5;
+        width: 100%;
+        height: 80%;
+        top: 20%;
+        border-radius: 12px;
+      }
+      & > :last-child {
+        position: absolute;
+        background: #eeecec;
+        width: 100%;
+        height: 60%;
+        top: 40%;
+        border-radius: 12px;
+      }
+    }
+
+    &_footer {
+      margin-top: 17px;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      p {
+        margin-right: auto;
+        color: black;
+        font-family: "Lufga", sans-serif;
+        font-weight: 300;
+      }
+    }
+  }
+
+  & &_Button {
+    display: flex;
+    justify-content: space-between;
+
+    border: none;
+    background: #d7e8ff;
+    color: black;
+  }
 }
