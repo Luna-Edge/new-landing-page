@@ -2,7 +2,11 @@
 @import "@/styles/mixins";
 
 .button {
-    padding: 20px 64px;
+    padding: 20px 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     border: 2px solid #152BD5;
     border-radius: $main-border-radius;
@@ -19,13 +23,5 @@
 
     &:active {
         transform: scale(0.95);
-    }
-}
-
-.large {
-    padding: 20px 144px;
-
-    @include mobile-bp() {
-        padding: 20px 109px;
     }
 }
