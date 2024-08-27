@@ -1,26 +1,23 @@
-import { type InputHTMLAttributes } from "react";
+import { forwardRef, type InputHTMLAttributes } from "react";
 
 import styles from "./Input.module.scss";
+import classNames from "@/utils/classNames/classNames";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-  label?: string;
-};
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-export default function Input({
-  label = "",
-  placeholder,
-  name,
-  type = "text",
-}: InputProps) {
-  return (
-    <label className={styles.label}>
-      {label ? <span className={styles.label_text}>{label}</span> : null}
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className = "", type = "text", ...props }, ref) => {
+    return (
       <input
-        className={styles.input}
+        className={classNames(styles.input, {}, [className])}
         type={type}
-        placeholder={placeholder}
-        name={name}
+        ref={ref}
+        {...props}
       />
-    </label>
-  );
-};
+    );
+  }
+);
+
+Input.displayName = "Input";
+
+export default Input;

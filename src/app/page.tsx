@@ -13,6 +13,7 @@ import ArrowRight from "@/../public/icons/arrow-right.svg";
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 import { INTERACTIVE_GRID_BACKGROUND_GRID_SIZE } from "./libs/utils/constants";
 import Button from "@/components/ui/Button/Button";
+import Footer from "./libs/components/Footer/Footer";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -146,9 +147,8 @@ export default function Home() {
         </div>
       </header>
       <div ref={firstSectionObserverRef} />
-      <h1 style={{ color: "white" }}>
-        111111111111111111111111111111111111111111111111111111
-      </h1>
+
+      <Footer />
     </main>
   );
 }

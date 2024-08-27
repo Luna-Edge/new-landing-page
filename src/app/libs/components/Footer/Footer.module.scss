@@ -1,0 +1,117 @@
+@import "@/styles/variables";
+
+$border: 50%;
+$borderWidth: 2px;
+
+.footer {
+  margin-left: -10%;
+  margin-bottom: -$borderWidth;
+  padding-inline: 10%;
+  padding-bottom: 32px;
+  width: 120vw;
+
+  border: $borderWidth solid $active-border;
+  border-top-left-radius: $border;
+  border-top-right-radius: $border;
+
+  background: #040a3c;
+  transition: box-shadow 0.3s linear;
+
+  &_FormWrapper {
+    position: relative;
+    margin-top: 118px;
+    margin-inline: auto;
+    padding-top: 102px;
+    padding-bottom: 266px;
+    padding-inline: 128px;
+    width: 897px;
+  }
+
+  &_Grid {
+    position: absolute !important;
+    inset: 0;
+  }
+
+  &_Form {
+    color: white;
+    position: relative;
+    z-index: 1;
+  }
+
+  &_FormHeader {
+    margin-bottom: 16px;
+    font-size: 40px;
+    text-align: center;
+  }
+
+  &_FormParagraph {
+    margin-bottom: 32px;
+    margin-inline: 52px;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  &_FormInput {
+    margin-bottom: 16px;
+  }
+
+  &_FormTextarea {
+    margin-bottom: 25px;
+  }
+
+  &_FormSubmit {
+    width: 292px;
+    margin-inline: auto;
+  }
+
+  &_Links {
+    margin-inline: 32px;
+
+    display: flex;
+    gap: 40px;
+    list-style: none;
+
+    &Item {
+      &:last-child {
+        margin-left: auto;
+        cursor: pointer;
+      }
+    }
+
+    &Link {
+      position: relative;
+      z-index: 1;
+      color: #b7d4fa;
+      font-size: 18px;
+    }
+  }
+
+  &_MainText {
+    margin-top: -70px;
+    font-family: "Lufga", sans-serif;
+    font-weight: 300;
+    background: linear-gradient(0deg, #147bfd, #147bfd),
+      linear-gradient(100.42deg, #1480ff 6.96%, #121ad8 118.62%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    font-size: 19vw;
+    text-align: center;
+  }
+
+  &_Copyright {
+    margin-top: -40px;
+    margin-inline: 32px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+
+    &Item {
+      font-family: "Lufga", sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: #B7D4FA;
+    }
+  }
+}
