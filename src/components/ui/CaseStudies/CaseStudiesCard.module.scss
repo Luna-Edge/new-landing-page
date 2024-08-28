@@ -1,0 +1,114 @@
+@import "@/styles/variables";
+
+.container {
+  width: 100%;
+
+  position: relative;
+
+  padding: 0 32px;
+
+  .title {
+    margin-bottom: 32px;
+
+    font-size: 40px;
+    color: white;
+  }
+
+  .card {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 32px;
+
+    width: 100%;
+    height: fit-content;
+
+    padding: 32px;
+
+    background: #fff;
+    border-radius: 32px;
+
+    transform-origin: top;
+
+    &Container {
+      height: 100vh;
+      width: 100%;
+
+      position: sticky;
+      top: 32px;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    &Number {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    &Title {
+      margin-bottom: 12px;
+      font-size: 40px;
+    }
+
+    &SubTitle {
+      margin-bottom: 8px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &Description {
+      margin-bottom: 81px;
+    }
+
+    &Technologies {
+      margin-bottom: 77px;
+    }
+
+    &Image {
+      width: 100%;
+      height: 244px;
+      background: $dark-grey;
+
+      border-radius: 12px;
+    }
+
+    &List {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      &Item {
+        display: grid;
+        grid-template-columns: 10px 1fr;
+        gap: 16px;
+        align-items: center;
+      }
+
+      &Marker {
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(272.03deg, #45588C 3.07%, #182956 80.01%);
+        border-radius: 50%;
+      }
+    }
+
+
+    &RightSide {
+
+      & > div:first-child {
+        margin-bottom: 54px;
+      }
+
+      .cardSubTitle {
+        margin-bottom: 24px;
+      }
+
+
+    }
+  }
+
+}
+
+
+
+

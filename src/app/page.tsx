@@ -14,6 +14,7 @@ import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground
 import { INTERACTIVE_GRID_BACKGROUND_GRID_SIZE } from "./libs/utils/constants";
 import Button from "@/components/ui/Button/Button";
 import Footer from "./libs/components/Footer/Footer";
+import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -147,7 +148,7 @@ export default function Home() {
         </div>
       </header>
       <div ref={firstSectionObserverRef} />
-
+      <CaseStudies />
       <Footer />
     </main>
   );
