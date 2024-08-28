@@ -32,12 +32,13 @@ const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
+  const sphereCanvasRef = useRef<HTMLCanvasElement>(null);
   const scrollY = useRef(0);
   const scrollDirection = useRef<'up' | 'down'>('down');
   const firstSectionObserverRef = useRef<HTMLDivElement | null>(null);
 
-  const [canvasPosition, setCanvasPosition] = useState('-60%');
-  const [cameraPosition, setCameraPosition] = useState(30);
+  const cameraPositionZRef = useRef(12);
+  const cameraPositionYRef = useRef(26);
 
   const rotationSpeed = useRef(0.0007);
   const defaultSpeed = 0.0007;
@@ -45,12 +46,14 @@ export default function Home() {
 
   let scrollTimeout: NodeJS.Timeout;
 
-  function CameraController({ position }: { position: number[] }) {
-    const { camera } = useThree();
+  function CameraController() {
+    const { camera, size  } = useThree();
 
     useFrame(() => {
-      camera.position.set(0, position[1], position[2]);
-      camera.updateProjectionMatrix();
+      if (sphereRef.current) {
+        camera.position.set(0, cameraPositionYRef.current , cameraPositionZRef.current);
+        camera.updateProjectionMatrix();
+      }
     });
 
     return null;
@@ -79,11 +82,10 @@ export default function Home() {
     };
 
     const updateCanvasAndCamera = () => {
-      const bottomValue = Math.max(-60, Math.min(0, -60 + scrollY.current / 5)).toString() + '%';
-      const cameraZ = Math.max(20, Math.min(30, 30 - scrollY.current / 100));
-
-      setCanvasPosition(bottomValue);
-      setCameraPosition(cameraZ);
+      const cameraZ = Math.max(18, Math.min(30, 30 - scrollY.current / 20));
+      const cameraY = Math.max(0, Math.min(26, 30 - scrollY.current / 2));
+      cameraPositionZRef.current = cameraZ;
+      cameraPositionYRef.current = cameraY;
     };
 
     let lastScrollY = 0;
@@ -122,7 +124,7 @@ export default function Home() {
     };
   }, []);
 
-  const sphereRef = useRef<Group<Object3DEventMap>>(null);
+  const sphereRef = useRef<Group>(null);
 
   const onSphereFrame = () => {
     if (sphereRef.current) {
@@ -192,9 +194,14 @@ export default function Home() {
             </div>
           </div>
         </header>
-        <Canvas style={{ position: 'fixed', bottom: canvasPosition }}>
-          <CameraController position={[0, 0, cameraPosition]} />
-          <Sphere onFrame={onSphereFrame} ref={sphereRef} />
+        <Canvas
+            ref={sphereCanvasRef}
+            style={{
+              position: 'fixed',
+            }}
+        >
+          <CameraController />
+          <Sphere  onFrame={onSphereFrame} ref={sphereRef} />
         </Canvas>
         <div ref={firstSectionObserverRef} />
         <AboutSection />
