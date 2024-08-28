@@ -22,6 +22,7 @@ import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/libs/utils/constants";
 import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
+import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
 import { useResponsive } from "@/hooks/useResponsive";
@@ -260,6 +261,8 @@ export default function Home() {
       <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
 
       <WhatOurClientsSaySection />
+
+        <CaseStudies />
 
       <Footer />
     </main>
