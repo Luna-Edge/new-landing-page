@@ -8,6 +8,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
 import Button from "@/components/ui/Button/Button";
 import Sphere from "@/components/ui/Sphere/Sphere";
+import Footer from "./libs/components/Footer/Footer";
 
 import Logo from "@/../public/logo.svg";
 import ArrowRight from "@/../public/icons/arrow-right.svg";
@@ -237,6 +238,7 @@ export default function Home() {
           </div>
         </div>
       </header>
+
       <Canvas
         ref={sphereCanvasRef}
         style={{
@@ -246,12 +248,17 @@ export default function Home() {
         <CameraController />
         <Sphere onFrame={onSphereFrame} ref={sphereRef} />
       </Canvas>
+
       <AboutSection />
+
       <div className={styles.carrouselWrapper} ref={carrouselRef}>
         <h3 className={styles.carrouselWrapper_Title}>What is Luna Edge about?</h3>
         <Carrousel cards={CARROUSEL_INFORMATION} />
       </div>
+
       <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
+
+      <Footer />
     </main>
   );
 }

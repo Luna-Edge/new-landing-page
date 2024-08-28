@@ -1,29 +1,24 @@
-import { type TextareaHTMLAttributes } from "react";
+import { forwardRef, type TextareaHTMLAttributes } from "react";
 
 import styles from "./Textarea.module.scss";
+import classNames from "@/utils/classNames/classNames";
 
-type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
-  label?: string;
+interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   rowsQuantity?: number;
-};
+}
 
-const Textarea = ({
-  label = "",
-  placeholder,
-  name,
-  rowsQuantity = 5,
-}: TextareaProps) => {
-  return (
-    <label className={styles.label}>
-      {!!label ? <span className={styles.label_text}>{label}</span> : null}
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className = "", ...props }, ref) => {
+    return (
       <textarea
-        className={styles.textarea}
-        placeholder={placeholder}
-        name={name}
-        rows={rowsQuantity}
+        className={classNames(styles.textarea, {}, [className])}
+        ref={ref}
+        {...props}
       />
-    </label>
-  );
-};
+    );
+  }
+);
+
+Textarea.displayName = "Textarea";
 
 export default Textarea;

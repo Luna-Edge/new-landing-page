@@ -53,7 +53,7 @@ const UiKit = () => {
         <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
         {/* <Slider slidesInformation={SLIDES_INFORMATION} /> */}
         <Input placeholder="Placeholder" />
-        <Textarea placeholder="Placeholder" />
+        <Textarea placeholder="Placeholder" rows={5} />
         <Carrousel cards={CARROUSEL_INFORMATION} />
         <div
           style={{
