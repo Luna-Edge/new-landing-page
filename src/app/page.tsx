@@ -47,7 +47,7 @@ export default function Home() {
   let scrollTimeout: NodeJS.Timeout;
 
   function CameraController() {
-    const { camera, size  } = useThree();
+    const { camera  } = useThree();
 
     useFrame(() => {
       if (sphereRef.current) {
