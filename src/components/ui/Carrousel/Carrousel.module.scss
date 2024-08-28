@@ -1,17 +1,12 @@
 .container {
+    z-index: 5;
     width: 1250px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    height: 550px;
+    //height: 550px;
     //color: #121AD8;
-}
-.title {
-    //margin-bottom: 64px;
-    margin-left: 32px;
-    font-size: 40px;
-    font-weight: 500;
-    color: white;
-    align-self: start;
+    //background: rgba(22, 158, 215, 0.2);
+    margin: 0 auto;
 }

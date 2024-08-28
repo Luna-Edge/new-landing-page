@@ -2,18 +2,20 @@
 @import "@/styles/mixins";
 
 .card_wrapper {
+  z-index: 5;
   perspective: 600px;
   transform-style: preserve-3d;
 }
 
 .card {
+  z-index: 5;
   width: 250px;
   background: linear-gradient(
     272.03deg,
-    rgba(69, 88, 140, 0.23) 3.07%,
-    rgba(24, 41, 86, 0.23) 80.01%
+    rgba(69, 88, 140, 0.85) 3.07%,
+    rgba(24, 41, 86, 0.85) 80.01%
   );
-  border: 2px solid #131A49;
+  border: 2px solid #131a49;
   border-radius: $main-border-radius;
   padding: 24px 25px;
   min-height: 327px;
@@ -39,11 +41,12 @@
 .title {
   margin-top: 24px;
   font-size: clamp(24px, 4vw, 32px);
-  color: #B7D4FA;
+  color: #b7d4fa;
 }
 
 .text {
   margin-top: 51px;
   font-size: clamp(14px, 2.5vw, 18px);
-  color: #E7ECF0;
+  color: #e7ecf0;
+  text-align: center;
 }
