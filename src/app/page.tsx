@@ -2,7 +2,7 @@
 
 import styles from "./page.module.scss";
 import 'swiper/css/effect-coverflow';
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useRef} from "react";
 import Lenis from "lenis";
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
 import Image from "next/image";
@@ -16,7 +16,7 @@ import ArrowRight from "@/../public/icons/arrow-right.svg";
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 import { INTERACTIVE_GRID_BACKGROUND_GRID_SIZE } from "./libs/utils/constants";
 
-import {Group, Object3DEventMap} from "three";
+import {Group} from "three";
 import AboutSection from "@/components/ui/AboutSection/AboutSection";
 import {CARROUSEL_INFORMATION} from "@/components/ui/Carrousel/constants";
 import dynamic from "next/dynamic";
@@ -29,13 +29,13 @@ const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
 });
 
 
-
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
   const sphereCanvasRef = useRef<HTMLCanvasElement>(null);
   const scrollY = useRef(0);
   const scrollDirection = useRef<'up' | 'down'>('down');
   const firstSectionObserverRef = useRef<HTMLDivElement | null>(null);
+  const carrouselRef = useRef<HTMLDivElement>(null);
 
   const cameraPositionZRef = useRef(12);
   const cameraPositionYRef = useRef(26);
@@ -47,11 +47,11 @@ export default function Home() {
   let scrollTimeout: NodeJS.Timeout;
 
   function CameraController() {
-    const { camera  } = useThree();
+    const { camera } = useThree();
 
     useFrame(() => {
       if (sphereRef.current) {
-        camera.position.set(0, cameraPositionYRef.current , cameraPositionZRef.current);
+        camera.position.set(0, cameraPositionYRef.current, cameraPositionZRef.current);
         camera.updateProjectionMatrix();
       }
     });
@@ -86,6 +86,19 @@ export default function Home() {
       const cameraY = Math.max(0, Math.min(26, 30 - scrollY.current / 2));
       cameraPositionZRef.current = cameraZ;
       cameraPositionYRef.current = cameraY;
+
+      if (carrouselRef.current) {
+        const rect = carrouselRef.current.getBoundingClientRect();
+        const carrouselMiddle = rect.top - (rect.height / 4);
+
+        if (carrouselMiddle <= 0) {
+          sphereCanvasRef.current.style.position = 'fixed';
+          sphereCanvasRef.current.style.top = `${carrouselMiddle}px`;
+        } else if (carrouselMiddle  > 0) {
+          sphereCanvasRef.current.style.position = 'fixed';
+          sphereCanvasRef.current.style.top = '0';
+        }
+      }
     };
 
     let lastScrollY = 0;
@@ -201,14 +214,13 @@ export default function Home() {
             }}
         >
           <CameraController />
-          <Sphere  onFrame={onSphereFrame} ref={sphereRef} />
+          <Sphere onFrame={onSphereFrame} ref={sphereRef} />
         </Canvas>
         <div ref={firstSectionObserverRef} />
         <AboutSection />
-        <Carrousel
-            cards={CARROUSEL_INFORMATION}
-            carrouselTitle={'What is Luna Edge about?'}
-        />
+        <div className={styles.carrouselWrapper} ref={carrouselRef}>
+          <Carrousel cards={CARROUSEL_INFORMATION} carrouselTitle={'What is Luna Edge about?'} />
+        </div>
         <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
       </main>
   );

@@ -17,23 +17,10 @@ interface CarrouselProps {
 
 export default function Carrousel({
   cards,
-  // offset,
-  // showArrows,
     carrouselTitle
 }: CarrouselProps) {
-  // const [goToSlide, setGoToSlide] = useState<number>(0);
 
-  // const slides = cards.map((element, index) => {
-  //   return { ...element, onClick: () => setGoToSlide(index) };
-  // });
-
-  // const offsetFn: ComponentProps<typeof Carousel>["offsetFn"] = (
-  //   offsetFromCenter
-  // ) => {
-  //   return { opacity: offsetFromCenter === 0 ? undefined : 1 };
-  // };
-
-  return (<>
+  return (<div>
         {carrouselTitle && <h3 className={styles.title}>{carrouselTitle}</h3>}
 
         <div className={styles.container}>
@@ -63,6 +50,6 @@ export default function Carrousel({
             })}
           </Swiper>
         </div>
-      </>
+      </div>
   );
 }
