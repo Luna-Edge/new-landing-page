@@ -20,20 +20,28 @@
     transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
-  &_ImageBG {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-  }
-
   &_Grid {
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    left: 0;
+    top: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-image: url(./libs/images/firstSectionBG.png);
+
+    & > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+    }
 
     canvas {
-      width: 100% !important;
-      height: 100% !important;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100vw !important;
+      height: 100vh !important;
     }
   }
 
@@ -171,7 +179,8 @@
     color: black;
   }
 }
-.container{
+
+.container {
   z-index: 5;
   width: 1250px;
   display: flex;
@@ -179,11 +188,22 @@
   align-items: center;
   overflow: hidden;
   height: 550px;
-  //color: #121AD8;
-  //background: rgba(22, 158, 215, 0.2);
   margin: 0 auto;
 }
 
-.carrouselWrapper{
+.carrouselWrapper {
   margin: 200px 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  &_Title {
+    z-index: 5;
+    margin-left: 32px;
+    font-size: 40px;
+    font-weight: 500;
+    color: white;
+    text-align: center;
+  }
 }

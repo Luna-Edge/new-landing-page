@@ -54,12 +54,7 @@ const UiKit = () => {
         {/* <Slider slidesInformation={SLIDES_INFORMATION} /> */}
         <Input placeholder="Placeholder" />
         <Textarea placeholder="Placeholder" />
-        <Carrousel
-          cards={CARROUSEL_INFORMATION}
-          // offset={1}
-          // showArrows={false}
-          carrouselTitle={'What is Luna Edge about?'}
-        />
+        <Carrousel cards={CARROUSEL_INFORMATION} />
         <div
           style={{
             display: "flex",

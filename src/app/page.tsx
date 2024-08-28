@@ -1,40 +1,36 @@
 "use client";
 
 import styles from "./page.module.scss";
-import 'swiper/css/effect-coverflow';
-import {useEffect, useRef} from "react";
+import "swiper/css/effect-coverflow";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
-import {Canvas, useFrame, useThree} from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
 import Button from "@/components/ui/Button/Button";
 import Sphere from "@/components/ui/Sphere/Sphere";
 
-import firstSectionBG from "./libs/images/firstSectionBG.png";
 import Logo from "@/../public/logo.svg";
 import ArrowRight from "@/../public/icons/arrow-right.svg";
 
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 import { INTERACTIVE_GRID_BACKGROUND_GRID_SIZE } from "./libs/utils/constants";
 
-import {Group} from "three";
-import AboutSection from "@/components/ui/AboutSection/AboutSection";
-import {CARROUSEL_INFORMATION} from "@/components/ui/Carrousel/constants";
+import { Group } from "three";
+import AboutSection from "@/app/libs/components/AboutSection/AboutSection";
+import { CARROUSEL_INFORMATION } from "@/components/ui/Carrousel/constants";
 import dynamic from "next/dynamic";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
-import {MARQUEE_SLIDES_INFORMATION} from "@/components/ui/MarqueeSlider/constants";
-
+import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
 
 const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
   ssr: false,
 });
 
-
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
   const sphereCanvasRef = useRef<HTMLCanvasElement>(null);
   const scrollY = useRef(0);
-  const scrollDirection = useRef<'up' | 'down'>('down');
-  const firstSectionObserverRef = useRef<HTMLDivElement | null>(null);
+  const scrollDirection = useRef<"up" | "down">("down");
   const carrouselRef = useRef<HTMLDivElement>(null);
 
   const cameraPositionZRef = useRef(12);
@@ -51,7 +47,11 @@ export default function Home() {
 
     useFrame(() => {
       if (sphereRef.current) {
-        camera.position.set(0, cameraPositionYRef.current, cameraPositionZRef.current);
+        camera.position.set(
+          0,
+          cameraPositionYRef.current,
+          cameraPositionZRef.current
+        );
         camera.updateProjectionMatrix();
       }
     });
@@ -77,7 +77,7 @@ export default function Home() {
 
         headerContentRef.current.style.transform = `scale3D(${scaleValue}, ${scaleValue}, 1)`;
         headerContentRef.current.style.opacity = opacityValue.toString();
-        headerContentRef.current.style.display = opacityValue > 0 ? '' : 'none';
+        headerContentRef.current.style.display = opacityValue > 0 ? "" : "none";
       }
     };
 
@@ -89,29 +89,33 @@ export default function Home() {
 
       if (carrouselRef.current) {
         const rect = carrouselRef.current.getBoundingClientRect();
-        const carrouselMiddle = rect.top - (rect.height / 4);
+        const carrouselMiddle = rect.top - rect.height / 4;
 
         if (carrouselMiddle <= 0) {
-          sphereCanvasRef.current.style.position = 'fixed';
-          sphereCanvasRef.current.style.top = `${carrouselMiddle}px`;
-        } else if (carrouselMiddle  > 0) {
-          sphereCanvasRef.current.style.position = 'fixed';
-          sphereCanvasRef.current.style.top = '0';
+          if (sphereCanvasRef.current) {
+            sphereCanvasRef.current.style.position = "fixed";
+            sphereCanvasRef.current.style.top = `${carrouselMiddle}px`;
+          }
+        } else if (carrouselMiddle > 0) {
+          if (sphereCanvasRef.current) {
+            sphereCanvasRef.current.style.position = "fixed";
+            sphereCanvasRef.current.style.top = "0";
+          }
         }
       }
     };
 
     let lastScrollY = 0;
 
-    lenis.on('scroll', ({ scroll }) => {
+    lenis.on("scroll", ({ scroll }) => {
       clearTimeout(scrollTimeout);
 
       scrollY.current = scroll;
 
       if (scrollY.current > lastScrollY) {
-        scrollDirection.current = 'down';
+        scrollDirection.current = "down";
       } else if (scrollY.current < lastScrollY) {
-        scrollDirection.current = 'up';
+        scrollDirection.current = "up";
       }
 
       rotationSpeed.current = maxSpeed;
@@ -141,87 +145,113 @@ export default function Home() {
 
   const onSphereFrame = () => {
     if (sphereRef.current) {
-      const directionMultiplier = scrollDirection.current === 'down' ? 1 : -1;
-      sphereRef.current.rotation.x += rotationSpeed.current * directionMultiplier;
-      sphereRef.current.rotation.y += rotationSpeed.current * directionMultiplier;
+      const directionMultiplier = scrollDirection.current === "down" ? 1 : -1;
+      sphereRef.current.rotation.x +=
+        rotationSpeed.current * directionMultiplier;
+      sphereRef.current.rotation.y +=
+        rotationSpeed.current * directionMultiplier;
     }
   };
 
   return (
-      <main className={styles.main}>
-        <header className={styles.header}>
-          <div ref={headerContentRef} className={styles.header_Content}>
-            <Image className={styles.header_ImageBG} src={firstSectionBG} alt="firstSectionBG" />
+    <main className={styles.main}>
+      <header className={styles.header}>
+        <div ref={headerContentRef} className={styles.header_Content}>
+          <Canvas
+            className={styles.header_Grid}
+            camera={{ position: [0, 0, 5] }}
+          >
+            <InteractiveGridBackground
+              gridSize={10}
+              boxSize={7}
+              lineWidth={0.05}
+              transitionSpeed={0.1}
+            />
+            <mesh
+              position={[0, -INTERACTIVE_GRID_BACKGROUND_GRID_SIZE / 2.3, 0]}
+              rotation={[0, 0, Math.PI]}
+            >
+              <circleGeometry
+                args={[
+                  INTERACTIVE_GRID_BACKGROUND_GRID_SIZE / 4,
+                  32,
+                  Math.PI,
+                  Math.PI,
+                ]}
+              />
+              <meshBasicMaterial color="#080E2C" />
+            </mesh>
+          </Canvas>
 
-            <Canvas className={styles.header_Grid} camera={{ position: [0, 0, 5] }}>
-              <InteractiveGridBackground gridSize={10} boxSize={7} lineWidth={0.05} transitionSpeed={0.1} />
-              <mesh position={[0, -INTERACTIVE_GRID_BACKGROUND_GRID_SIZE / 2.1, 0]} rotation={[0, 0, Math.PI]}>
-                <circleGeometry args={[INTERACTIVE_GRID_BACKGROUND_GRID_SIZE / 4, 32, Math.PI, Math.PI]} />
-                <meshBasicMaterial color="#080E2C" />
-              </mesh>
-            </Canvas>
-
-            <div className={styles.header_ContentInner}>
-              <div className={styles.header_Left}>
-                <Image className={styles.header_Logo} src={Logo} alt="logo" />
-                <h1 className={styles.header_Title}>
-                  Transforming Ideas into{" "}
-                  <span className={styles.header_DigitalSolutions}>
+          <div className={styles.header_ContentInner}>
+            <div className={styles.header_Left}>
+              <Image className={styles.header_Logo} src={Logo} alt="logo" />
+              <h1 className={styles.header_Title}>
+                Transforming Ideas into{" "}
+                <span className={styles.header_DigitalSolutions}>
                   Digital Solutions
                 </span>
-                </h1>
-                <p className={styles.header_Description}>
-                  We are committed to delivering top-quality, innovative solutions that drive your business forward seamlessly and efficiently
-                </p>
-              </div>
-              <div className={styles.header_Right}>
-                <Button className={styles.header_CaseStudies}>
-                  <div className={styles.header_CaseStudies_header}>
-                    <p>Case studies</p>
-                    <Image src={ArrowRight} alt="arrow-right" />
-                  </div>
-                  <div className={styles.header_CaseStudies_main}>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                  </div>
+              </h1>
+              <p className={styles.header_Description}>
+                We are committed to delivering top-quality, innovative solutions
+                that drive your business forward seamlessly and efficiently
+              </p>
+            </div>
+            <div className={styles.header_Right}>
+              <Button className={styles.header_CaseStudies}>
+                <div className={styles.header_CaseStudies_header}>
+                  <p>Case studies</p>
+                  <Image src={ArrowRight} alt="arrow-right" />
+                </div>
+                <div className={styles.header_CaseStudies_main}>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
 
-                  <div className={styles.header_CaseStudies_footer}>
-                    <hr style={{ width: "100%", border: "none", height: "1px", backgroundColor: "#030514" }} />
-                    <p>50+ implemented projects</p>
-                  </div>
-                </Button>
-                <Button className={styles.header_Button}>
-                  About us
-                  <Image src={ArrowRight} alt="arrow-right" />
-                </Button>
-                <Button className={styles.header_Button}>
-                  Our services
-                  <Image src={ArrowRight} alt="arrow-right" />
-                </Button>
-                <Button>
-                  Get in touch
-                  <Image src={ArrowRight} alt="arrow-right" />
-                </Button>
-              </div>
+                <div className={styles.header_CaseStudies_footer}>
+                  <hr
+                    style={{
+                      width: "100%",
+                      border: "none",
+                      height: "1px",
+                      backgroundColor: "#030514",
+                    }}
+                  />
+                  <p>50+ implemented projects</p>
+                </div>
+              </Button>
+              <Button className={styles.header_Button}>
+                About us
+                <Image src={ArrowRight} alt="arrow-right" />
+              </Button>
+              <Button className={styles.header_Button}>
+                Our services
+                <Image src={ArrowRight} alt="arrow-right" />
+              </Button>
+              <Button>
+                Get in touch
+                <Image src={ArrowRight} alt="arrow-right" />
+              </Button>
             </div>
           </div>
-        </header>
-        <Canvas
-            ref={sphereCanvasRef}
-            style={{
-              position: 'fixed',
-            }}
-        >
-          <CameraController />
-          <Sphere onFrame={onSphereFrame} ref={sphereRef} />
-        </Canvas>
-        <div ref={firstSectionObserverRef} />
-        <AboutSection />
-        <div className={styles.carrouselWrapper} ref={carrouselRef}>
-          <Carrousel cards={CARROUSEL_INFORMATION} carrouselTitle={'What is Luna Edge about?'} />
         </div>
-        <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
-      </main>
+      </header>
+      <Canvas
+        ref={sphereCanvasRef}
+        style={{
+          position: "fixed",
+        }}
+      >
+        <CameraController />
+        <Sphere onFrame={onSphereFrame} ref={sphereRef} />
+      </Canvas>
+      <AboutSection />
+      <div className={styles.carrouselWrapper} ref={carrouselRef}>
+        <h3 className={styles.carrouselWrapper_Title}>What is Luna Edge about?</h3>
+        <Carrousel cards={CARROUSEL_INFORMATION} />
+      </div>
+      <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
+    </main>
   );
 }
