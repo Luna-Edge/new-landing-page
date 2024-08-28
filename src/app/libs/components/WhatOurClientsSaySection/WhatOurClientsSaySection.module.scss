@@ -1,0 +1,19 @@
+.section {
+  margin-top: 200px;
+  margin-inline: 32px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.title {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+}
+
+.testimonials {
+  display: flex;
+  gap: 17px;
+}

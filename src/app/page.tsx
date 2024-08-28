@@ -22,6 +22,7 @@ import { CARROUSEL_INFORMATION } from "@/components/ui/Carrousel/constants";
 import dynamic from "next/dynamic";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
+import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
 
 const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
   ssr: false,
@@ -252,11 +253,15 @@ export default function Home() {
       <AboutSection />
 
       <div className={styles.carrouselWrapper} ref={carrouselRef}>
-        <h3 className={styles.carrouselWrapper_Title}>What is Luna Edge about?</h3>
+        <h3 className={styles.carrouselWrapper_Title}>
+          What is Luna Edge about?
+        </h3>
         <Carrousel cards={CARROUSEL_INFORMATION} />
       </div>
 
       <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
+
+      <WhatOurClientsSaySection />
 
       <Footer />
     </main>
