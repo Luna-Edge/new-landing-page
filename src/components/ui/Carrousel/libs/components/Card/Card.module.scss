@@ -1,5 +1,4 @@
 @import "@/styles/variables";
-@import "@/styles/mixins";
 
 .card {
   padding: 24px;
@@ -17,8 +16,8 @@
     rgba(69, 88, 140, 0.85) 3.07%,
     rgba(24, 41, 86, 0.85) 80.01%
   );
-  border: 2px solid #131a49;
-  border-radius: $main-border-radius;
+  border: $line-width solid #131a49;
+  border-radius: $lg-border-radius;
 }
 
 .header {

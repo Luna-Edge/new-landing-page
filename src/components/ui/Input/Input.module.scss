@@ -1,34 +1,34 @@
 @import "@/styles/variables";
 
 .label {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .label_text {
-    margin-bottom: 10px;
-    padding-left: 20px;
+  margin-bottom: 10px;
+  padding-left: 20px;
 }
 
 .input {
-    width: 100%;
-    padding: 20px;
-    background: #152264;
-    border-radius: $main-border-radius;
-    border: 2px solid #132B5D;
+  width: 100%;
+  padding: 20px;
+  background: #152264;
+  border-radius: $lg-border-radius;
+  border: $line-width solid #132b5d;
+  font-family: $main-font;
+  font-size: 18px;
+  color: white;
+
+  &:focus {
+    outline-style: solid;
+    outline-color: $active-border;
+  }
+
+  &::placeholder {
     font-family: $main-font;
     font-size: 18px;
-    color: white;
-
-    &:focus {
-        outline-style: solid;
-        outline-color: $active-border;
-    }
-
-    &::placeholder {
-        font-family: $main-font;
-        font-size: 18px;
-        color: $placeholder-color;
-    }
+    color: $placeholder-color;
+  }
 }
