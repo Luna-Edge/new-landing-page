@@ -1,3 +1,4 @@
+import luxus from "../../../app/libs/images/caseStudies/luxus.png";
 import wulk from "../../../app/libs/images/caseStudies/wulk.png";
 import schoolHack from "../../../app/libs/images/caseStudies/schoolHack.png";
 
@@ -5,16 +6,27 @@ export const caseStudies = [
   {
     title: "Luxus",
     description:
-      "Jewelry investment platform. The project aims to provide users with a convenient and secure method to invest in high-value jewelry.",
-    technologies: ["React", "Next.js", "TS", "HTML", "SCSS", "MUI", "Strapi"],
+      "Jewelry investment platform aimed at providing users with a convenient and secure method to invest in high-value jewelry.",
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "HTML",
+      "SCSS",
+      "MUI",
+      "Strapi",
+    ],
     achievements: [
-      "Successfully integrated a new design for the entire website in a short period.",
-      "Led the implementation of a responsive design, significantly improving the platform’s accessibility and user experience on mobile devices.",
-      "Played a crucial role in the migration of the platform to Next.js.",
-      "Integrated Stripe and Plaid for seamless and secure payment processing on the platform, providing users with convenient and reliable payment options.",
+      "Implemented visually appealing and user-friendly interfaces for the platform, enhancing the overall user experience.",
+      "Refactored and rewrote legacy code to align with modern standards, improving code quality, maintainability, and scalability.",
+      "Led the migration of the platform to Next.js, optimizing performance and development efficiency.",
+      "Successfully integrated a new design across the entire website within a tight deadline, contributing to a refreshed and modern user interface.",
+      "Developed and managed complex, dynamic user forms using React Hook Form, streamlining user interactions.",
+      "Implemented responsive design principles, significantly improving accessibility and user experience on mobile devices.",
+      "Integrated Stripe and Plaid, enabling seamless and secure payment processing, enhancing user trust and convenience.",
     ],
     color: "#FFFFFF",
-    image: wulk,
+    image: luxus,
   },
   {
     title: "School Hack",

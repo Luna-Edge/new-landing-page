@@ -1,13 +1,11 @@
 @import "@/styles/variables";
+@import "@/styles/mixins";
+
 
 .container {
   width: 100%;
 
   position: relative;
-
-  padding: 0 32px;
-
-  margin: 200px 0;
 
   .title {
     margin-bottom: 32px;
@@ -19,7 +17,7 @@
   .card {
     display: grid;
     grid-template-columns: 2fr 3fr;
-    gap: 32px;
+    gap: 0 32px;
 
     width: 100%;
 
@@ -41,44 +39,59 @@
 
       display: flex;
       justify-content: center;
+
+    }
+
+    &MainInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .cardSubTitle {
+        margin-bottom: 8px;
+      }
     }
 
     &Number {
       font-size: 18px;
       margin-bottom: 12px;
+
     }
 
     &Title {
       margin-bottom: 12px;
       font-size: 40px;
+
     }
 
     &SubTitle {
-      margin-bottom: 8px;
       font-size: 18px;
       font-weight: 600;
-    }
+      margin-bottom: 24px;
 
-    &Description {
-      margin-bottom: 81px;
-    }
-
-    &Technologies {
-      margin-bottom: 77px;
     }
 
     &Image {
-      width: 413px;
-      height: 236px;
+      max-width: 413px;
+      width: 100%;
+
+      aspect-ratio: 4/3;
 
       border-radius: 12px;
       object-fit: cover;
+
+
+    }
+
+    &Achievements {
+
     }
 
     &List {
       display: flex;
       flex-direction: column;
       gap: 20px;
+
 
       &Item {
         display: grid;
@@ -95,22 +108,34 @@
       }
     }
 
-
-    &RightSide {
-
-      & > div:first-child {
-        margin-bottom: 54px;
-      }
-
-      .cardSubTitle {
-        margin-bottom: 24px;
-      }
-
-
-    }
   }
 
 }
+
+@include on-phone {
+  .container{
+    padding: 0 16px;
+    margin: 100px 0;
+  }
+}
+
+@include on-tablet {
+  .container{
+    padding: 0 24px;
+    margin: 120px 0;
+  }
+}
+
+@include on-desktop {
+  .container{
+    padding: 0 32px;
+    margin: 200px 0;
+  }
+}
+
+
+
+
 
 
 
