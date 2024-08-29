@@ -51,7 +51,7 @@ export default function Home() {
         camera.position.set(
           0,
           cameraPositionYRef.current,
-          cameraPositionZRef.current
+          cameraPositionZRef.current,
         );
         camera.updateProjectionMatrix();
       }

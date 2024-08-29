@@ -1,39 +1,35 @@
 "use client";
 
-import { motion, MotionValue, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./CaseStudiesCard.module.scss";
+import { FC } from "react";
+import Image, { StaticImageData } from "next/image";
 
 interface ParallaxCardProps {
   title: string;
   description: string;
+  color: string;
   technologies: string[];
-  responsibilities: string[];
   achievements: string[];
-  range: number[];
-  progress: MotionValue<number>;
-  targetScale: number;
   index: number;
+  image: StaticImageData;
 }
 
-const CaseStudiesCard: React.FC<ParallaxCardProps> = ({
+const CaseStudiesCard: FC<ParallaxCardProps> = ({
   title,
   description,
   technologies,
-  responsibilities,
   achievements,
   index,
-  range,
-  progress,
-  targetScale,
+  color,
+  image,
 }) => {
-  const scale = useTransform(progress, range, [1, targetScale]);
-
   return (
     <motion.div
       className={styles.cardContainer}
-      style={{ scale, top: (index + 1) * 67 }}
+      style={{ top: (index + 1) * 68 }}
     >
-      <div className={styles.card}>
+      <div className={styles.card} style={{ background: color }}>
         <div>
           <div className={styles.cardNumber}>{index + 1}</div>
           <h1 className={styles.cardTitle}>{title}</h1>
@@ -42,20 +38,9 @@ const CaseStudiesCard: React.FC<ParallaxCardProps> = ({
             <div className={styles.cardSubTitle}>Technologies used</div>
             <p>{technologies.join(", ")}</p>
           </div>
-          <div className={styles.cardImage} />
+          <Image className={styles.cardImage} src={image} alt={title} />
         </div>
         <div className={styles.cardRightSide}>
-          <div>
-            <div className={styles.cardSubTitle}>Responsibilities</div>
-            <div className={styles.cardList}>
-              {responsibilities.map((item, i) => (
-                <div key={i} className={styles.cardListItem}>
-                  <div className={styles.cardListMarker} />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
           <div>
             <div className={styles.cardSubTitle}>Achievements</div>
             <div className={styles.cardList}>
