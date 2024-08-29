@@ -1,18 +1,9 @@
 @import "@/styles/variables";
-@import "@/styles/mixins";
 
 .container {
   display: flex;
   align-items: center;
   gap: 64px;
-
-  @include mobile-bp() {
-    gap: 14px;
-  }
-
-  @include tablet-bp() {
-    gap: 14px;
-  }
 }
 
 .text {
@@ -24,9 +15,4 @@
 .image {
   height: 24px;
   width: 24px;
-
-  @include mobile-bp() {
-    height: 20px;
-    width: 20px;
-  }
 }

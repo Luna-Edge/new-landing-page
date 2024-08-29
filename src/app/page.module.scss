@@ -16,7 +16,7 @@
     width: 100vw;
     height: 100vh;
     transform-origin: center bottom;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    transition: transform $effect-duration ease, opacity $effect-duration ease;
   }
 
   &_Grid {

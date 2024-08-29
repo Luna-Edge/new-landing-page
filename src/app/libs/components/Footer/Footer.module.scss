@@ -1,22 +1,21 @@
 @import "@/styles/variables";
 
 $border: 50%;
-$borderWidth: 2px;
 
 .footer {
   margin-top: 200px;
   margin-left: -10%;
-  margin-bottom: -$borderWidth;
+  margin-bottom: -$line-width;
   padding-inline: 10%;
   padding-bottom: 32px;
   width: 120vw;
 
-  border: $borderWidth solid $active-border;
+  border: $line-width solid $active-border;
   border-top-left-radius: $border;
   border-top-right-radius: $border;
 
   background: #040a3c;
-  transition: box-shadow 0.3s linear;
+  transition: box-shadow $effect-duration linear;
 
   &_FormWrapper {
     position: relative;

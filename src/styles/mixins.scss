@@ -1,23 +1,27 @@
-@mixin mobile-bp() {
-    @media (max-width: 575px) {
-        @content;
-    }
+@import "./variables.scss";
+
+@mixin on-tablet {
+  @media (min-width: $tablet-width) {
+    @content;
+  }
 }
 
-@mixin tablet-bp() {
-    @media (min-width: 576px) and (max-width: 992px) {
-        @content;
-    }
+@mixin on-desktop {
+  @media (min-width: $desktop-width) {
+    @content;
+  }
 }
 
-@mixin desktop-bp() {
-    @media (min-width: 993px) {
-        @content;
-    }
-}
+@mixin content-padding {
+  --content-padding-inline: 16px;
 
-@mixin hd-desktop-bp() {
-    @media (min-width: 1450px) {
-        @content;
-    }
+  padding-inline: var(--content-padding-inline);
+
+  @include on-tablet {
+    --content-padding-inline: 24px;
+  }
+
+  @include on-desktop {
+    --content-padding-inline: 32px;
+  }
 }
