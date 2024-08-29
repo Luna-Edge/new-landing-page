@@ -23,6 +23,7 @@ import dynamic from "next/dynamic";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
 import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
+import ServicesSection from "@/app/libs/components/ServicesSection/ServicesSection";
 
 const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
   ssr: false,
@@ -34,6 +35,7 @@ export default function Home() {
   const scrollY = useRef(0);
   const scrollDirection = useRef<"up" | "down">("down");
   const carrouselRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   const cameraPositionZRef = useRef(12);
   const cameraPositionYRef = useRef(26);
@@ -43,6 +45,21 @@ export default function Home() {
   const maxSpeed = 0.007;
 
   let scrollTimeout: NodeJS.Timeout;
+
+
+
+  const scrollToFooter = () => {
+    if (footerRef.current) {
+      const footerRect = footerRef.current.getBoundingClientRect();
+      const scrollPosition = window.scrollY + footerRect.top + footerRect.height / 5;
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth",
+      });
+
+    }
+  };
 
   function CameraController() {
     const { camera } = useThree();
@@ -261,9 +278,14 @@ export default function Home() {
 
       <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
 
+      <ServicesSection onButtonClick={scrollToFooter}/>
+
       <WhatOurClientsSaySection />
 
-      <Footer />
+      <div ref={footerRef} >
+        <Footer />
+      </div>
+
     </main>
   );
 }

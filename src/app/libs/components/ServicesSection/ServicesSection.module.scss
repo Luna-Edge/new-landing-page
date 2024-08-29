@@ -1,0 +1,58 @@
+
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin: 200px 32px 0 ;
+}
+
+.title{
+  color: white;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: "Lufga", sans-serif;
+}
+
+.serviceCardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+  aspect-ratio: auto;
+  height: 608px;
+}
+
+.serviceCardsWrapper > .column1 {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  gap: 16px;
+}
+
+.serviceCardsWrapper > .column2 {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.serviceCardsWrapper > .column3 {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  gap: 16px;
+}
+
+.button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+  padding: 20px 24px;
+
+  z-index: 90;
+
+}
