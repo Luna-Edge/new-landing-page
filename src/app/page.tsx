@@ -20,7 +20,7 @@ import { Group } from "three";
 import AboutSection from "@/app/libs/components/AboutSection/AboutSection";
 import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
-import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
+import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/libs/utils/constants";
 import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
@@ -257,7 +257,7 @@ export default function Home() {
         <Carrousel cards={CARDS} />
       </div>
 
-      <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
+      <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
 
       <WhatOurClientsSaySection />
 
