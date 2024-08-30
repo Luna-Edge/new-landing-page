@@ -18,7 +18,7 @@ import ServiceCard from "@/components/ui/ServiceCard/ServiceCard";
 import Sphere from "@/components/ui/Sphere/Sphere";
 
 // constants
-import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
+import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/libs/utils/constants";
 import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import { TESTIMONIALS } from "./libs/utils/constants";
 
@@ -50,7 +50,7 @@ const UiKit = () => {
         }}
       >
         <Button>Test</Button>
-        <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
+        <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
         <Input placeholder="Placeholder" />
         <Textarea placeholder="Placeholder" rows={5} />
         <Carrousel cards={CARDS} />

@@ -3,12 +3,13 @@
 import "swiper/css/effect-coverflow";
 
 import styles from "./Carrousel.module.scss";
-import './styles.scss'
+import "./styles.scss";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow } from "swiper/modules";
-import { ComponentProps } from "react";
+import { ComponentProps, useMemo } from "react";
 import Card from "./libs/components/Card/Card";
+import { useResponsive } from "@/hooks/useResponsive";
 
 interface ICard extends ComponentProps<typeof Card> {
   key: string;
@@ -19,6 +20,19 @@ interface CarrouselProps {
 }
 
 export default function Carrousel({ cards }: CarrouselProps) {
+  const [, isTablet, isDesktop] = useResponsive();
+
+  const spaceBetween = useMemo(() => {
+    switch (true) {
+      case isTablet:
+        return 16;
+      case isDesktop:
+        return 16;
+      default:
+        return 8;
+    }
+  }, [isTablet, isDesktop]);
+
   return (
     <Swiper
       className={styles.carrousel}
@@ -29,11 +43,11 @@ export default function Carrousel({ cards }: CarrouselProps) {
       modules={[EffectCoverflow]}
       speed={500}
       freeMode
-      spaceBetween={30}
+      spaceBetween={spaceBetween}
       coverflowEffect={{
         rotate: -30,
         stretch: 0,
-        depth: 380,
+        depth: 280,
         modifier: 1,
       }}
     >
