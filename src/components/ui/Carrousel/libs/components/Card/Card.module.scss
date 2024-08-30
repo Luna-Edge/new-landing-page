@@ -1,15 +1,17 @@
 @import "@/styles/variables";
+@import "@/styles/mixins";
 
 .card {
-  padding: 24px;
+  padding: 16px;
 
   width: 100%;
-  max-width: 600px;
-  min-height: 327px;
+  max-width: 256px;
+  min-height: 384px;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 32px;
 
   background: linear-gradient(
     272.03deg,
@@ -18,27 +20,58 @@
   );
   border: $line-width solid #131a49;
   border-radius: $lg-border-radius;
+
+  @include on-tablet {
+    max-width: 352px;
+    min-height: 270px;
+  }
+
+  @include on-desktop {
+    max-width: 600px;
+    min-height: 327px;
+    padding: 24px;
+  }
 }
 
 .header {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
+
+  @include on-desktop {
+    gap: 16px;
+  }
 }
 
 .image {
-  width: 32px;
+  width: 24px;
   aspect-ratio: 1 / 1;
+
+  @include on-desktop {
+    width: 32px;
+  }
 }
 
 .title {
   font-weight: $main-font-semi-bold;
-  font-size: 32px;
+  font-size: 28px;
   color: #b7d4fa;
+
+  @include on-desktop {
+    font-size: 32px;
+  }
 }
 
 .text {
   margin-top: auto;
-  font-size: 18px;
+  font-size: 16px;
   color: #e7ecf0;
+
+  @include on-tablet {
+    font-size: 14px;
+  }
+
+  @include on-desktop {
+    font-size: 18px;
+  }
 }

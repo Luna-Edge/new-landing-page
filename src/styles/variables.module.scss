@@ -1,0 +1,8 @@
+@import './variables.scss';
+
+:export {
+  phone-width: $phone-width;
+  tablet-width: $tablet-width;
+  desktop-width: $desktop-width;
+  effect-duration: $effect-duration;
+}

@@ -3,18 +3,24 @@
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import ScrollingText from "../ScrollingText/ScrollingText";
+import ScrollingText from "./libs/components/ScrollingText/ScrollingText";
 
+import styles from "./MarqueeSlider.module.scss";
 import "./styles.scss";
-import { MARQUEE_SLIDES_INFORMATION } from "./constants";
+import { ComponentProps } from "react";
 
-interface MarqueeSliderProps {
-  sliderData: typeof MARQUEE_SLIDES_INFORMATION;
+interface IScrollingText extends ComponentProps<typeof ScrollingText> {
+  id: string;
 }
 
-export default function MarqueeSlider({ sliderData }: MarqueeSliderProps) {
+interface MarqueeSliderProps {
+  slides: IScrollingText[];
+}
+
+export default function MarqueeSlider({ slides }: MarqueeSliderProps) {
   return (
     <Swiper
+      className={styles.slider}
       slidesPerView={"auto"}
       centeredSlides
       loop
@@ -22,15 +28,12 @@ export default function MarqueeSlider({ sliderData }: MarqueeSliderProps) {
       modules={[Autoplay]}
       speed={11000}
       freeMode
-      spaceBetween={0}
     >
-      {sliderData.map(({ id, altText, icon, text }) => {
-        return (
-          <SwiperSlide key={id}>
-            <ScrollingText altText={altText} text={text} icon={icon} />
-          </SwiperSlide>
-        );
-      })}
+      {slides.map(({ id, ...slideProps }) => (
+        <SwiperSlide key={id}>
+          <ScrollingText {...slideProps} />
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 }
