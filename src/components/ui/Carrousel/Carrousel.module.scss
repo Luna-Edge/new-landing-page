@@ -1,9 +1,19 @@
+@import "@/styles/mixins";
+
 .carrousel {
-  max-width: 1250px;
+  max-width: 600px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   margin: 0 auto;
+
+  @include on-tablet {
+    max-width: 800px;
+  }
+
+  @include on-desktop {
+    max-width: 1350px;
+  }
 }

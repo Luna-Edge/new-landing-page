@@ -24,6 +24,7 @@ import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/consta
 import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
+import { useResponsive } from "@/hooks/useResponsive";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);

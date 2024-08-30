@@ -1,11 +1,18 @@
 import { v4 as uuidv4 } from "uuid";
 
+import MedalStarIcon from "../images/icons/medal-star.svg";
 import CDIcon from "../images/icons/cd.svg";
 import TaskSquareIcon from "../images/icons/task-square.svg";
 import RankingIcon from "../images/icons/ranking.svg";
 import UnlimitedIcon from "../images/icons/unlimited.svg";
 
 export const CARDS = [
+  {
+    key: uuidv4(),
+    title: "Professionalism",
+    text: "Choosing Luna Edge, you can be sure that a team of experienced experts will work on the implementation of your idea.  We guarantee not only high-quality and timely work, but also established communication and feedback, and checking the quality of the work performed is one of our professional principles.",
+    icon: MedalStarIcon,
+  },
   {
     key: uuidv4(),
     title: "Modernity",
