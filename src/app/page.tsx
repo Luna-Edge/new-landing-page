@@ -25,7 +25,6 @@ import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection
 import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
-import { useResponsive } from "@/hooks/useResponsive";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -258,13 +257,16 @@ export default function Home() {
         <Carrousel cards={CARDS} />
       </div>
 
-      <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
-
+      <div style={{ overflow: "hidden" }}>
+        <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
+      </div>
       <WhatOurClientsSaySection />
 
-        <CaseStudies />
+      <CaseStudies />
 
-      <Footer />
+      <div style={{ overflow: "hidden" }}>
+        <Footer />
+      </div>
     </main>
   );
 }

@@ -27,19 +27,21 @@ const CaseStudiesCard: FC<ParallaxCardProps> = ({
   return (
     <motion.div
       className={styles.cardContainer}
-      style={{ top: (index + 1) * 68 }}
+      style={{
+        top: (index + 1) * 68,
+      }}
     >
       <div className={styles.card} style={{ background: color }}>
         <div className={styles.cardMainInfo}>
-          <div>
-            <div className={styles.cardNumber}>{index + 1}</div>
-            <h1 className={styles.cardTitle}>{title}</h1>
-            <p>{description}</p>
-          </div>
-          <div>
-            <div className={styles.cardSubTitle}>Technologies used</div>
-            <p>{technologies.join(", ")}</p>
-          </div>
+          <div className={styles.cardNumber}>{index + 1}</div>
+          <h1 className={styles.cardTitle}>{title}</h1>
+          <p>{description}</p>
+        </div>
+        <div className={styles.cardTechnologies}>
+          <div className={styles.cardSubTitle}>Technologies used</div>
+          <p>{technologies.join(", ")}</p>
+        </div>
+        <div className={styles.cardImageContainer}>
           <Image className={styles.cardImage} src={image} alt={title} />
         </div>
         <div className={styles.cardAchievements}>

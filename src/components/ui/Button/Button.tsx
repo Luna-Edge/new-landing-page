@@ -1,6 +1,10 @@
 "use client";
 
-import { type ButtonHTMLAttributes, type ReactNode } from "react";
+import {
+  type ButtonHTMLAttributes,
+  MouseEventHandler,
+  type ReactNode,
+} from "react";
 
 import classNames from "@/utils/classNames/classNames";
 
@@ -10,18 +14,20 @@ import { BUTTON_TYPES } from "./constants";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   isLarge?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button = ({
   type = BUTTON_TYPES.BUTTON,
   children,
   className = "",
+  onClick,
 }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={classNames(styles.button, {
-      }, [className])}
+      onClick={onClick}
+      className={classNames(styles.button, {}, [className])}
     >
       {children}
     </button>
