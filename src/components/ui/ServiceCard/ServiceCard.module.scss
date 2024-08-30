@@ -1,4 +1,4 @@
-@import '/src/styles/variables.scss';
+@import "/src/styles/variables.scss";
 
 .service_card {
   width: 100%;
@@ -8,8 +8,8 @@
   position: relative;
   display: flex;
 
-  border: 2px solid $midnight-blue;
-  border-radius: 32px;
+  border: $line-width solid $midnight-blue;
+  border-radius: $lg-border-radius;
   background: #080e24;
   cursor: pointer;
 
@@ -17,7 +17,7 @@
     box-shadow: 4px 4px 10px 0px #668bc10d inset;
 
     border-color: $active-border;
-    background: linear-gradient(180deg, #111C42 0%, #152264 100%);
+    background: linear-gradient(180deg, #111c42 0%, #152264 100%);
   }
 }
 

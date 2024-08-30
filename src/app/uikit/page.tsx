@@ -19,7 +19,7 @@ import Sphere from "@/components/ui/Sphere/Sphere";
 
 // constants
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/constants";
-import { CARROUSEL_INFORMATION } from "@/components/ui/Carrousel/constants";
+import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import { TESTIMONIALS } from "./libs/utils/constants";
 
 // images
@@ -51,10 +51,9 @@ const UiKit = () => {
       >
         <Button>Test</Button>
         <MarqueeSlider sliderData={MARQUEE_SLIDES_INFORMATION} />
-        {/* <Slider slidesInformation={SLIDES_INFORMATION} /> */}
         <Input placeholder="Placeholder" />
         <Textarea placeholder="Placeholder" rows={5} />
-        <Carrousel cards={CARROUSEL_INFORMATION} />
+        <Carrousel cards={CARDS} />
         <div
           style={{
             display: "flex",

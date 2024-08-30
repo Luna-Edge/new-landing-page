@@ -1,9 +1,8 @@
 @import "@/styles/variables";
-@import "@/styles/mixins";
 
 .button {
-    width: 100%;
-    padding: 20px 24px;
+  width: 100%;
+  padding: 20px 24px;
 
     z-index: 90;
 
@@ -11,20 +10,20 @@
     justify-content: center;
     align-items: center;
 
-    border: 2px solid #152BD5;
-    border-radius: $main-border-radius;
-    cursor: pointer;
+  border: $line-width solid #152bd5;
+  border-radius: $lg-border-radius;
+  cursor: pointer;
 
-    background: linear-gradient(100.42deg, #1480FF 6.96%, #121AD8 118.62%);
-    color: white;
+  background: linear-gradient(100.42deg, #1480ff 6.96%, #121ad8 118.62%);
+  color: white;
 
-    font-size: $button-font-size;
-    font-family: $main-font-semi-bold;
-    font-size: 18px;
+  font-size: $button-font-size;
+  font-family: $main-font-semi-bold;
+  font-size: 18px;
 
-    transition: transform 0.3s;
+  transition: transform $effect-duration;
 
-    &:active {
-        transform: scale(0.95);
-    }
+  &:active {
+    transform: scale(0.95);
+  }
 }

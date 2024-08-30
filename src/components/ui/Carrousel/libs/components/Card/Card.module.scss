@@ -1,0 +1,44 @@
+@import "@/styles/variables";
+
+.card {
+  padding: 24px;
+
+  width: 100%;
+  max-width: 600px;
+  min-height: 327px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: linear-gradient(
+    272.03deg,
+    rgba(69, 88, 140, 0.85) 3.07%,
+    rgba(24, 41, 86, 0.85) 80.01%
+  );
+  border: $line-width solid #131a49;
+  border-radius: $lg-border-radius;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.image {
+  width: 32px;
+  aspect-ratio: 1 / 1;
+}
+
+.title {
+  font-weight: $main-font-semi-bold;
+  font-size: 32px;
+  color: #b7d4fa;
+}
+
+.text {
+  margin-top: auto;
+  font-size: 18px;
+  color: #e7ecf0;
+}

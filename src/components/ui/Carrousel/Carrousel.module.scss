@@ -1,12 +1,9 @@
-.container {
-    z-index: 5;
-    width: 1250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    //height: 550px;
-    //color: #121AD8;
-    //background: rgba(22, 158, 215, 0.2);
-    margin: 0 auto;
+.carrousel {
+  max-width: 1250px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0 auto;
 }
