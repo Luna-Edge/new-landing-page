@@ -1,0 +1,16 @@
+.button {
+  width: 48px;
+  aspect-ratio: 1 / 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  border: 1px solid #D7E8FF;
+  background: none;
+}
+
+.icon {
+  filter: invert(91%) sepia(7%) saturate(1095%) hue-rotate(186deg) brightness(104%) contrast(103%);
+}

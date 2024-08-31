@@ -24,9 +24,9 @@ export default function Carrousel({ cards }: CarrouselProps) {
 
   const spaceBetween = useMemo(() => {
     switch (true) {
-      case isTablet:
-        return 16;
       case isDesktop:
+        return 16;
+      case isTablet:
         return 16;
       default:
         return 8;

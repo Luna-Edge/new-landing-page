@@ -1,19 +1,63 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
 .section {
-  margin-top: 200px;
-  margin-inline: 32px;
+  @include content-padding;
+
+  margin-top: 100px;
 
   display: flex;
   flex-direction: column;
   gap: 64px;
+
+  @include on-tablet {
+    margin-top: 120px;
+  }
+
+  @include on-desktop {
+    margin-top: 200px;
+  }
+}
+
+.header {
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include on-tablet {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.sliderControls {
+  display: flex;
+  justify-content: space-between;
+
+  @include on-tablet {
+    justify-content: center;
+    gap: 52px;
+  }
 }
 
 .title {
-  text-align: center;
+  font-family: $main-font-semi-bold;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
+
+  @include on-tablet {
+    font-size: 32px;
+  }
+
+  @include on-desktop {
+    font-size: 40px;
+  }
 }
 
-.testimonials {
+.slider {
+  width: 100%;
   display: flex;
-  gap: 17px;
+  justify-content: center;
 }
