@@ -7,7 +7,10 @@ import DesignServices from "@/app/libs/images/icons/design_services.svg";
 
 const screenWidth = window.innerWidth;
 const isTablet = screenWidth >= 768 && screenWidth < 1280;
+const isMobile = screenWidth < 768;
 
+console.log(isTablet , 'isTablet')
+console.log(isMobile , 'isMobile')
 
 export const serviceCardsData  = [
     {
@@ -16,9 +19,10 @@ export const serviceCardsData  = [
             src: SoftwareDevelopment,
             styles: {
                 position: "absolute",
-                right: isTablet ? '-50px': "12px",
-                bottom: isTablet ? '-50px': "-5px",
+                right: isTablet ? '-50px': isMobile ? '-80px' : "12px",
+                bottom: isTablet ? '-50px': isMobile ? '-80px' : "-5px",
                 ...(isTablet && { scale:'0.8' }),
+                ...(isMobile && { scale:'0.5' }),
             },
         },
         column: "column1",
@@ -29,9 +33,10 @@ export const serviceCardsData  = [
             src: QA,
             styles: {
                 position: "absolute",
-                right: isTablet ? '-10px': "23px",
-                bottom: isTablet ? '0px' : "15px",
-                ...(isTablet && { scale:'0.7'  }),
+                right: (isTablet || isMobile) ? '-10px':  "23px",
+                bottom: (isTablet || isMobile) ? '0px' : "15px",
+                ...((isTablet || isMobile) && { scale:'0.7'  }),
+
             },
         },
         column: "column1",
@@ -43,11 +48,11 @@ export const serviceCardsData  = [
             styles: {
                 position: "absolute",
                 right:   "0px",
-                bottom:  isTablet ? 0 : "7px",
+                bottom:  (isTablet || isMobile) ? 0 : "7px",
             },
-            ...(isTablet && { transform: "translateY(-50%)" , scale:'0.7' }),
+            ...((isTablet || isMobile) && { transform: "translateY(-50%)" , scale:'0.7' }),
         },
-        column: "column2",
+        column: isMobile ? "column1" : "column2",
     },
     {
         title: "IT Service Outsourcing",
@@ -55,12 +60,12 @@ export const serviceCardsData  = [
             src: ServiceOutsourcing,
             styles: {
                 position: "absolute",
-                right:  isTablet ? '18px': "12px",
-                bottom: isTablet ? '13px': "12px",
+                right:  (isTablet || isMobile) ? '18px': "12px",
+                bottom: (isTablet || isMobile) ? '13px': "12px",
 
             },
         },
-        column: "column2",
+        column: isMobile ? "column1" : "column2",
     },
     {
         title: "AI Services",
@@ -68,12 +73,12 @@ export const serviceCardsData  = [
             src: AIServices,
             styles: {
                 position: "absolute",
-                right: isTablet ?'-10px' : "21px",
-                bottom: isTablet ? '0px' : "21px",
-                ...(isTablet && { scale:'0.7' }),
+                right: (isTablet || isMobile) ?'-10px' : "21px",
+                bottom: (isTablet || isMobile) ? '0px' : "21px",
+                ...((isTablet || isMobile) && { scale:'0.7' }),
             },
         },
-        column: isTablet? 'column1' : "column3",
+        column: isMobile ? "column1" : isTablet? 'column1' : "column3",
     },
     {
         title: "Design Services",
@@ -81,11 +86,12 @@ export const serviceCardsData  = [
             src: DesignServices,
             styles: {
                 position: "absolute",
-                right: isTablet ? '-5px' : "39px",
-                bottom: isTablet ? '-55px' : "-18px",
+                right: isTablet ? '-5px' : isMobile ? '-40px' : "39px",
+                bottom: isTablet  ? '-55px' : isMobile ? '-120px' :"-18px",
                 ...(isTablet && { scale:'0.8' }),
+                ...(isMobile && { scale:'0.5' }),
             },
         },
-        column:  isTablet? 'column2' : "column3",
+        column: isMobile ? "column1" : isTablet? 'column2' : "column3",
     },
 ];

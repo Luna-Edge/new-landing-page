@@ -6,7 +6,11 @@
   display: flex;
   flex-direction: column;
   gap: 64px;
-  margin: 200px 32px 0 ;
+  margin: 100px 16px;
+
+  @include on-tablet{
+    margin: 200px 32px 0 ;
+  }
 }
 
 .title{
@@ -21,10 +25,11 @@
   gap: 16px;
   max-width: 100%;
   aspect-ratio: auto;
-  height: 608px;
-   grid-template-columns: repeat(3, 1fr);
+
+   grid-template-columns: repeat(1, 1fr);
 
   @include on-tablet{
+    height: 608px;
     grid-template-columns: repeat(2, 1fr);
   }
 

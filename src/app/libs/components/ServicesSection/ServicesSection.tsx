@@ -18,7 +18,7 @@ interface ServicesSectionProps {
 
 const ServicesSection : React.FC<ServicesSectionProps> = ({ onButtonClick }) => {
 
-    const [, isTablet, isDesktop] = useResponsive();
+    const [isMobile, isTablet, isDesktop] = useResponsive();
     const renderServiceCards = (column) => {
         return serviceCardsData
             .filter((card) => card.column === column)
@@ -48,7 +48,7 @@ const ServicesSection : React.FC<ServicesSectionProps> = ({ onButtonClick }) => 
                 <div className={styles.column3}>
                     {renderServiceCards("column3")}
                 </div>
-            </div> : isTablet && <div className={styles.tabletContainer}>
+            </div> : isTablet ? <div className={styles.tabletContainer}>
 
                 <div className={styles.serviceCardsWrapper}>
                     <div className={styles.column1}>
@@ -56,6 +56,18 @@ const ServicesSection : React.FC<ServicesSectionProps> = ({ onButtonClick }) => 
                     </div>
                     <div className={styles.column2}>
                         {renderServiceCards("column2")}
+                    </div>
+                </div>
+
+                <Button className={styles.button} onClick={onButtonClick}>
+                    Get in touch
+                    <Image src={ArrowRight} alt="arrow-right"/>
+                </Button>
+            </div> : isMobile && <div className={styles.tabletContainer}>
+
+                <div className={styles.serviceCardsWrapper}>
+                    <div className={styles.column1}>
+                        {renderServiceCards("column1")}
                     </div>
                 </div>
 
