@@ -34,14 +34,10 @@
       img {
         filter: brightness(0) invert(1);
       }
-
-      &:first-child {
-        transform: rotate(180deg);
-      }
     }
   }
 
-  .cardsContainer{
+  .cardsContainer {
 
   }
 
@@ -141,10 +137,6 @@
         }
       }
 
-      &SubTitle {
-        margin-bottom: 14px;
-      }
-
       &Image {
         grid-area: image;
         width: 100%;
@@ -159,8 +151,21 @@
       &Achievements {
         grid-area: achievements;
 
-        .cardSubTitle {
+        &Title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           margin-bottom: 12px;
+
+          button {
+            border: none;
+            color: black;
+            filter: brightness(0);
+
+            img{
+              transition: all linear 100ms;
+            }
+          }
         }
       }
 
@@ -304,7 +309,7 @@
       }
     }
 
-    .buttons{
+    .buttons {
       display: none;
     }
 
