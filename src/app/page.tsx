@@ -22,9 +22,9 @@ import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/libs/utils/constants";
 import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
+import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
-import { useResponsive } from "@/hooks/useResponsive";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -50,7 +50,7 @@ export default function Home() {
         camera.position.set(
           0,
           cameraPositionYRef.current,
-          cameraPositionZRef.current
+          cameraPositionZRef.current,
         );
         camera.updateProjectionMatrix();
       }
@@ -257,11 +257,16 @@ export default function Home() {
         <Carrousel cards={CARDS} />
       </div>
 
-      <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
-
+      <div style={{ overflow: "hidden" }}>
+        <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
+      </div>
       <WhatOurClientsSaySection />
 
-      <Footer />
+      <CaseStudies />
+
+      <div style={{ overflow: "hidden" }}>
+        <Footer />
+      </div>
     </main>
   );
 }

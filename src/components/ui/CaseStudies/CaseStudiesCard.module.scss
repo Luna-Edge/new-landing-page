@@ -1,0 +1,407 @@
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+
+.container {
+  width: 100%;
+
+  position: relative;
+
+  @include content-padding;
+
+  .title {
+    color: white;
+
+    &Container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .buttons {
+    display: flex;
+
+    button {
+      padding: 0;
+      background: transparent;
+      width: 48px;
+      height: 48px;
+      border: 1px solid #D7E8FF;
+      border-radius: 50%;
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+  .cardsContainer {
+
+  }
+
+  .card {
+    display: grid;
+    background: #fff;
+
+    transform-origin: top;
+
+    &SubTitle {
+      font-size: 18px;
+      font-weight: 600;
+
+    }
+
+    &List {
+      display: flex;
+      flex-direction: column;
+
+
+      &Item {
+        display: grid;
+        align-items: center;
+      }
+
+      &Marker {
+        background: linear-gradient(272.03deg, #45588C 3.07%, #182956 80.01%);
+        border-radius: 50%;
+      }
+    }
+
+  }
+
+}
+
+@include on-phone {
+  .container {
+    margin: 100px 0;
+
+    .title {
+      font-size: 30px;
+
+      &Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 20px;
+      }
+    }
+
+    .buttons {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .card {
+      grid-template-areas:
+      "main-info"
+      "technologies"
+      "achievements"
+      "image";
+
+      gap: 24px;
+      padding: 16px;
+      border-radius: 16px;
+
+      &Container {
+        width: 100%;
+      }
+
+      &Number {
+        font-size: 14px;
+        margin-bottom: 4px;
+
+      }
+
+      &Title {
+        margin-bottom: 6px;
+        font-size: 24px;
+
+      }
+
+      &MainInfo {
+        grid-area: main-info;
+
+        .cardSubTitle {
+          margin-bottom: 4px;
+        }
+      }
+
+      &Technologies {
+        grid-area: technologies;
+
+        .cardSubTitle {
+          margin-bottom: 6px;
+        }
+      }
+
+      &Image {
+        grid-area: image;
+        width: 100%;
+
+        aspect-ratio: 4/3;
+
+        border-radius: 12px;
+        object-fit: cover;
+      }
+
+
+      &Achievements {
+        grid-area: achievements;
+
+        &Title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          button {
+            height: 24px;
+            width: 24px;
+            border: none;
+            color: black;
+            filter: brightness(0);
+
+
+            img{
+              transition: all linear 100ms;
+            }
+          }
+        }
+      }
+
+      &List {
+        gap: 16px;
+
+        &Item {
+          grid-template-columns: 6px 1fr;
+          gap: 8px;
+        }
+
+        &Marker {
+          width: 6px;
+          height: 6px;
+        }
+      }
+    }
+  }
+}
+
+@include on-tablet {
+  .container {
+    margin: 120px 0;
+
+    .title {
+      font-size: 32px;
+
+      &Container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        margin-bottom: 14px;
+      }
+    }
+
+    .buttons {
+      width: fit-content;
+      gap: 52px;
+    }
+
+    .card {
+      grid-template-areas:
+      "main-info achievements"
+      "technologies achievements"
+      "image achievements";
+
+
+      grid-auto-rows: max-content;
+      align-content: space-between;
+
+      gap: 0 28px;
+      padding: 16px;
+      border-radius: 24px;
+
+      &Container {
+        width: 100%;
+      }
+
+      &Number {
+        font-size: 14px;
+        margin-bottom: 8px;
+      }
+
+      &Title {
+        margin-bottom: 6px;
+        font-size: 24px;
+      }
+
+      &MainInfo {
+        grid-area: main-info;
+
+        .cardSubTitle {
+          margin-bottom: 8px;
+        }
+      }
+
+      &Technologies {
+        grid-area: technologies;
+
+        .cardSubTitle {
+          margin-bottom: 6px;
+        }
+      }
+
+      &Image {
+        grid-area: image;
+        max-width: 413px;
+        width: 100%;
+
+        aspect-ratio: 4/3;
+
+        border-radius: 12px;
+        object-fit: cover;
+
+        &Container {
+          display: flex;
+          align-items: end;
+        }
+      }
+
+
+      &Achievements {
+        grid-area: achievements;
+
+        .cardSubTitle {
+          margin-bottom: 14px;
+        }
+      }
+
+      &List {
+        gap: 14px;
+
+        &Item {
+          grid-template-columns: 6px 1fr;
+          gap: 10px;
+        }
+
+        &Marker {
+          width: 6px;
+          height: 6px;
+        }
+      }
+    }
+  }
+}
+
+@include on-desktop {
+  .container {
+    margin: 200px 0;
+
+    .title {
+      font-size: 40px;
+
+      &Container {
+        margin-bottom: 32px;
+      }
+    }
+
+    .buttons {
+      display: none;
+    }
+
+    .card {
+      grid-template-areas:
+      "main-info achievements"
+      "technologies achievements"
+      "image achievements";
+
+      grid-template-rows: repeat(3, 1fr);
+
+      gap: 0 32px;
+      height: 680px;
+      padding: 32px;
+      border-radius: 32px;
+
+      &Container {
+        height: 100vh;
+        width: 100%;
+
+        position: sticky;
+        top: 32px;
+
+        display: flex;
+        justify-content: center;
+      }
+
+      &Number {
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+
+      &Title {
+        margin-bottom: 12px;
+        font-size: 40px;
+      }
+
+      &MainInfo {
+        grid-area: main-info;
+
+        .cardSubTitle {
+          margin-bottom: 8px;
+        }
+      }
+
+      &Technologies {
+        grid-area: technologies;
+
+        .cardSubTitle {
+          margin-bottom: 8px;
+        }
+      }
+
+      &Image {
+        grid-area: image;
+        max-width: 413px;
+        width: 100%;
+
+        aspect-ratio: 4/3;
+
+        border-radius: 12px;
+        object-fit: cover;
+      }
+
+
+      &Achievements {
+        grid-area: achievements;
+
+        .cardSubTitle {
+          margin-bottom: 24px;
+        }
+      }
+
+      &List {
+        gap: 20px;
+
+        &Item {
+          grid-template-columns: 10px 1fr;
+          gap: 16px;
+        }
+
+        &Marker {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
