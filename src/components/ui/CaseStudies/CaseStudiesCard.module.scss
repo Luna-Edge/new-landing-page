@@ -155,12 +155,14 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-bottom: 12px;
 
           button {
+            height: 24px;
+            width: 24px;
             border: none;
             color: black;
             filter: brightness(0);
+
 
             img{
               transition: all linear 100ms;
@@ -251,10 +253,6 @@
         }
       }
 
-      &SubTitle {
-        margin-bottom: 14px;
-      }
-
       &Image {
         grid-area: image;
         max-width: 413px;
@@ -276,7 +274,7 @@
         grid-area: achievements;
 
         .cardSubTitle {
-          margin-bottom: 24px;
+          margin-bottom: 14px;
         }
       }
 
@@ -361,10 +359,6 @@
         .cardSubTitle {
           margin-bottom: 8px;
         }
-      }
-
-      &SubTitle {
-        margin-bottom: 24px;
       }
 
       &Image {
