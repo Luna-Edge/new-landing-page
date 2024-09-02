@@ -1,29 +1,45 @@
-@import '/src/styles/variables.scss';
+@import "/src/styles/variables";
+@import "/src/styles/mixins";
 
 .testimonial_card {
-  width: 100%;
-  aspect-ratio: 394 / 461;
-  padding: 32px;
+  padding: 16px;
+  width: 288px;
+  aspect-ratio: 288 / 421;
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 20px;
+  gap: 32px;
 
   background-color: $navy-blue;
   border: 1px solid $midnight-blue;
   border-radius: $lg-border-radius;
+
+  @include on-tablet {
+    width: 352px;
+    aspect-ratio: 352 / 356;
+  }
+
+  @include on-desktop {
+    padding: 32px;
+    width: 100%;
+    aspect-ratio: 394 / 461;
+  }
 }
 
 .testimonial {
   font-family: $main-font;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
+
+  @include on-desktop {
+    font-size: 18px;
+  }
 }
 
 .author {
- display: flex;
- flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .author_image {
@@ -36,14 +52,22 @@
 
 .author_name {
   font-family: $main-font-semi-bold;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 8px;
   color: white;
+
+  @include on-desktop {
+    font-size: 20px;
+  }
 }
 
 .author_position {
   font-family: $main-font;
-  font-size: 14px;
+  font-size: 12px;
   margin-top: 4px;
   color: white;
+
+  @include on-desktop {
+    font-size: 14px;
+  }
 }
