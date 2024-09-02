@@ -1,10 +1,12 @@
 import SoftwareDevelopment from "@/app/libs/images/icons/software_development.svg";
 import QA from "@/app/libs/images/icons/qa.svg";
 import CloudService from "@/app/libs/images/icons/cloud_services.svg";
-import ServiceOutsourcing from "@/app/libs/images/icons/service_outsourcing.svg";
+import ServiceOutsourcing from "@/app/libs/images/icons/service_outsourcing.png";
 import AIServices from "@/app/libs/images/icons/ai_services.svg";
 import DesignServices from "@/app/libs/images/icons/design_services.svg";
 
+const screenWidth = window.innerWidth;
+const isTablet = screenWidth >= 768 && screenWidth < 1280;
 
 
 export const serviceCardsData  = [
@@ -66,7 +68,7 @@ export const serviceCardsData  = [
                 bottom: "21px",
             },
         },
-        column: "column3",
+        column: isTablet? 'column1' : "column3",
     },
     {
         title: "Design Services",
@@ -78,6 +80,6 @@ export const serviceCardsData  = [
                 bottom: "-18px",
             },
         },
-        column: "column3",
+        column:  isTablet? 'column2' : "column3",
     },
 ];

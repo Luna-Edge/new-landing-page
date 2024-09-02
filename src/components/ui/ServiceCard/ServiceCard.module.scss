@@ -1,4 +1,6 @@
 @import "/src/styles/variables.scss";
+@import "@/styles/mixins";
+
 
 .service_card {
   width: 100%;
@@ -24,4 +26,8 @@
 .title {
   color: white;
   font-size: 24px;
+
+  @include on-tablet {
+    font-size: 20px;
+  }
 }

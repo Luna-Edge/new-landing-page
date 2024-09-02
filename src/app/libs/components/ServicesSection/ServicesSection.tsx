@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button/Button";
 
 import ArrowRight from "../../../../app/libs/images/icons/arrow-right.png";
 import {serviceCardsData} from "@/app/libs/components/ServicesSection/constants";
+import {useResponsive} from "@/hooks/useResponsive";
 
 
 interface ServicesSectionProps {
@@ -16,6 +17,8 @@ interface ServicesSectionProps {
 }
 
 const ServicesSection : React.FC<ServicesSectionProps> = ({ onButtonClick }) => {
+
+    const [, isTablet, isDesktop] = useResponsive();
     const renderServiceCards = (column) => {
         return serviceCardsData
             .filter((card) => card.column === column)
@@ -31,7 +34,7 @@ const ServicesSection : React.FC<ServicesSectionProps> = ({ onButtonClick }) => 
     return (
         <div className={styles.container}>
             <h3 className={styles.title}>Our services</h3>
-            <div className={styles.serviceCardsWrapper}>
+            {isDesktop ? <div className={styles.serviceCardsWrapper}>
                 <div className={styles.column1}>
                     {renderServiceCards("column1")}
                 </div>
@@ -39,13 +42,30 @@ const ServicesSection : React.FC<ServicesSectionProps> = ({ onButtonClick }) => 
                     {renderServiceCards("column2")}
                     <Button className={styles.button} onClick={onButtonClick}>
                         Get in touch
-                        <Image src={ArrowRight} alt="arrow-right" />
+                        <Image src={ArrowRight} alt="arrow-right"/>
                     </Button>
                 </div>
                 <div className={styles.column3}>
                     {renderServiceCards("column3")}
                 </div>
-            </div>
+            </div> : isTablet && <div className={styles.tabletContainer}>
+
+                <div className={styles.serviceCardsWrapper}>
+                    <div className={styles.column1}>
+                        {renderServiceCards("column1")}
+                    </div>
+                    <div className={styles.column2}>
+                        {renderServiceCards("column2")}
+                    </div>
+                </div>
+
+                <Button className={styles.button} onClick={onButtonClick}>
+                    Get in touch
+                    <Image src={ArrowRight} alt="arrow-right"/>
+                </Button>
+            </div>}
+
+
         </div>
     );
 };
