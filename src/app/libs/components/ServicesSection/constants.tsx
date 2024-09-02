@@ -5,24 +5,39 @@ import ServiceOutsourcing from "@/app/libs/images/icons/service_outsourcing.png"
 import AIServices from "@/app/libs/images/icons/ai_services.svg";
 import DesignServices from "@/app/libs/images/icons/design_services.svg";
 
+import tabletServiceOutsourcing from "@/app/libs/images/icons/tablet/tablet_service_outsourcing.svg";
+import tabletSoftwareDevelopment from "@/app/libs/images/icons/tablet/tablet_software_development.svg";
+import tabletQA from "@/app/libs/images/icons/tablet/tablet_qa.svg";
+import tabletAIServices from "@/app/libs/images/icons/tablet/tablet_ai_services.svg"
+import tabletCloudService from "@/app/libs/images/icons/tablet/tablet_cloud_services.svg";
+import tabletDesignServices from "@/app/libs/images/icons/tablet/tablet_design_services.svg";
+
+
+import mobileServiceOutsourcing from "@/app/libs/images/icons/mobile/mobile_service_outsourcing.svg";
+import mobileSoftwareDevelopment from "@/app/libs/images/icons/mobile/mobile_software_development.svg";
+import mobileQA from "@/app/libs/images/icons/mobile/mobile_qa.svg";
+import mobileAIServices from "@/app/libs/images/icons/mobile/mobile_ai_services.svg";
+import mobileCloudService from "@/app/libs/images/icons/mobile/mobile_cloud_services.svg";
+import mobileDesignServices from "@/app/libs/images/icons/mobile/mobile_design_services.svg";
+
+
+
+
 const screenWidth = window.innerWidth;
 const isTablet = screenWidth >= 768 && screenWidth < 1280;
 const isMobile = screenWidth < 768;
 
-console.log(isTablet , 'isTablet')
-console.log(isMobile , 'isMobile')
+
 
 export const serviceCardsData  = [
     {
         title: "Software Development",
         image: {
-            src: SoftwareDevelopment,
+            src: isMobile ? mobileSoftwareDevelopment: isTablet? tabletSoftwareDevelopment : SoftwareDevelopment ,
             styles: {
                 position: "absolute",
-                right: isTablet ? '-50px': isMobile ? '-80px' : "12px",
-                bottom: isTablet ? '-50px': isMobile ? '-80px' : "-5px",
-                ...(isTablet && { scale:'0.8' }),
-                ...(isMobile && { scale:'0.5' }),
+                right: isTablet || isMobile ? '0px' : "12px",
+                bottom: isTablet || isMobile ? '0px' : "-5px",
             },
         },
         column: "column1",
@@ -30,12 +45,11 @@ export const serviceCardsData  = [
     {
         title: "Quality Assurance \n (QA)",
         image: {
-            src: QA,
+            src: isMobile ? mobileQA: isTablet? tabletQA : QA,
             styles: {
                 position: "absolute",
-                right: (isTablet || isMobile) ? '-10px':  "23px",
-                bottom: (isTablet || isMobile) ? '0px' : "15px",
-                ...((isTablet || isMobile) && { scale:'0.7'  }),
+                right: isMobile ? '18.5px' : isTablet ? "22px" :  "23px",
+                bottom:  isMobile ? '24px' : isTablet ? "16px" : "15px",
 
             },
         },
@@ -44,25 +58,23 @@ export const serviceCardsData  = [
     {
         title: "Cloud Services",
         image: {
-            src: CloudService,
+            src: isMobile ? mobileCloudService: isTablet? tabletCloudService : CloudService,
             styles: {
                 position: "absolute",
                 right:   "0px",
-                bottom:  (isTablet || isMobile) ? 0 : "7px",
+                bottom:  isTablet ? '9px' : isMobile ? '14px' : "7px",
             },
-            ...((isTablet || isMobile) && { transform: "translateY(-50%)" , scale:'0.7' }),
         },
         column: isMobile ? "column1" : "column2",
     },
     {
         title: "IT Service Outsourcing",
         image: {
-            src: ServiceOutsourcing,
+            src: isMobile ? mobileServiceOutsourcing: isTablet? tabletServiceOutsourcing : ServiceOutsourcing ,
             styles: {
                 position: "absolute",
-                right:  (isTablet || isMobile) ? '18px': "12px",
-                bottom: (isTablet || isMobile) ? '13px': "12px",
-
+                right:  isTablet ? '18px' :  isMobile ? '14px': "12px",
+                bottom:   isTablet ? '14px' :  isMobile ? '13px': "12px",
             },
         },
         column: isMobile ? "column1" : "column2",
@@ -70,12 +82,11 @@ export const serviceCardsData  = [
     {
         title: "AI Services",
         image: {
-            src: AIServices,
+            src: isMobile ? mobileAIServices : isTablet ? tabletAIServices : AIServices ,
             styles: {
                 position: "absolute",
-                right: (isTablet || isMobile) ?'-10px' : "21px",
-                bottom: (isTablet || isMobile) ? '0px' : "21px",
-                ...((isTablet || isMobile) && { scale:'0.7' }),
+                right: isTablet ? '13px' : isMobile ? '19px' : "21px",
+                bottom: isTablet ? '18px' : isMobile ? '22px'  : "21px",
             },
         },
         column: isMobile ? "column1" : isTablet? 'column1' : "column3",
@@ -83,13 +94,11 @@ export const serviceCardsData  = [
     {
         title: "Design Services",
         image: {
-            src: DesignServices,
+            src: isMobile ? mobileDesignServices : isTablet ? tabletDesignServices : DesignServices,
             styles: {
                 position: "absolute",
-                right: isTablet ? '-5px' : isMobile ? '-40px' : "39px",
-                bottom: isTablet  ? '-55px' : isMobile ? '-120px' :"-18px",
-                ...(isTablet && { scale:'0.8' }),
-                ...(isMobile && { scale:'0.5' }),
+                right: isTablet ? '33px' : isMobile ? '29px' : "39px",
+                bottom: isTablet  ? '6px' : isMobile ? '0px' :"-18px",
             },
         },
         column: isMobile ? "column1" : isTablet? 'column2' : "column3",
