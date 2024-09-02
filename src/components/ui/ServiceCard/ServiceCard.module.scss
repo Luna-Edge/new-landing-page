@@ -9,11 +9,16 @@
 
   position: relative;
   display: flex;
+  flex-direction: row;
 
   border: $line-width solid $midnight-blue;
   border-radius: $lg-border-radius;
   background: #080e24;
   cursor: pointer;
+
+  @include on-tablet {
+    padding: 16px
+  }
 
   &:hover {
     box-shadow: 4px 4px 10px 0px #668bc10d inset;
@@ -26,8 +31,10 @@
 .title {
   color: white;
   font-size: 24px;
+  font-weight: 400;
 
   @include on-tablet {
     font-size: 20px;
   }
+
 }
