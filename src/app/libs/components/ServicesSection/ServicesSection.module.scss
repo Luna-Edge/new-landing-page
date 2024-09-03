@@ -1,0 +1,102 @@
+
+@import "@/styles/variables";
+@import "@/styles/mixins";
+
+.container{
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  margin: 100px 16px;
+
+  @include on-tablet{
+    margin: 200px 32px 0 ;
+  }
+}
+
+.title{
+  color: white;
+  font-size: 40px;
+  font-weight: 500;
+  font-family: "Lufga", sans-serif;
+}
+
+.serviceCardsWrapper {
+  display: grid;
+  gap: 16px;
+  max-width: 100%;
+  aspect-ratio: auto;
+
+   grid-template-columns: repeat(1, 1fr);
+
+  @include on-tablet{
+    height: 608px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include on-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+.serviceCardsWrapper > .column1 {
+  display: grid;
+  gap: 16px;
+
+  @include on-tablet {
+    grid-template-rows: 2fr 1fr 1fr;
+  }
+
+  @include on-desktop {
+    grid-template-rows: 2fr 1fr;
+  }
+}
+
+.serviceCardsWrapper > .column2 {
+  display: grid;
+  gap: 16px;
+
+  @include on-tablet {
+    grid-template-rows: 1fr 1fr 2fr;
+  }
+
+  @include on-desktop {
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+}
+
+.serviceCardsWrapper > .column3 {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  gap: 16px;
+}
+
+.button{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 90;
+
+  @include on-tablet {
+    padding: 15px 75px;
+    width: fit-content;
+    align-self: center;
+  }
+
+  @include on-desktop {
+    padding: 20px 24px;
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.tabletContainer{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

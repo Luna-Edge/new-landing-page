@@ -23,7 +23,7 @@ import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import { TESTIMONIALS } from "./libs/utils/constants";
 
 // images
-import SoftwareDevelopment from "./libs/images/icons/SoftwareDevelopment.png";
+import SoftwareDevelopment from "@/app/libs/images/icons/SoftwareDevelopment.png";
 
 const UiKit = () => {
   const sphereRef = useRef<Group<Object3DEventMap>>(null);

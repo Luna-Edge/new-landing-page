@@ -1,17 +1,25 @@
 @import "/src/styles/variables.scss";
+@import "@/styles/mixins";
+
 
 .service_card {
   width: 100%;
-  height: 100%;
-  padding: 32px;
+  height: 180px;
+  padding: 16px;
 
   position: relative;
   display: flex;
-
+  flex-direction: row;
+  border-radius: 16px;
   border: $line-width solid $midnight-blue;
-  border-radius: $lg-border-radius;
+
   background: #080e24;
   cursor: pointer;
+
+  @include on-tablet {
+    height: 100%;
+    border-radius: $lg-border-radius;
+  }
 
   &:hover {
     box-shadow: 4px 4px 10px 0px #668bc10d inset;
@@ -23,5 +31,13 @@
 
 .title {
   color: white;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  width: 60%;
+  text-align: start;
+
+  @include on-desktop {
+    font-size: 24px;
+  }
+
 }

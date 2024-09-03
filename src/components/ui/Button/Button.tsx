@@ -9,7 +9,7 @@ import {
 import classNames from "@/utils/classNames/classNames";
 
 import styles from "./Button.module.scss";
-import { BUTTON_TYPES } from "./constants";
+import {BUTTON_TYPES} from "./constants";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -22,11 +22,13 @@ const Button = ({
   children,
   className = "",
   onClick,
+                    ...props
 }: ButtonProps) => {
   return (
     <button
       type={type}
       onClick={onClick}
+      {...props}
       className={classNames(styles.button, {}, [className])}
     >
       {children}

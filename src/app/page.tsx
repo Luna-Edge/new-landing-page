@@ -22,6 +22,7 @@ import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/libs/utils/constants";
 import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
+import ServicesSection from "@/app/libs/components/ServicesSection/ServicesSection";
 import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
@@ -32,6 +33,7 @@ export default function Home() {
   const scrollY = useRef(0);
   const scrollDirection = useRef<"up" | "down">("down");
   const carrouselRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   const cameraPositionZRef = useRef(12);
   const cameraPositionYRef = useRef(26);
@@ -41,6 +43,21 @@ export default function Home() {
   const maxSpeed = 0.007;
 
   let scrollTimeout: NodeJS.Timeout;
+
+
+
+  const scrollToFooter = () => {
+    if (footerRef.current) {
+      const footerRect = footerRef.current.getBoundingClientRect();
+      const scrollPosition = window.scrollY + footerRect.top + footerRect.height / 5;
+
+      window.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth",
+      });
+
+    }
+  };
 
   function CameraController() {
     const { camera } = useThree();
@@ -260,13 +277,17 @@ export default function Home() {
       <div style={{ overflow: "hidden" }}>
         <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
       </div>
+
+        <ServicesSection onButtonClick={scrollToFooter}/>
+
       <WhatOurClientsSaySection />
 
-      <CaseStudies />
+        <CaseStudies />
 
-      <div style={{ overflow: "hidden" }}>
+        <div ref={footerRef}  style={{ overflow: "hidden" }} >
         <Footer />
       </div>
+
     </main>
   );
 }

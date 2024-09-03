@@ -4,9 +4,11 @@
   width: 100%;
   padding: 20px 24px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    z-index: 90;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
   border: $line-width solid #152bd5;
   border-radius: $lg-border-radius;
