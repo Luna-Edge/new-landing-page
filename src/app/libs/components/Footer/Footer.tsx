@@ -10,6 +10,7 @@ import {
 } from "../../features/schemas/contactFormSchema";
 import { useEffect, useRef } from "react";
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
+import { useResponsive } from "@/hooks/useResponsive";
 
 export default function Footer() {
   const boxShadowVal = useRef(50);
@@ -21,6 +22,8 @@ export default function Footer() {
     resolver: zodResolver(contactFormSchema),
   });
   const ref = useRef<HTMLElement>(null);
+
+  const [isMobile, isTablet] = useResponsive();
 
   const handleGoToTop = () => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
