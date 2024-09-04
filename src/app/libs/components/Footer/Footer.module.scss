@@ -1,14 +1,16 @@
 @import "@/styles/variables";
+@import "@/styles/mixins";
+
 
 $border: 50%;
 
 .footer {
   margin-top: 200px;
-  margin-left: -10%;
+  margin-left: -55%;
   margin-bottom: -$line-width;
   padding-inline: 10%;
   padding-bottom: 32px;
-  width: 120vw;
+  width: 210vw;
 
   border: $line-width solid $active-border;
   border-top-left-radius: $border;
@@ -17,14 +19,40 @@ $border: 50%;
   background: #040a3c;
   transition: box-shadow $effect-duration linear;
 
+  @include on-tablet {
+    width: 140vw;
+    margin-left: -20%;
+  }
+
+  @include on-desktop {
+    width: 120vw;
+    margin-left: -10%;
+  }
+
   &_FormWrapper {
+    display: flex;
+    justify-content: center;
     position: relative;
-    margin-top: 118px;
     margin-inline: auto;
-    padding-top: 102px;
-    padding-bottom: 266px;
+    padding-bottom: 98px;
     padding-inline: 128px;
-    width: 897px;
+    width: 60%;
+    margin-top: 82px;
+    padding-top: 12px;
+
+    @include on-tablet {
+      margin-top: 98px;
+      padding-top: 47px;
+      padding-bottom: 160px;
+      width: 722px;
+    }
+
+    @include on-desktop {
+      width: 897px;
+      margin-top: 118px;
+      padding-top: 102px;
+      padding-bottom: 266px;
+    }
   }
 
   &_Grid {
@@ -33,48 +61,103 @@ $border: 50%;
   }
 
   &_Form {
+    align-self: center;
     color: white;
     position: relative;
     z-index: 1;
+
+    @include on-tablet {
+     width: 474px;
+    }
+
+    @include on-desktop {
+      width: 600px;
+    }
   }
 
   &_FormHeader {
     margin-bottom: 16px;
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
+
+    @include on-tablet {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    @include on-desktop {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
   }
 
   &_FormParagraph {
     margin-bottom: 32px;
     margin-inline: 52px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
+
+    @include on-tablet {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    @include on-desktop {
+      font-size: 18px;
+      margin-bottom: 32px;
+    }
   }
 
   &_FormInput {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+    @include on-desktop{
+      margin-bottom: 16px;
+    }
   }
 
   &_FormTextarea {
-    margin-bottom: 25px;
+    margin-bottom: 16px;
+    @include on-desktop{
+      margin-bottom: 25px;
+    }
   }
 
   &_FormSubmit {
-    width: 292px;
+    width: 288px;
     margin-inline: auto;
+    
+    @include on-desktop{
+      width: 292px;
+    }
   }
 
   &_Links {
-    margin-inline: 32px;
-
+    margin-inline: 100px;
     display: flex;
-    gap: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 54px;
     list-style: none;
+    margin-bottom: 54px;
+
+    @include on-tablet{
+      flex-direction: row;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 0;
+    }
+    @include on-desktop{
+      margin-inline: 32px;
+    }
 
     &Item {
       &:last-child {
-        margin-left: auto;
+        order: -1;
         cursor: pointer;
+        @include on-tablet{
+          margin-left: auto;
+          order:1;
+        }
       }
     }
 
@@ -87,7 +170,8 @@ $border: 50%;
   }
 
   &_MainText {
-    margin-top: -70px;
+
+    margin-top: -30px;
     font-family: "Lufga", sans-serif;
     font-weight: 300;
     background: linear-gradient(0deg, #147bfd, #147bfd),
@@ -98,14 +182,33 @@ $border: 50%;
     color: transparent;
     font-size: 19vw;
     text-align: center;
+
+    @include on-desktop{
+      margin-top: -30px;
+    }
   }
 
   &_Copyright {
-    margin-top: -40px;
-    margin-inline: 32px;
+    margin-top: 54px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
     justify-content: space-between;
     list-style: none;
+
+    @include on-tablet {
+      margin-top: -10px;
+      margin-inline: 100px;
+      flex-direction: row;
+      align-items: start;
+      gap: 0;
+    }
+
+    @include on-desktop{
+      margin-top: -40px;
+      margin-inline: 32px;
+    }
 
     &Item {
       font-family: "Lufga", sans-serif;
