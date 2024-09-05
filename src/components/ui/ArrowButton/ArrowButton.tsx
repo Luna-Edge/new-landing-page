@@ -6,7 +6,7 @@ import ArrowRight from "@/../public/icons/arrow-right.svg";
 import classNames from "@/utils/classNames/classNames";
 
 interface ArrowButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  direction: "left" | "right";
+  direction: "left" | "right" | "bottom" | "top";
 }
 
 const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(
@@ -15,6 +15,10 @@ const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(
       switch (direction) {
         case "left":
           return 180;
+        case "bottom":
+          return -90;
+        case "top":
+          return 90;
         default:
           return 0;
       }
@@ -34,7 +38,7 @@ const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(
         />
       </button>
     );
-  }
+  },
 );
 
 ArrowButton.displayName = "ArrowButton";
