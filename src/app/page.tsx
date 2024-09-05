@@ -14,7 +14,6 @@ import Logo from "@/../public/logo.svg";
 import ArrowRight from "@/../public/icons/arrow-right.svg";
 
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
-import { INTERACTIVE_GRID_BACKGROUND_GRID_SIZE } from "./libs/utils/constants";
 
 import { Group } from "three";
 import AboutSection from "@/app/libs/components/AboutSection/AboutSection";
@@ -27,10 +26,16 @@ import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
 import Carrousel from "@/components/ui/Carrousel/Carrousel";
 
+import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
+import { useScreen } from "usehooks-ts";
+import { useResponsive } from "@/hooks/useResponsive";
+
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
   const sphereCanvasRef = useRef<HTMLCanvasElement>(null);
-  const scrollY = useRef(0);
+  const [, , , responsiveSizes] = useResponsive();
+  const screen = useScreen();
+  const { scrollY } = useScroll();
   const scrollDirection = useRef<"up" | "down">("down");
   const carrouselRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -61,20 +66,46 @@ export default function Home() {
 
   function CameraController() {
     const { camera } = useThree();
+    const isFirstRender = useRef(true);
 
     useFrame(() => {
       if (sphereRef.current) {
-        camera.position.set(
-          0,
-          cameraPositionYRef.current,
-          cameraPositionZRef.current,
-        );
-        camera.updateProjectionMatrix();
+        if (isFirstRender.current) {
+          camera.position.set(
+            0,
+            cameraPositionYRef.current,
+            cameraPositionZRef.current
+          );
+          camera.updateProjectionMatrix();
+          isFirstRender.current = false;
+        } else {
+          camera.position.lerp(
+            {
+              x: 0,
+              y: cameraPositionYRef.current,
+              z: cameraPositionZRef.current,
+            },
+            0.08
+          );
+          camera.updateProjectionMatrix();
+        }
       }
     });
 
     return null;
   }
+
+  const sphereSize = useTransform(
+    useMotionValue(screen?.width),
+    [responsiveSizes.phone, responsiveSizes.tablet, responsiveSizes.desktop],
+    [
+      { z: 22, y: 3 },
+      { z: 22, y: 3 },
+      { z: 18, y: 0 },
+    ]
+  );
+
+  const headerContentInnerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -89,8 +120,12 @@ export default function Home() {
 
     const updateHeaderContent = () => {
       if (headerContentRef.current) {
-        const scaleValue = 1 + scrollY.current / 50;
-        const opacityValue = 1 - scrollY.current / 100;
+        const scaleValue = 1 + scrollY.get() / 300;
+        const opacityValue = 1 - scrollY.get() / 600;
+
+        if (headerContentInnerRef.current) {
+          headerContentInnerRef.current.style.opacity = opacityValue.toString();
+        }
 
         headerContentRef.current.style.transform = `scale3D(${scaleValue}, ${scaleValue}, 1)`;
         headerContentRef.current.style.opacity = opacityValue.toString();
@@ -99,8 +134,17 @@ export default function Home() {
     };
 
     const updateCanvasAndCamera = () => {
-      const cameraZ = Math.max(18, Math.min(30, 30 - scrollY.current / 20));
-      const cameraY = Math.max(0, Math.min(26, 30 - scrollY.current / 2));
+      const cameraZ = Math.max(
+        sphereSize.get().z,
+        Math.min(
+          12 + sphereSize.get().z,
+          12 + sphereSize.get().z - scrollY.get() / 70
+        )
+      );
+      const cameraY = Math.max(
+        sphereSize.get().y,
+        26 + sphereSize.get().y - scrollY.get() / 40
+      );
       cameraPositionZRef.current = cameraZ;
       cameraPositionYRef.current = cameraY;
 
@@ -124,14 +168,12 @@ export default function Home() {
 
     let lastScrollY = 0;
 
-    lenis.on("scroll", ({ scroll }) => {
+    lenis.on("scroll", () => {
       clearTimeout(scrollTimeout);
 
-      scrollY.current = scroll;
-
-      if (scrollY.current > lastScrollY) {
+      if (scrollY.get() > lastScrollY) {
         scrollDirection.current = "down";
-      } else if (scrollY.current < lastScrollY) {
+      } else if (scrollY.get() < lastScrollY) {
         scrollDirection.current = "up";
       }
 
@@ -140,8 +182,9 @@ export default function Home() {
       updateHeaderContent();
       updateCanvasAndCamera();
 
-      lastScrollY = scrollY.current;
+      lastScrollY = scrollY.get();
 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       scrollTimeout = setTimeout(() => {
         rotationSpeed.current = defaultSpeed;
       }, 10);
@@ -170,87 +213,93 @@ export default function Home() {
     }
   };
 
+  const motionScreenWidth = useMotionValue(screen?.width);
+
+  useEffect(() => {
+    motionScreenWidth.set(screen?.width);
+  }, [motionScreenWidth, screen?.width]);
+
   return (
     <main className={styles.main}>
       <header className={styles.header}>
         <div ref={headerContentRef} className={styles.header_Content}>
-          <Canvas
-            className={styles.header_Grid}
-            camera={{ position: [0, 0, 5] }}
-          >
-            <InteractiveGridBackground
-              gridSize={10}
-              boxSize={7}
-              lineWidth={0.05}
-              transitionSpeed={0.1}
-            />
-            <mesh
-              position={[0, -INTERACTIVE_GRID_BACKGROUND_GRID_SIZE / 2.3, 0]}
-              rotation={[0, 0, Math.PI]}
-            >
-              <circleGeometry
-                args={[
-                  INTERACTIVE_GRID_BACKGROUND_GRID_SIZE / 4,
-                  32,
-                  Math.PI,
-                  Math.PI,
-                ]}
-              />
-              <meshBasicMaterial color="#080E2C" />
-            </mesh>
-          </Canvas>
+          <div className={styles.header_Background}>
+            <InteractiveGridBackground className={styles.header_Grid} />
+            <motion.div
+              className={styles.header_BGCircle}
+              style={{
+                width: useTransform(
+                  motionScreenWidth,
+                  [
+                    screen?.height / 5.8 * responsiveSizes.phone / 100,
+                    screen?.height / 2 * responsiveSizes.tablet / 100,
+                    screen?.height / 5.8 * responsiveSizes.desktop / 100,
+                  ],
+                  [screen?.height / 5.8 * 280 / 100, screen?.height / 5 * 250 / 100, screen?.height / 5.8 * 500 / 100]
+                ),
+                boxShadow: useTransform(
+                  scrollY,
+                  [0, 400],
+                  [
+                    "inset 0px -10px 100px 30px rgba(20, 128, 255, 0.5), 0px -10px 100px 30px rgba(20, 128, 255, 0.5)",
+                    "inset 0px 0px 0px 0px rgba(20, 128, 255, 0), 0px 0px 0px 0px rgba(20, 128, 255, 0)",
+                  ]
+                ),
+              }}
+            ></motion.div>
+          </div>
+        </div>
 
-          <div className={styles.header_ContentInner}>
-            <div className={styles.header_Left}>
-              <Image className={styles.header_Logo} src={Logo} alt="logo" />
-              <h1 className={styles.header_Title}>
-                Transforming Ideas into{" "}
-                <span className={styles.header_DigitalSolutions}>
-                  Digital Solutions
-                </span>
-              </h1>
-              <p className={styles.header_Description}>
-                We are committed to delivering top-quality, innovative solutions
-                that drive your business forward seamlessly and efficiently
-              </p>
-            </div>
-            <div className={styles.header_Right}>
-              <Button className={styles.header_CaseStudies}>
-                <div className={styles.header_CaseStudies_header}>
-                  <p>Case studies</p>
-                  <Image src={ArrowRight} alt="arrow-right" />
-                </div>
-                <div className={styles.header_CaseStudies_main}>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
+        <div ref={headerContentInnerRef} className={styles.header_ContentInner}>
+          <div className={styles.header_Left}>
+            <Image className={styles.header_Logo} src={Logo} alt="logo" />
+            <h1 className={styles.header_Title}>
+              Transforming Ideas into{" "}
+              <span className={styles.header_DigitalSolutions}>
+                Digital Solutions
+              </span>
+            </h1>
+            <p className={styles.header_Description}>
+              We are committed to delivering top-quality, innovative solutions
+              that drive your business forward seamlessly and efficiently
+            </p>
+          </div>
+          <div className={styles.header_Right}>
+            <Button className={styles.header_CaseStudies}>
+              <div className={styles.header_CaseStudies_header}>
+                <p>Case studies</p>
+                <Image src={ArrowRight} alt="arrow-right" />
+              </div>
+              <div className={styles.header_CaseStudies_main}>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
 
-                <div className={styles.header_CaseStudies_footer}>
-                  <hr
-                    style={{
-                      width: "100%",
-                      border: "none",
-                      height: "1px",
-                      backgroundColor: "#030514",
-                    }}
-                  />
-                  <p>50+ implemented projects</p>
-                </div>
-              </Button>
-              <Button className={styles.header_Button}>
-                About us
-                <Image src={ArrowRight} alt="arrow-right" />
-              </Button>
-              <Button className={styles.header_Button}>
-                Our services
-                <Image src={ArrowRight} alt="arrow-right" />
-              </Button>
-              <Button>
-                Get in touch
-                <Image src={ArrowRight} alt="arrow-right" />
-              </Button>
-            </div>
+              <div className={styles.header_CaseStudies_footer}>
+                <hr
+                  style={{
+                    width: "100%",
+                    border: "none",
+                    height: "1px",
+                    backgroundColor: "#030514",
+                  }}
+                />
+                <p>50+ implemented projects</p>
+              </div>
+            </Button>
+            <Button className={styles.header_Button}>
+              About us
+              <Image src={ArrowRight} alt="arrow-right" />
+            </Button>
+            <Button className={styles.header_Button}>
+              Our services
+              <Image src={ArrowRight} alt="arrow-right" />
+            </Button>
+            <Button>
+              Get in touch
+              <Image src={ArrowRight} alt="arrow-right" />
+            </Button>
           </div>
         </div>
       </header>
