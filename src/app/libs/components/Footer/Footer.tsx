@@ -8,13 +8,16 @@ import {
   ContactFormSchema,
   contactFormSchema,
 } from "../../features/schemas/contactFormSchema";
-import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
-import { Canvas } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
+import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 
 export default function Footer() {
   const boxShadowVal = useRef(50);
-  const { register, handleSubmit, formState: {errors} } = useForm<ContactFormSchema>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
   });
   const ref = useRef<HTMLElement>(null);
@@ -67,14 +70,7 @@ export default function Footer() {
       }}
     >
       <div className={styles.footer_FormWrapper}>
-        <Canvas className={styles.footer_Grid} camera={{ position: [0, 0, 6] }}>
-          <InteractiveGridBackground
-            gridSize={10}
-            boxSize={2}
-            lineWidth={0.05}
-            transitionSpeed={0.1}
-          />
-        </Canvas>
+        <InteractiveGridBackground className={styles.footer_Grid} />
         <form
           onSubmit={handleSubmit(console.dir)}
           className={styles.footer_Form}
@@ -132,8 +128,12 @@ export default function Footer() {
       </ul>
       <h1 className={styles.footer_MainText}>Luna Edge</h1>
       <ul className={styles.footer_Copyright}>
-        <li className={styles.footer_CopyrightItem}>© 2024. All rights reserved</li>
-        <li className={styles.footer_CopyrightItem}>Made by Mariia Petrovych</li>
+        <li className={styles.footer_CopyrightItem}>
+          © 2024. All rights reserved
+        </li>
+        <li className={styles.footer_CopyrightItem}>
+          Made by Mariia Petrovych
+        </li>
       </ul>
     </footer>
   );

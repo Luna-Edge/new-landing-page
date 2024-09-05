@@ -10,22 +10,29 @@
 
 .header {
   width: 100vw;
-  height: 110vh;
+  height: 230dvh;
 
   &_Content {
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     transform-origin: center bottom;
     transition: transform $effect-duration ease, opacity $effect-duration ease;
   }
 
+  &_Background {
+    position: absolute;
+    inset: 0;
+
+    border: $line-width solid $active-border;
+
+    background: linear-gradient(0deg, #022055, #022055),
+      linear-gradient(87.37deg, #080e2c 2.19%, #111944 97.95%),
+      linear-gradient(88.74deg, #0a1141 6.11%, #032764 99.15%);
+  }
+
   &_Grid {
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw !important;
-    height: 100vh !important;
     background-image: url(./libs/images/firstSectionBG.png);
 
     & > div {
@@ -45,29 +52,78 @@
     }
   }
 
+  &_BGCircle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 57%);
+    background: black;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+
+    border: $line-width solid $active-border;
+  }
+
   &_ContentInner {
-    padding: 32px;
+    @include content-padding;
+
+    padding-top: 34px;
     position: absolute;
     inset: 0;
+    z-index: 10;
 
     display: flex;
     justify-content: space-between;
+
+    @include on-tablet {
+      padding-top: 33px;
+    }
+
+    @include on-desktop {
+      padding-top: 32px;
+    }
+  }
+
+  &_Left {
+    max-width: 320px;
+
+    @include on-tablet {
+      min-width: 536px;
+    }
+
+    @include on-desktop {
+      max-width: 50vw;
+    }
   }
 
   &_Logo {
-    width: 11vw;
-    height: 4vh;
+    height: 3.6vh;
+    object-fit: contain;
+    object-position: left;
+
+    @include on-desktop {
+      height: 4vh;
+    }
   }
 
   &_Title {
-    margin-top: 137px;
-
+    margin-top: 95px;
     display: flex;
     flex-direction: column;
 
     color: white;
     font-family: $main-font-semi-bold;
-    font-size: 3.9vw;
+    font-size: 36px;
+
+    @include on-tablet {
+      margin-top: 76px;
+      font-size: 44px;
+    }
+
+    @include on-desktop {
+      margin-top: 18.5vh;
+      font-size: 3.75vw;
+    }
   }
 
   &_DigitalSolutions {
@@ -75,33 +131,47 @@
   }
 
   &_Description {
-    max-width: 40vw;
-    margin-top: 24px;
-    font-weight: $main-font;
-    font-size: 1.5vw;
+    margin-top: 18px;
+    font-family: $main-font;
+    font-size: 16px;
     color: white;
+
+    @include on-tablet {
+      max-width: 413px;
+      margin-top: 20px;
+    }
+
+    @include on-desktop {
+      margin-top: 3.26vh;
+      max-width: 38.8vw;
+      font-size: 1.4vw;
+    }
   }
 
   &_Right {
-    width: 23vw;
+    display: none;
 
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    @include on-desktop {
+      width: 23vw;
 
-    & > :first-child {
-      height: 54vh;
-
-      background: white;
-      border: none;
-    }
-
-    & > :last-child {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 8px;
 
-      img {
-        filter: brightness(0) invert(1);
+      & > :first-child {
+        height: 54vh;
+
+        background: white;
+        border: none;
+      }
+
+      & > :last-child {
+        display: flex;
+        justify-content: space-between;
+
+        img {
+          filter: brightness(0) invert(1);
+        }
       }
     }
   }
@@ -204,7 +274,7 @@
 
   @include on-desktop {
     margin-top: 200px;
-    gap: 64px
+    gap: 64px;
   }
 
   &_Title {
