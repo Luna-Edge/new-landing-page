@@ -29,6 +29,7 @@ import Carrousel from "@/components/ui/Carrousel/Carrousel";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { useScreen } from "usehooks-ts";
 import { useResponsive } from "@/hooks/useResponsive";
+import NavigationMenu from "@/app/libs/components/NavigationMenu/NavigationMenu";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -266,43 +267,7 @@ export default function Home() {
               that drive your business forward seamlessly and efficiently
             </p>
           </div>
-          <div className={styles.header_Right}>
-            <Button className={styles.header_CaseStudies}>
-              <div className={styles.header_CaseStudies_header}>
-                <p>Case studies</p>
-                <Image src={ArrowRight} alt="arrow-right" />
-              </div>
-              <div className={styles.header_CaseStudies_main}>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-
-              <div className={styles.header_CaseStudies_footer}>
-                <hr
-                  style={{
-                    width: "100%",
-                    border: "none",
-                    height: "1px",
-                    backgroundColor: "#030514",
-                  }}
-                />
-                <p>50+ implemented projects</p>
-              </div>
-            </Button>
-            <Button className={styles.header_Button}>
-              About us
-              <Image src={ArrowRight} alt="arrow-right" />
-            </Button>
-            <Button className={styles.header_Button}>
-              Our services
-              <Image src={ArrowRight} alt="arrow-right" />
-            </Button>
-            <Button>
-              Get in touch
-              <Image src={ArrowRight} alt="arrow-right" />
-            </Button>
-          </div>
+          <NavigationMenu />
         </div>
       </header>
 

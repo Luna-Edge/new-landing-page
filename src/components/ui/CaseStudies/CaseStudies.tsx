@@ -13,7 +13,7 @@ import ArrowButton from "@/components/ui/ArrowButton/ArrowButton";
 const CaseStudies = () => {
   const [, , isDesktop] = useResponsive();
   const [swiperInstance, setSwiperInstance] = useState<SwiperClass | null>(
-    null
+    null,
   );
 
   return (
