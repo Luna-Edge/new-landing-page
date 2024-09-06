@@ -40,6 +40,9 @@ export default function Home() {
   const scrollDirection = useRef<"up" | "down">("down");
   const carrouselRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const caseStudiesRef = useRef<HTMLDivElement>(null);
 
   const cameraPositionZRef = useRef(12);
   const cameraPositionYRef = useRef(26);
@@ -50,11 +53,21 @@ export default function Home() {
 
   let scrollTimeout: NodeJS.Timeout;
 
-  const scrollToFooter = () => {
-    if (footerRef.current) {
-      const footerRect = footerRef.current.getBoundingClientRect();
-      const scrollPosition =
-        window.scrollY + footerRect.top + footerRect.height / 5;
+  const scrollToSection = (section: string) => {
+    // Мапа референсів для секцій
+    const refs: { [key: string]: React.RefObject<HTMLElement> } = {
+      footer: footerRef,
+      about: aboutRef,
+      services: servicesRef,
+      case_studies: caseStudiesRef,
+    };
+
+    // Отримуємо ref з мапи на основі переданого рядка
+    const ref = refs[section];
+
+    if (ref && ref.current) {
+      const Rect = ref.current.getBoundingClientRect();
+      const scrollPosition = window.scrollY + Rect.top + Rect.height / 5;
 
       window.scrollTo({
         top: scrollPosition,
@@ -267,7 +280,7 @@ export default function Home() {
               that drive your business forward seamlessly and efficiently
             </p>
           </div>
-          <NavigationMenu />
+          <NavigationMenu scrollToSection={scrollToSection} />
         </div>
       </header>
 
@@ -281,7 +294,9 @@ export default function Home() {
         <Sphere onFrame={onSphereFrame} ref={sphereRef} />
       </Canvas>
 
-      <AboutSection />
+      <div ref={aboutRef}>
+        <AboutSection />
+      </div>
 
       <div className={styles.carrouselWrapper} ref={carrouselRef}>
         <h3 className={styles.carrouselWrapper_Title}>
@@ -294,11 +309,15 @@ export default function Home() {
         <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
       </div>
 
-      <ServicesSection onButtonClick={scrollToFooter} />
+      <div ref={servicesRef}>
+        <ServicesSection onButtonClick={() => scrollToSection("footer")} />
+      </div>
 
       <WhatOurClientsSaySection />
 
-      <CaseStudies />
+      <div ref={caseStudiesRef}>
+        <CaseStudies />
+      </div>
 
       <div ref={footerRef} style={{ overflow: "hidden" }}>
         <Footer />

@@ -11,7 +11,7 @@ import { getServiceCardsData } from "@/app/libs/components/ServicesSection/const
 import { useResponsive } from "@/hooks/useResponsive";
 
 interface ServicesSectionProps {
-  onButtonClick: () => void;
+  onButtonClick: (to: string) => void;
 }
 
 const ServicesSection: React.FC<ServicesSectionProps> = ({ onButtonClick }) => {

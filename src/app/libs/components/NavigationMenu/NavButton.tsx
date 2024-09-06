@@ -11,6 +11,7 @@ type NavButtonProps = {
   image?: StaticImageData | string;
   footerText: string;
   setActiveTitle: (title: string) => void;
+  scrollToSection: (to: string) => void;
 };
 const NavButton = ({
   title,
@@ -18,10 +19,20 @@ const NavButton = ({
   image,
   activeTitle,
   setActiveTitle,
+  scrollToSection,
 }: NavButtonProps) => {
+  const sectionToScroll =
+    title === "About us"
+      ? "about"
+      : title === "Our services"
+        ? "services"
+        : "case_studies";
   return (
     <Button
-      onClick={() => setActiveTitle(title)}
+      onClick={() => {
+        setActiveTitle(title);
+        scrollToSection(sectionToScroll);
+      }}
       className={classNames(styles.button, {
         [styles.active]: activeTitle === title,
       })}

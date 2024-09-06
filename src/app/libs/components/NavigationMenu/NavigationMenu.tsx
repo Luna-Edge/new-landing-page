@@ -6,7 +6,11 @@ import { NAVIGATION_TABS } from "@/app/libs/components/NavigationMenu/constants"
 import Button from "@/components/ui/Button/Button";
 import Image from "next/image";
 import ArrowRight from "../../../../../public/icons/arrow-right.svg";
-const NavigationMenu = () => {
+
+type NavigationMenuProps = {
+  scrollToSection: (to: string) => void;
+};
+const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("Case studies");
   return (
@@ -24,10 +28,11 @@ const NavigationMenu = () => {
                 image={tab.image}
                 footerText={tab.footerText}
                 setActiveTitle={setActiveTitle}
+                scrollToSection={scrollToSection}
               />
             );
           })}
-          <Button>
+          <Button onClick={() => scrollToSection("footer")}>
             Get in touch
             <Image src={ArrowRight} alt="arrow-right" />
           </Button>

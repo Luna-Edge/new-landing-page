@@ -93,6 +93,9 @@
   border: none;
   background: #d7e8ff;
   color: black;
+  height: 63px;
+
+  transition: all 0.3s ease-in-out;
 
   &.active {
     height: 54vh;
