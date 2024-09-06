@@ -36,9 +36,6 @@
     }
   }
 
-  .cardsContainer {
-  }
-
   .card {
     display: grid;
     background: #fff;
@@ -69,7 +66,7 @@
 
 @include on-phone {
   .container {
-    margin: 100px 0;
+    margin-top: 100px;
 
     .title {
       font-size: 30px;
@@ -180,7 +177,7 @@
 
 @include on-tablet {
   .container {
-    margin: 120px 0;
+    margin-top: 120px;
 
     .title {
       font-size: 32px;
@@ -285,7 +282,7 @@
 
 @include on-desktop {
   .container {
-    margin: 200px 0;
+    margin-top: 200px;
 
     .title {
       font-size: 40px;
