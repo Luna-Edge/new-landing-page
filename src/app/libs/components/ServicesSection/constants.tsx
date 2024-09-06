@@ -25,8 +25,8 @@ export const getServiceCardsData = ({
 }: {
   isMobile: boolean;
   isTablet: boolean;
-}) =>
-  [
+}) => {
+  return [
     {
       title: "Software Development",
       image: {
@@ -120,3 +120,4 @@ export const getServiceCardsData = ({
       column: isMobile ? "column1" : isTablet ? "column2" : "column3",
     },
   ] as const;
+};

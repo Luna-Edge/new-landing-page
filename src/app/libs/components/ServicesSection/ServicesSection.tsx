@@ -20,14 +20,14 @@ const ServicesSection: React.FC<ServicesSectionProps> = memo(({ onButtonClick })
   const serviceCardsData = useMemo(
     () =>
       getServiceCardsData({
-        isMobile: isMobile && !isTablet && isDesktop,
+        isMobile: isMobile && !isTablet && !isDesktop,
         isTablet: isTablet && !isDesktop,
       }),
-    [isDesktop, isMobile, isTablet]
+    [isDesktop, isMobile, isTablet],
   );
 
   const renderServiceCards = (
-    column: (typeof serviceCardsData)[number]["column"]
+    column: (typeof serviceCardsData)[number]["column"],
   ) => {
     return serviceCardsData
       .filter((card) => card.column === column)

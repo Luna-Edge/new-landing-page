@@ -72,7 +72,7 @@ export default function Home() {
           camera.position.set(
             0,
             cameraPositionYRef.current,
-            cameraPositionZRef.current
+            cameraPositionZRef.current,
           );
           camera.updateProjectionMatrix();
           isFirstRender.current = false;
@@ -83,7 +83,7 @@ export default function Home() {
               y: cameraPositionYRef.current,
               z: cameraPositionZRef.current,
             },
-            0.08
+            0.08,
           );
           camera.updateProjectionMatrix();
         }
@@ -100,7 +100,7 @@ export default function Home() {
       { z: 22, y: 3 },
       { z: 22, y: 3 },
       { z: 18, y: 0 },
-    ]
+    ],
   );
 
   const headerContentInnerRef = useRef<HTMLDivElement>(null);
@@ -136,12 +136,12 @@ export default function Home() {
         sphereSize.get().z,
         Math.min(
           12 + sphereSize.get().z,
-          12 + sphereSize.get().z - scrollY.get() / 70
-        )
+          12 + sphereSize.get().z - scrollY.get() / 70,
+        ),
       );
       const cameraY = Math.max(
         sphereSize.get().y,
-        26 + sphereSize.get().y - scrollY.get() / 40
+        26 + sphereSize.get().y - scrollY.get() / 40,
       );
       cameraPositionZRef.current = cameraZ;
       cameraPositionYRef.current = cameraY;
@@ -245,7 +245,7 @@ export default function Home() {
                   [
                     "inset 0px -10px 100px 30px rgba(20, 128, 255, 0.5), 0px -10px 100px 30px rgba(20, 128, 255, 0.5)",
                     "inset 0px 0px 0px 0px rgba(20, 128, 255, 0), 0px 0px 0px 0px rgba(20, 128, 255, 0)",
-                  ]
+                  ],
                 ),
               }}
             ></motion.div>
