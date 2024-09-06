@@ -1,4 +1,4 @@
-import React, { CSSProperties, useMemo } from "react";
+import React, { CSSProperties, useMemo, memo } from "react";
 
 import styles from "./ServicesSection.module.scss";
 
@@ -14,7 +14,7 @@ interface ServicesSectionProps {
   onButtonClick: () => void;
 }
 
-const ServicesSection: React.FC<ServicesSectionProps> = ({ onButtonClick }) => {
+const ServicesSection: React.FC<ServicesSectionProps> = memo(({ onButtonClick }) => {
   const [isMobile, isTablet, isDesktop] = useResponsive();
 
   const serviceCardsData = useMemo(
@@ -92,6 +92,8 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ onButtonClick }) => {
       )}
     </div>
   );
-};
+});
+
+ServicesSection.displayName = "ServicesSection";
 
 export default ServicesSection;

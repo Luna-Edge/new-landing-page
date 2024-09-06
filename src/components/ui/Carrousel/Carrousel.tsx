@@ -1,5 +1,4 @@
-"use client";
-
+import { memo } from "react";
 import "swiper/css/effect-coverflow";
 
 import styles from "./Carrousel.module.scss";
@@ -19,7 +18,7 @@ interface CarrouselProps {
   cards: ICard[];
 }
 
-export default function Carrousel({ cards }: CarrouselProps) {
+const Carrousel = ({ cards }: CarrouselProps) => {
   const [, isTablet, isDesktop] = useResponsive();
 
   const spaceBetween = useMemo(() => {
@@ -58,4 +57,6 @@ export default function Carrousel({ cards }: CarrouselProps) {
       ))}
     </Swiper>
   );
-}
+};
+
+export default memo(Carrousel);

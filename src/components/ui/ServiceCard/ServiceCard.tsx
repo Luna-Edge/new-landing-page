@@ -1,7 +1,7 @@
 import classNames from "@/utils/classNames/classNames";
 import styles from "./ServiceCard.module.scss";
 import Image, { StaticImageData } from "next/image";
-import { CSSProperties } from "react";
+import { CSSProperties, memo } from "react";
 
 interface ServiceCardProps extends React.HTMLAttributes<HTMLButtonElement> {
   title?: string;
@@ -11,12 +11,12 @@ interface ServiceCardProps extends React.HTMLAttributes<HTMLButtonElement> {
   };
 }
 
-export default function ServiceCard({
+const ServiceCard = memo(({
   title,
   image,
   className = "",
   ...props
-}: ServiceCardProps) {
+}: ServiceCardProps) => {
   return (
     <button
       className={classNames(styles.service_card, { className })}
@@ -28,4 +28,8 @@ export default function ServiceCard({
       )}
     </button>
   );
-}
+});
+
+ServiceCard.displayName = 'ServiceCard';
+
+export default ServiceCard;

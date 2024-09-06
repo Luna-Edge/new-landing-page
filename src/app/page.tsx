@@ -2,7 +2,7 @@
 
 import styles from "./page.module.scss";
 import "swiper/css/effect-coverflow";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
@@ -49,7 +49,7 @@ export default function Home() {
 
   let scrollTimeout: NodeJS.Timeout;
 
-  const scrollToFooter = () => {
+  const scrollToFooter = useCallback(() => {
     if (footerRef.current) {
       const footerRect = footerRef.current.getBoundingClientRect();
       const scrollPosition =
@@ -60,7 +60,7 @@ export default function Home() {
         behavior: "smooth",
       });
     }
-  };
+  }, []);
 
   function CameraController() {
     const { camera } = useThree();
@@ -201,7 +201,7 @@ export default function Home() {
 
   const sphereRef = useRef<Group>(null);
 
-  const onSphereFrame = () => {
+  const onSphereFrame = useCallback(() => {
     if (sphereRef.current) {
       const directionMultiplier = scrollDirection.current === "down" ? 1 : -1;
       sphereRef.current.rotation.x +=
@@ -209,7 +209,7 @@ export default function Home() {
       sphereRef.current.rotation.y +=
         rotationSpeed.current * directionMultiplier;
     }
-  };
+  }, []);
 
   const motionScreenWidth = useMotionValue(screen?.width);
 
@@ -237,7 +237,7 @@ export default function Home() {
                     ((screen?.height / 5.8) * 280) / 100,
                     ((screen?.height / 5) * 250) / 100,
                     ((screen?.height / 5.8) * 500) / 100,
-                  ],
+                  ]
                 ),
                 boxShadow: useTransform(
                   scrollY,

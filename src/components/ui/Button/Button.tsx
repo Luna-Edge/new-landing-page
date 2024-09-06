@@ -4,12 +4,12 @@ import {
   type ButtonHTMLAttributes,
   MouseEventHandler,
   type ReactNode,
+  memo,
 } from "react";
 
 import classNames from "@/utils/classNames/classNames";
 
 import styles from "./Button.module.scss";
-import {BUTTON_TYPES} from "./constants";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -17,23 +17,20 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = ({
-  type = BUTTON_TYPES.BUTTON,
-  children,
-  className = "",
-  onClick,
-                    ...props
-}: ButtonProps) => {
-  return (
-    <button
-      type={type}
-      onClick={onClick}
-      {...props}
-      className={classNames(styles.button, {}, [className])}
-    >
-      {children}
-    </button>
-  );
-};
+const Button = memo(
+  ({ type = "button", children, className = "", ...props }: ButtonProps) => {
+    return (
+      <button
+        type={type}
+        className={classNames(styles.button, {}, [className])}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = "Button";
 
 export default Button;

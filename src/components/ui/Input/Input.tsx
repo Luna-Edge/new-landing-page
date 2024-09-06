@@ -1,11 +1,11 @@
-import { forwardRef, type InputHTMLAttributes } from "react";
+import { forwardRef, type InputHTMLAttributes, memo } from "react";
 
 import styles from "./Input.module.scss";
 import classNames from "@/utils/classNames/classNames";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = memo(forwardRef<HTMLInputElement, InputProps>(
   ({ className = "", type = "text", ...props }, ref) => {
     return (
       <input
@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       />
     );
   }
-);
+));
 
 Input.displayName = "Input";
 

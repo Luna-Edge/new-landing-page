@@ -1,5 +1,4 @@
-"use client";
-
+import React, { ComponentProps, memo } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -7,7 +6,6 @@ import ScrollingText from "./libs/components/ScrollingText/ScrollingText";
 
 import styles from "./MarqueeSlider.module.scss";
 import "./styles.scss";
-import { ComponentProps } from "react";
 
 interface IScrollingText extends ComponentProps<typeof ScrollingText> {
   id: string;
@@ -17,7 +15,7 @@ interface MarqueeSliderProps {
   slides: IScrollingText[];
 }
 
-export default function MarqueeSlider({ slides }: MarqueeSliderProps) {
+const MarqueeSlider = memo(({ slides }: MarqueeSliderProps) => {
   return (
     <Swiper
       className={styles.slider}
@@ -36,4 +34,8 @@ export default function MarqueeSlider({ slides }: MarqueeSliderProps) {
       ))}
     </Swiper>
   );
-}
+});
+
+MarqueeSlider.displayName = 'MarqueeSlider';
+
+export default MarqueeSlider;
