@@ -1,5 +1,5 @@
 import { HTMLMotionProps, motion } from "framer-motion";
-import { HTMLAttributes, useRef } from "react";
+import { HTMLAttributes, useRef, memo } from "react";
 
 import styles from "./InteractiveGridBackground.module.scss";
 import classNames from "@/utils/classNames/classNames";
@@ -38,16 +38,16 @@ interface InteractiveGridBackgroundProps
   maskSize?: number;
 }
 
-export default function InteractiveGridBackground({
+const InteractiveGridBackground = ({
   lineWidth = 2,
   gridSize = 100,
   gridColor = "#1480ff",
   maskSize = 500,
   className = "",
   ...props
-}: InteractiveGridBackgroundProps) {
+}: InteractiveGridBackgroundProps) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [isMobile, isTablet, isDesktop] = useResponsive();
+  const [, , isDesktop] = useResponsive();
   const { x, y } = useMousePosition(ref);
 
   const isVisible = !isDesktop;
@@ -76,4 +76,6 @@ export default function InteractiveGridBackground({
       {...props}
     ></motion.div>
   );
-}
+};
+
+export default memo(InteractiveGridBackground);

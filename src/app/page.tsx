@@ -2,7 +2,7 @@
 
 import styles from "./page.module.scss";
 import "swiper/css/effect-coverflow";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import Lenis from "lenis";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
@@ -49,20 +49,18 @@ export default function Home() {
 
   let scrollTimeout: NodeJS.Timeout;
 
-
-
-  const scrollToFooter = () => {
+  const scrollToFooter = useCallback(() => {
     if (footerRef.current) {
       const footerRect = footerRef.current.getBoundingClientRect();
-      const scrollPosition = window.scrollY + footerRect.top + footerRect.height / 5;
+      const scrollPosition =
+        window.scrollY + footerRect.top + footerRect.height / 5;
 
       window.scrollTo({
         top: scrollPosition,
         behavior: "smooth",
       });
-
     }
-  };
+  }, []);
 
   function CameraController() {
     const { camera } = useThree();
@@ -203,7 +201,7 @@ export default function Home() {
 
   const sphereRef = useRef<Group>(null);
 
-  const onSphereFrame = () => {
+  const onSphereFrame = useCallback(() => {
     if (sphereRef.current) {
       const directionMultiplier = scrollDirection.current === "down" ? 1 : -1;
       sphereRef.current.rotation.x +=
@@ -211,7 +209,7 @@ export default function Home() {
       sphereRef.current.rotation.y +=
         rotationSpeed.current * directionMultiplier;
     }
-  };
+  }, []);
 
   const motionScreenWidth = useMotionValue(screen?.width);
 
@@ -231,11 +229,15 @@ export default function Home() {
                 width: useTransform(
                   motionScreenWidth,
                   [
-                    screen?.height / 5.8 * responsiveSizes.phone / 100,
-                    screen?.height / 2 * responsiveSizes.tablet / 100,
-                    screen?.height / 5.8 * responsiveSizes.desktop / 100,
+                    ((screen?.height / 5.8) * responsiveSizes.phone) / 100,
+                    ((screen?.height / 2) * responsiveSizes.tablet) / 100,
+                    ((screen?.height / 5.8) * responsiveSizes.desktop) / 100,
                   ],
-                  [screen?.height / 5.8 * 280 / 100, screen?.height / 5 * 250 / 100, screen?.height / 5.8 * 500 / 100]
+                  [
+                    ((screen?.height / 5.8) * 280) / 100,
+                    ((screen?.height / 5) * 250) / 100,
+                    ((screen?.height / 5.8) * 500) / 100,
+                  ]
                 ),
                 boxShadow: useTransform(
                   scrollY,
@@ -327,16 +329,15 @@ export default function Home() {
         <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
       </div>
 
-        <ServicesSection onButtonClick={scrollToFooter}/>
+      <ServicesSection onButtonClick={scrollToFooter} />
 
       <WhatOurClientsSaySection />
 
-        <CaseStudies />
+      <CaseStudies />
 
-        <div ref={footerRef}  style={{ overflow: "hidden" }} >
+      <div ref={footerRef} style={{ overflow: "hidden" }}>
         <Footer />
       </div>
-
     </main>
   );
 }

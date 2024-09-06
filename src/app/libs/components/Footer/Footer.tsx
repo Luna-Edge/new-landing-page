@@ -1,3 +1,4 @@
+import { memo, useEffect, useRef } from "react";
 import Input from "@/components/ui/Input/Input";
 import styles from "./Footer.module.scss";
 import Textarea from "@/components/ui/Textarea/Textarea";
@@ -8,10 +9,9 @@ import {
   ContactFormSchema,
   contactFormSchema,
 } from "../../features/schemas/contactFormSchema";
-import { useEffect, useRef } from "react";
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 
-export default function Footer() {
+const Footer = () => {
   const boxShadowVal = useRef(50);
   const {
     register,
@@ -77,7 +77,7 @@ export default function Footer() {
         >
           <h2 className={styles.footer_FormHeader}>Get in touch</h2>
           <p className={styles.footer_FormParagraph}>
-            Describe your project and leeave your contact info, we’ll get back
+            Describe your project and leeave your contact info, we&apos;ll get back
             to you within 24 hours.
           </p>
           <Input
@@ -137,4 +137,6 @@ export default function Footer() {
       </ul>
     </footer>
   );
-}
+};
+
+export default memo(Footer);

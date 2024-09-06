@@ -1,11 +1,7 @@
-"use client";
-
+import React, { memo, HTMLAttributes } from "react";
 import classNames from "@/utils/classNames/classNames";
-
 import Image, { StaticImageData } from "next/image";
-
 import styles from "./Card.module.scss";
-import { HTMLAttributes } from "react";
 
 interface CardProps extends HTMLAttributes<HTMLElement> {
   title: string;
@@ -13,7 +9,7 @@ interface CardProps extends HTMLAttributes<HTMLElement> {
   icon: StaticImageData;
 }
 
-const Card: React.FC<CardProps> = ({
+const Card: React.FC<CardProps> = memo(({
   title,
   text,
   icon,
@@ -32,6 +28,8 @@ const Card: React.FC<CardProps> = ({
       <p className={styles.text}>{text}</p>
     </article>
   );
-};
+});
+
+Card.displayName = "Card";
 
 export default Card;

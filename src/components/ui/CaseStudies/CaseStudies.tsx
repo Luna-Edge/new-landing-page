@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import CaseStudiesCard from "@/components/ui/CaseStudies/CaseStudiesCard";
 import { caseStudies } from "@/components/ui/CaseStudies/data";
 import styles from "./CaseStudiesCard.module.scss";
@@ -53,4 +51,4 @@ const CaseStudies = () => {
   );
 };
 
-export default CaseStudies;
+export default memo(CaseStudies);

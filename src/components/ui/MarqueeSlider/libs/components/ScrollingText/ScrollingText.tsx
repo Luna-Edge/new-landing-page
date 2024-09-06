@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { memo } from "react";
 
 import styles from "./ScrollingText.module.scss";
 
@@ -11,7 +12,7 @@ type ScrollingText = {
   text: string;
 };
 
-const ScrollingText = ({
+const ScrollingText = memo(({
   altText,
   icon,
   text,
@@ -29,6 +30,8 @@ const ScrollingText = ({
       <div />
     </div>
   );
-};
+});
+
+ScrollingText.displayName = 'ScrollingText';
 
 export default ScrollingText;

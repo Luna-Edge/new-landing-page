@@ -1,14 +1,14 @@
+import React, { memo, useMemo, useRef } from "react";
 import styles from "./WhatOurClientsSaySection.module.scss";
 
 import TestimonialCard from "@/components/ui/TestimonialCard/TestimonialCard";
 import { TESTIMONIALS } from "../../utils/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { useMemo, useRef } from "react";
 import { useResponsive } from "@/hooks/useResponsive";
 import ArrowButton from "@/components/ui/ArrowButton/ArrowButton";
 
-export default function WhatOurClientsSaySection() {
+const WhatOurClientsSaySection = () => {
   const [, isTablet, isDesktop] = useResponsive();
   const prevElBtnRef = useRef<HTMLButtonElement>(null);
   const nextElBtnRef = useRef<HTMLButtonElement>(null);
@@ -69,4 +69,6 @@ export default function WhatOurClientsSaySection() {
       )}
     </section>
   );
-}
+};
+
+export default memo(WhatOurClientsSaySection);

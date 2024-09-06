@@ -1,4 +1,4 @@
-import { forwardRef, HTMLAttributes, useMemo } from "react";
+import { forwardRef, HTMLAttributes, useMemo, memo } from "react";
 import styles from "./ArrowButton.module.scss";
 
 import Image from "next/image";
@@ -9,7 +9,7 @@ interface ArrowButtonProps extends HTMLAttributes<HTMLButtonElement> {
   direction: "left" | "right" | "bottom" | "top";
 }
 
-const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(
+const ArrowButton = memo(forwardRef<HTMLButtonElement, ArrowButtonProps>(
   ({ direction, className = "", ...props }, ref) => {
     const rotateDeg = useMemo(() => {
       switch (direction) {
@@ -39,7 +39,7 @@ const ArrowButton = forwardRef<HTMLButtonElement, ArrowButtonProps>(
       </button>
     );
   },
-);
+));
 
 ArrowButton.displayName = "ArrowButton";
 

@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./AboutSection.module.scss";
 
 const AboutSection = () => {
@@ -16,4 +17,4 @@ const AboutSection = () => {
   );
 };
 
-export default AboutSection;
+export default memo(AboutSection);

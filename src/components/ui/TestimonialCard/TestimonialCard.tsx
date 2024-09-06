@@ -1,3 +1,4 @@
+import React, { memo } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import styles from './TestimonialCard.module.scss'
 import classNames from '@/utils/classNames/classNames';
@@ -12,7 +13,7 @@ interface TestimonialCardProps {
   className?: string;
 }
 
-export default function TestimonialCard({
+const TestimonialCard = memo(({
   testimonial,
   author: {
     name,
@@ -20,7 +21,7 @@ export default function TestimonialCard({
     avatar,
   },
   className = '',
-}: TestimonialCardProps) {
+}: TestimonialCardProps) => {
   return (
     <article className={classNames(styles.testimonial_card, { className })}>
       <p className={styles.testimonial}>
@@ -33,4 +34,8 @@ export default function TestimonialCard({
       </div>
     </article>
   );
-}
+});
+
+TestimonialCard.displayName = 'TestimonialCard';
+
+export default TestimonialCard;
