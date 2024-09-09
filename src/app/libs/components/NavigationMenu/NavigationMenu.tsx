@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./NavigationMenu.module.scss";
 import NavButton from "@/app/libs/components/NavigationMenu/NavButton";
@@ -13,6 +13,23 @@ type NavigationMenuProps = {
 const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [activeTitle, setActiveTitle] = useState("Case studies");
   const [isOpened, setIsOpened] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY === 0) {
+        setIsOpened(true);
+      } else {
+        setIsOpened(false); // Змінюємо на false під час прокрутки
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
       <div className={`${styles.container} ${!isOpened ? styles.close : ""}`}>
