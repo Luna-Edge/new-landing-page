@@ -1,6 +1,28 @@
 @import "@/styles/variables";
 @import "@/styles/mixins";
 
+.borderContainer {
+  height: fit-content;
+}
+
+@include on-phone {
+  .borderContainer {
+    border-radius: 16px;
+  }
+}
+
+@include on-tablet {
+  .borderContainer {
+    border-radius: 24px;
+  }
+}
+
+@include on-desktop {
+  .borderContainer {
+    border-radius: 32px;
+  }
+}
+
 .container {
   width: 100%;
 
@@ -16,6 +38,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+
     }
   }
 
@@ -39,6 +62,7 @@
   .card {
     display: grid;
     background: #fff;
+    width: 100%;
 
     transform-origin: top;
 
@@ -303,6 +327,7 @@
         "image achievements";
 
       grid-template-rows: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
 
       gap: 0 32px;
       height: 100%;
