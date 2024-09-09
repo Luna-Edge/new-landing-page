@@ -129,7 +129,7 @@ export default function Home() {
           headerContentInnerRef.current.style.opacity = opacityValue.toString();
         }
 
-        headerContentRef.current.style.transform = `scale3D(${scaleValue}, ${scaleValue}, 1)`;
+        headerContentRef.current.style.transform = `scale3D(${scaleValue < 1 ? 1 : scaleValue}, ${scaleValue < 1 ? 1 : scaleValue}, 1)`;
         headerContentRef.current.style.opacity = opacityValue.toString();
         headerContentRef.current.style.display = opacityValue > 0 ? "" : "none";
       }
@@ -313,6 +313,9 @@ export default function Home() {
       <Canvas
         ref={sphereCanvasRef}
         style={{
+          height: "100vh",
+          left: 0,
+          right: 0,
           position: "fixed",
         }}
       >

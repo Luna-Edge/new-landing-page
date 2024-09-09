@@ -9,13 +9,13 @@
 }
 
 .header {
-  width: 100vw;
-  height: 230dvh;
+  height: 230vh;
 
   &_Content {
     position: fixed;
-    width: 100vw;
-    height: 100dvh;
+    height: 100vh;
+    left: 0; 
+    right: 0;
     transform-origin: center bottom;
     transition: transform $effect-duration ease, opacity $effect-duration ease;
   }
