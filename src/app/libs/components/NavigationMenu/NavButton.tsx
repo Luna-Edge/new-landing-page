@@ -12,6 +12,8 @@ type NavButtonProps = {
   footerText: string;
   setActiveTitle: (title: string) => void;
   scrollToSection: (to: string) => void;
+  isOpened: boolean;
+  setIsOpened: (arg: boolean) => void;
 };
 const NavButton = ({
   title,
@@ -20,6 +22,8 @@ const NavButton = ({
   activeTitle,
   setActiveTitle,
   scrollToSection,
+  isOpened,
+  setIsOpened,
 }: NavButtonProps) => {
   const sectionToScroll =
     title === "About us"
@@ -30,16 +34,25 @@ const NavButton = ({
   return (
     <Button
       onClick={() => {
-        setActiveTitle(title);
-        scrollToSection(sectionToScroll);
+        if (!isOpened) {
+          setIsOpened(true);
+        } else {
+          setActiveTitle(title);
+          scrollToSection(sectionToScroll);
+        }
       }}
       className={classNames(styles.button, {
         [styles.active]: activeTitle === title,
+        [styles.closed]: !isOpened,
       })}
     >
       <div className={styles.caseStudies_header}>
-        <p>{title}</p>
-        <Image src={ArrowRight} alt="arrow-right" />
+        <p>{isOpened ? title : "Menu"}</p>
+        <Image
+          className={!isOpened && styles.rotatedIcon}
+          src={ArrowRight}
+          alt="arrow-right"
+        />
       </div>
       {activeTitle === title && (
         <>

@@ -11,33 +11,31 @@ type NavigationMenuProps = {
   scrollToSection: (to: string) => void;
 };
 const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [activeTitle, setActiveTitle] = useState("Case studies");
+  const [isOpened, setIsOpened] = useState(false);
   return (
     <>
-      {isOpen ? (
-        <div>open</div>
-      ) : (
-        <div className={styles.container}>
-          {NAVIGATION_TABS.map((tab) => {
-            return (
-              <NavButton
-                key={tab.title}
-                title={tab.title}
-                activeTitle={activeTitle}
-                image={tab.image}
-                footerText={tab.footerText}
-                setActiveTitle={setActiveTitle}
-                scrollToSection={scrollToSection}
-              />
-            );
-          })}
-          <Button onClick={() => scrollToSection("footer")}>
-            Get in touch
-            <Image src={ArrowRight} alt="arrow-right" />
-          </Button>
-        </div>
-      )}
+      <div className={`${styles.container} ${!isOpened ? styles.close : ""}`}>
+        {NAVIGATION_TABS.map((tab) => {
+          return (
+            <NavButton
+              key={tab.title}
+              title={tab.title}
+              activeTitle={activeTitle}
+              image={tab.image}
+              footerText={tab.footerText}
+              setActiveTitle={setActiveTitle}
+              scrollToSection={scrollToSection}
+              isOpened={isOpened}
+              setIsOpened={setIsOpened}
+            />
+          );
+        })}
+        <Button onClick={() => scrollToSection("footer")}>
+          Get in touch
+          <Image src={ArrowRight} alt="arrow-right" />
+        </Button>
+      </div>
     </>
   );
 };
