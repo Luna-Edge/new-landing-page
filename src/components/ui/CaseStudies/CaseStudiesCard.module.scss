@@ -40,10 +40,10 @@
 
   .borderContainer {
     height: fit-content;
-    background: linear-gradient(180deg, #C8DBF5 0%, #B9D5FB 100%) padding-box, linear-gradient(180deg, #C8DBF5 0%, #B9D5FB 100%) border-box;
+    width: 100%;
+    background: linear-gradient(transparent, transparent) padding-box, linear-gradient(180deg, #C8DBF5 0%, #B9D5FB 100%) border-box;
     border: 2px solid transparent;
   }
-
 
   .card {
     display: grid;
