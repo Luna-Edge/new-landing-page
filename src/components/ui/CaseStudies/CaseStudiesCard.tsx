@@ -4,7 +4,6 @@ import Image, { StaticImageData } from "next/image";
 import styles from "./CaseStudiesCard.module.scss";
 import ArrowButton from "@/components/ui/ArrowButton/ArrowButton";
 import { useResponsive } from "@/hooks/useResponsive";
-import Container from "@/components/ui/Container/Container";
 
 interface ParallaxCardProps {
   title: string;
@@ -27,11 +26,7 @@ const CaseStudiesCard: FC<ParallaxCardProps> = memo(
           top: (index + 1) * 68,
         }}
       >
-        <Container
-          className={styles.borderContainer}
-          borderColor={"linear-gradient(180deg, #C8DBF5 0%, #B9D5FB 100%)"}
-          borderWidth={2}
-        >
+        <div className={styles.borderContainer}>
           <div className={styles.card} style={{ background: color }}>
             <div className={styles.cardMainInfo}>
               <div className={styles.cardNumber}>{index + 1}</div>
@@ -86,7 +81,7 @@ const CaseStudiesCard: FC<ParallaxCardProps> = memo(
               )}
             </div>
           </div>
-        </Container>
+        </div>
       </div>
     );
   },
