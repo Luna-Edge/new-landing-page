@@ -1,27 +1,6 @@
 @import "@/styles/variables";
 @import "@/styles/mixins";
 
-.borderContainer {
-  height: fit-content;
-}
-
-@include on-phone {
-  .borderContainer {
-    border-radius: 16px;
-  }
-}
-
-@include on-tablet {
-  .borderContainer {
-    border-radius: 24px;
-  }
-}
-
-@include on-desktop {
-  .borderContainer {
-    border-radius: 32px;
-  }
-}
 
 .container {
   width: 100%;
@@ -58,6 +37,13 @@
       }
     }
   }
+
+  .borderContainer {
+    height: fit-content;
+    background: linear-gradient(180deg, #C8DBF5 0%, #B9D5FB 100%) padding-box, linear-gradient(180deg, #C8DBF5 0%, #B9D5FB 100%) border-box;
+    border: 2px solid transparent;
+  }
+
 
   .card {
     display: grid;
@@ -107,6 +93,10 @@
     .buttons {
       width: 100%;
       justify-content: space-between;
+    }
+
+    .borderContainer {
+      border-radius: 16px;
     }
 
     .card {
@@ -220,6 +210,10 @@
       gap: 52px;
     }
 
+    .borderContainer {
+      border-radius: 24px;
+    }
+
     .card {
       grid-template-areas:
         "main-info achievements"
@@ -318,6 +312,10 @@
 
     .buttons {
       display: none;
+    }
+
+    .borderContainer {
+      border-radius: 32px;
     }
 
     .card {
