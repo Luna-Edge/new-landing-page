@@ -6,12 +6,10 @@ import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
 import Lenis from "lenis";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import Image from "next/image";
-import Button from "@/components/ui/Button/Button";
 import Sphere from "@/components/ui/Sphere/Sphere";
 import Footer from "./libs/components/Footer/Footer";
 
 import Logo from "@/../public/logo.svg";
-import ArrowRight from "@/../public/icons/arrow-right.svg";
 
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 
@@ -65,7 +63,7 @@ export default function Home() {
 
     if (ref && ref.current) {
       const Rect = ref.current.getBoundingClientRect();
-      const scrollPosition = window.scrollY + Rect.top + Rect.height / 5;
+      const scrollPosition = scrollY.get() + Rect.top + Rect.height / 5;
 
       (window as any).lenis.stop();
       (window as any).lenis.start();

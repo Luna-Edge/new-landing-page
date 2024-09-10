@@ -6,6 +6,7 @@ import { NAVIGATION_TABS } from "@/app/libs/components/NavigationMenu/constants"
 import Button from "@/components/ui/Button/Button";
 import Image from "next/image";
 import ArrowRight from "../../../../../public/icons/arrow-right.svg";
+import { useScroll } from "framer-motion";
 
 type NavigationMenuProps = {
   scrollToSection: (to: string) => void;
@@ -14,6 +15,7 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [activeTitle, setActiveTitle] = useState("Case studies");
   const [isOpened, setIsOpened] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const { scrollY } = useScroll();
 
   useEffect(() => {
     let scrollTimeout: any;
@@ -40,10 +42,10 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   useMemo(() => {
     if (isScrolling) {
       setIsOpened(false);
-    } else if (window.scrollY === 0) {
+    } else if (scrollY.get() === 0) {
       setIsOpened(true);
     }
-  }, [isScrolling]);
+  }, [isScrolling, scrollY]);
 
   function stopScroll() {
     (window as any).lenis.stop();
