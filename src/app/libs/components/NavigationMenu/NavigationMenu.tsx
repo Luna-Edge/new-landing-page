@@ -16,7 +16,7 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
-    let scrollTimeout;
+    let scrollTimeout: any;
 
     const handleScroll = () => {
       if (!isScrolling) {

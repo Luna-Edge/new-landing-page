@@ -53,7 +53,7 @@ const NavButton = ({
       <div className={styles.caseStudies_header}>
         <p>{isOpened ? title : "Menu"}</p>
         <Image
-          className={!isOpened && styles.rotatedIcon}
+          className={!isOpened ? styles.rotatedIcon : undefined}
           src={ArrowRight}
           alt="arrow-right"
         />

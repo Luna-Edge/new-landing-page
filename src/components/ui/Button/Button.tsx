@@ -14,7 +14,7 @@ import styles from "./Button.module.scss";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   isLarge?: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onClick?: any;
 }
 
 const Button = memo(
@@ -28,7 +28,7 @@ const Button = memo(
         {children}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
