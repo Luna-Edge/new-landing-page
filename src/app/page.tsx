@@ -29,6 +29,7 @@ import Carrousel from "@/components/ui/Carrousel/Carrousel";
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { useScreen } from "usehooks-ts";
 import { useResponsive } from "@/hooks/useResponsive";
+import NavigationMenu from "@/app/libs/components/NavigationMenu/NavigationMenu";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);
@@ -39,6 +40,9 @@ export default function Home() {
   const scrollDirection = useRef<"up" | "down">("down");
   const carrouselRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const caseStudiesRef = useRef<HTMLDivElement>(null);
 
   const cameraPositionZRef = useRef(12);
   const cameraPositionYRef = useRef(26);
@@ -49,11 +53,19 @@ export default function Home() {
 
   let scrollTimeout: NodeJS.Timeout;
 
-  const scrollToFooter = useCallback(() => {
-    if (footerRef.current) {
-      const footerRect = footerRef.current.getBoundingClientRect();
-      const scrollPosition =
-        window.scrollY + footerRect.top + footerRect.height / 5;
+  const scrollToSection = (section: string) => {
+    const refs: { [key: string]: React.RefObject<HTMLElement> } = {
+      footer: footerRef,
+      about: aboutRef,
+      services: servicesRef,
+      case_studies: caseStudiesRef,
+    };
+
+    const ref = refs[section];
+
+    if (ref && ref.current) {
+      const Rect = ref.current.getBoundingClientRect();
+      const scrollPosition = window.scrollY + Rect.top + Rect.height / 5;
 
       (window as any).lenis.stop();
       (window as any).lenis.start();
@@ -63,7 +75,7 @@ export default function Home() {
         behavior: "smooth",
       });
     }
-  }, []);
+  };
 
   function CameraController() {
     const { camera } = useThree();
@@ -270,45 +282,10 @@ export default function Home() {
               that drive your business forward seamlessly and efficiently
             </p>
           </div>
-          <div className={styles.header_Right}>
-            <Button className={styles.header_CaseStudies}>
-              <div className={styles.header_CaseStudies_header}>
-                <p>Case studies</p>
-                <Image src={ArrowRight} alt="arrow-right" />
-              </div>
-              <div className={styles.header_CaseStudies_main}>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-
-              <div className={styles.header_CaseStudies_footer}>
-                <hr
-                  style={{
-                    width: "100%",
-                    border: "none",
-                    height: "1px",
-                    backgroundColor: "#030514",
-                  }}
-                />
-                <p>50+ implemented projects</p>
-              </div>
-            </Button>
-            <Button className={styles.header_Button}>
-              About us
-              <Image src={ArrowRight} alt="arrow-right" />
-            </Button>
-            <Button className={styles.header_Button}>
-              Our services
-              <Image src={ArrowRight} alt="arrow-right" />
-            </Button>
-            <Button>
-              Get in touch
-              <Image src={ArrowRight} alt="arrow-right" />
-            </Button>
-          </div>
         </div>
       </header>
+
+      <NavigationMenu scrollToSection={scrollToSection} />
 
       <Canvas
         ref={sphereCanvasRef}
@@ -323,7 +300,9 @@ export default function Home() {
         <Sphere onFrame={onSphereFrame} ref={sphereRef} />
       </Canvas>
 
-      <AboutSection />
+      <div ref={aboutRef}>
+        <AboutSection />
+      </div>
 
       <div className={styles.carrouselWrapper} ref={carrouselRef}>
         <h3 className={styles.carrouselWrapper_Title}>
@@ -336,11 +315,15 @@ export default function Home() {
         <MarqueeSlider slides={MARQUEE_SLIDES_INFORMATION} />
       </div>
 
-      <ServicesSection onButtonClick={scrollToFooter} />
-
-      <CaseStudies />
+      <div ref={servicesRef}>
+        <ServicesSection onButtonClick={() => scrollToSection("footer")} />
+      </div>
 
       <WhatOurClientsSaySection />
+
+      <div ref={caseStudiesRef}>
+        <CaseStudies />
+      </div>
 
       <div ref={footerRef} style={{ overflow: "hidden" }}>
         <Footer />
