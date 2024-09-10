@@ -15,6 +15,7 @@ type NavButtonProps = {
   isOpened: boolean;
   setIsOpened: (arg: boolean) => void;
   stopScroll: () => void;
+  setShowMenu: (arg: boolean) => void;
 };
 const NavButton = ({
   title,
@@ -26,6 +27,7 @@ const NavButton = ({
   isOpened,
   setIsOpened,
   stopScroll,
+  setShowMenu,
 }: NavButtonProps) => {
   const sectionToScroll =
     title === "About us"
@@ -42,6 +44,7 @@ const NavButton = ({
           setIsOpened(true);
           return;
         }
+        setShowMenu(false);
         setActiveTitle(title);
         scrollToSection(sectionToScroll);
       }}

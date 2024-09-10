@@ -7,6 +7,9 @@ import Button from "@/components/ui/Button/Button";
 import Image from "next/image";
 import ArrowRight from "../../../../../public/icons/arrow-right.svg";
 import { useScroll } from "framer-motion";
+import { useResponsive } from "@/hooks/useResponsive";
+import MenuIcon from "@/app/libs/images/icons/MenuIcon";
+import CrossIcon from "@/app/libs/images/icons/CrossIcon";
 
 type NavigationMenuProps = {
   scrollToSection: (to: string) => void;
@@ -15,7 +18,10 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [activeTitle, setActiveTitle] = useState("Case studies");
   const [isOpened, setIsOpened] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const { scrollY } = useScroll();
+
+  const [, isTablet, isDesktop] = useResponsive();
 
   useEffect(() => {
     let scrollTimeout: any;
@@ -53,8 +59,19 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   }
 
   return (
-    <>
-      <div className={`${styles.container} ${!isOpened ? styles.close : ""}`}>
+    <div className={styles.wrapper}>
+      {!isDesktop && (
+        <button
+          onClick={() => setShowMenu((prevState) => !prevState)}
+          className={styles.menuButton}
+        >
+          {showMenu ? <CrossIcon /> : <MenuIcon />}
+        </button>
+      )}
+
+      <div
+        className={`${styles.linksContainer} ${!isOpened ? styles.close : ""} ${!showMenu ? styles.hidden : ""}`}
+      >
         {NAVIGATION_TABS.map((tab) => {
           return (
             <NavButton
@@ -68,6 +85,7 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
               isOpened={isOpened}
               setIsOpened={setIsOpened}
               stopScroll={stopScroll}
+              setShowMenu={setShowMenu}
             />
           );
         })}
@@ -81,7 +99,7 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
           <Image src={ArrowRight} alt="arrow-right" />
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 
