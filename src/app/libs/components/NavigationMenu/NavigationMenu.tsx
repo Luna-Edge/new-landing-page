@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import styles from "./NavigationMenu.module.scss";
 import NavButton from "@/app/libs/components/NavigationMenu/NavButton";
@@ -13,22 +13,42 @@ type NavigationMenuProps = {
 const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [activeTitle, setActiveTitle] = useState("Case studies");
   const [isOpened, setIsOpened] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
+    let scrollTimeout;
+
     const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setIsOpened(true);
-      } else {
-        setIsOpened(false); // Змінюємо на false під час прокрутки
+      if (!isScrolling) {
+        setIsScrolling(true);
       }
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 100);
     };
 
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
     };
-  }, []);
+  }, [isScrolling]);
+
+  useMemo(() => {
+    if (isScrolling) {
+      setIsOpened(false);
+    } else if (window.scrollY === 0) {
+      setIsOpened(true);
+    }
+  }, [isScrolling]);
+
+  function stopScroll() {
+    (window as any).lenis.stop();
+    (window as any).lenis.start();
+  }
 
   return (
     <>
@@ -45,10 +65,16 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
               scrollToSection={scrollToSection}
               isOpened={isOpened}
               setIsOpened={setIsOpened}
+              stopScroll={stopScroll}
             />
           );
         })}
-        <Button onClick={() => scrollToSection("footer")}>
+        <Button
+          onClick={() => {
+            stopScroll();
+            scrollToSection("footer");
+          }}
+        >
           Get in touch
           <Image src={ArrowRight} alt="arrow-right" />
         </Button>

@@ -14,6 +14,7 @@ type NavButtonProps = {
   scrollToSection: (to: string) => void;
   isOpened: boolean;
   setIsOpened: (arg: boolean) => void;
+  stopScroll: () => void;
 };
 const NavButton = ({
   title,
@@ -24,6 +25,7 @@ const NavButton = ({
   scrollToSection,
   isOpened,
   setIsOpened,
+  stopScroll,
 }: NavButtonProps) => {
   const sectionToScroll =
     title === "About us"
@@ -31,15 +33,17 @@ const NavButton = ({
       : title === "Our services"
         ? "services"
         : "case_studies";
+
   return (
     <Button
       onClick={() => {
+        stopScroll();
         if (!isOpened) {
           setIsOpened(true);
-        } else {
-          setActiveTitle(title);
-          scrollToSection(sectionToScroll);
+          return;
         }
+        setActiveTitle(title);
+        scrollToSection(sectionToScroll);
       }}
       className={classNames(styles.button, {
         [styles.active]: activeTitle === title,

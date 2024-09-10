@@ -3,6 +3,7 @@
 
 .container  {
   display: none;
+  z-index:90 ;
 
   @include on-desktop {
     width: 23vw;

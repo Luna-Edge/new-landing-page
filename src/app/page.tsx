@@ -54,7 +54,6 @@ export default function Home() {
   let scrollTimeout: NodeJS.Timeout;
 
   const scrollToSection = (section: string) => {
-    // Мапа референсів для секцій
     const refs: { [key: string]: React.RefObject<HTMLElement> } = {
       footer: footerRef,
       about: aboutRef,
@@ -62,7 +61,6 @@ export default function Home() {
       case_studies: caseStudiesRef,
     };
 
-    // Отримуємо ref з мапи на основі переданого рядка
     const ref = refs[section];
 
     if (ref && ref.current) {
@@ -124,12 +122,12 @@ export default function Home() {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
-
     const raf = (time: number) => {
       lenis.raf(time);
       requestAnimationFrame(raf);
     };
 
+    (window as any).lenis = lenis;
     const updateHeaderContent = () => {
       if (headerContentRef.current) {
         const scaleValue = 1 + scrollY.get() / 300;
@@ -280,9 +278,10 @@ export default function Home() {
               that drive your business forward seamlessly and efficiently
             </p>
           </div>
-          <NavigationMenu scrollToSection={scrollToSection} />
         </div>
       </header>
+
+      <NavigationMenu scrollToSection={scrollToSection} />
 
       <Canvas
         ref={sphereCanvasRef}
