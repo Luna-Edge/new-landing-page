@@ -317,11 +317,11 @@ export default function Home() {
         <ServicesSection onButtonClick={() => scrollToSection("footer")} />
       </div>
 
-      <WhatOurClientsSaySection />
-
       <div ref={caseStudiesRef}>
         <CaseStudies />
       </div>
+
+      <WhatOurClientsSaySection />
 
       <div ref={footerRef} style={{ overflow: "hidden" }}>
         <Footer />
