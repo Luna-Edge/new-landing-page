@@ -1,32 +1,50 @@
 @import "/src/styles/variables.scss";
 @import "@/styles/mixins";
 
+.container {
+  position: relative;
 
-.service_card {
   width: 100%;
   height: 180px;
-  padding: 16px;
 
-  position: relative;
-  display: flex;
-  flex-direction: row;
   border-radius: 16px;
-  border: $line-width solid $midnight-blue;
+  padding: 2px;
 
-  background: #080e24;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   @include on-tablet {
     height: 100%;
     border-radius: $lg-border-radius;
   }
 
-  &:hover {
-    box-shadow: 4px 4px 10px 0px #668bc10d inset;
 
-    border-color: $active-border;
-    background: linear-gradient(180deg, #111c42 0%, #152264 100%);
+}
+
+
+.service_card {
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  border-radius: 16px;
+
+
+  background: #080e24;
+  cursor: pointer;
+
+  border: none;
+
+  @include on-tablet {
+    height: 100%;
+    border-radius: $lg-border-radius;
   }
+
+
 }
 
 .title {
@@ -41,3 +59,4 @@
   }
 
 }
+
