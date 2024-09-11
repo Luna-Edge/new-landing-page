@@ -6,23 +6,22 @@ import ArrowRight from "../../../../../public/icons/arrow-right.svg";
 import classNames from "@/utils/classNames/classNames";
 
 type NavButtonProps = {
+  index: number;
   title: string;
-  activeTitle: string;
   image?: StaticImageData | string;
   footerText: string;
-  setActiveTitle: (title: string) => void;
   scrollToSection: (to: string) => void;
   isOpened: boolean;
   setIsOpened: (arg: boolean) => void;
   stopScroll: () => void;
   setShowMenu: (arg: boolean) => void;
 };
+
 const NavButton = ({
+  index,
   title,
   footerText,
   image,
-  activeTitle,
-  setActiveTitle,
   scrollToSection,
   isOpened,
   setIsOpened,
@@ -45,11 +44,10 @@ const NavButton = ({
           return;
         }
         setShowMenu(false);
-        setActiveTitle(title);
         scrollToSection(sectionToScroll);
       }}
       className={classNames(styles.button, {
-        [styles.active]: activeTitle === title,
+        [styles.active]: index === 0,
         [styles.closed]: !isOpened,
       })}
     >
@@ -61,7 +59,7 @@ const NavButton = ({
           alt="arrow-right"
         />
       </div>
-      {activeTitle === title && (
+      {index === 0 && (
         <>
           {image ? (
             <Image src={image} alt="" />

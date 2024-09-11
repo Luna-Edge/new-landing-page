@@ -18,16 +18,27 @@ import AboutSection from "@/app/libs/components/AboutSection/AboutSection";
 import { CARDS } from "@/components/ui/Carrousel/libs/utils/constants";
 import MarqueeSlider from "@/components/ui/MarqueeSlider/MarqueeSlider";
 import { MARQUEE_SLIDES_INFORMATION } from "@/components/ui/MarqueeSlider/libs/utils/constants";
-import WhatOurClientsSaySection from "./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection";
-import ServicesSection from "@/app/libs/components/ServicesSection/ServicesSection";
-import CaseStudies from "@/components/ui/CaseStudies/CaseStudies";
 
-import Carrousel from "@/components/ui/Carrousel/Carrousel";
+const ServicesSection = dynamic(() => import("@/app/libs/components/ServicesSection/ServicesSection"), {
+  ssr: false,
+});
+const CaseStudies = dynamic(() => import("@/components/ui/CaseStudies/CaseStudies"), {
+  ssr: false,
+});
+const WhatOurClientsSaySection = dynamic(() => import("./libs/components/WhatOurClientsSaySection/WhatOurClientsSaySection"), {
+  ssr: false,
+});
+const Carrousel = dynamic(() => import("@/components/ui/Carrousel/Carrousel"), {
+  ssr: false,
+});
+const NavigationMenu = dynamic(() => import("@/app/libs/components/NavigationMenu/NavigationMenu"), {
+  ssr: false,
+});
 
 import { motion, useMotionValue, useScroll, useTransform } from "framer-motion";
 import { useScreen } from "usehooks-ts";
 import { useResponsive } from "@/hooks/useResponsive";
-import NavigationMenu from "@/app/libs/components/NavigationMenu/NavigationMenu";
+import dynamic from "next/dynamic";
 
 export default function Home() {
   const headerContentRef = useRef<HTMLDivElement>(null);

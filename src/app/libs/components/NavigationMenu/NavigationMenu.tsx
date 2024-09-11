@@ -14,14 +14,14 @@ import CrossIcon from "@/app/libs/images/icons/CrossIcon";
 type NavigationMenuProps = {
   scrollToSection: (to: string) => void;
 };
+
 const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
-  const [activeTitle, setActiveTitle] = useState("Case studies");
   const [isOpened, setIsOpened] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const { scrollY } = useScroll();
 
-  const [, isTablet, isDesktop] = useResponsive();
+  const [, , isDesktop] = useResponsive();
 
   useEffect(() => {
     let scrollTimeout: any;
@@ -47,8 +47,10 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
 
   useMemo(() => {
     if (isScrolling) {
+      setShowMenu(false);
       setIsOpened(false);
     } else if (scrollY.get() === 0) {
+      setShowMenu(true);
       setIsOpened(true);
     }
   }, [isScrolling, scrollY]);
@@ -72,15 +74,14 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
       <div
         className={`${styles.linksContainer} ${!isOpened ? styles.close : ""} ${!showMenu && !isDesktop ? styles.hidden : ""}`}
       >
-        {NAVIGATION_TABS.map((tab) => {
+        {NAVIGATION_TABS.map((tab, index) => {
           return (
             <NavButton
               key={tab.title}
+              index={index}
               title={tab.title}
-              activeTitle={activeTitle}
               image={tab.image}
               footerText={tab.footerText}
-              setActiveTitle={setActiveTitle}
               scrollToSection={scrollToSection}
               isOpened={isOpened}
               setIsOpened={setIsOpened}

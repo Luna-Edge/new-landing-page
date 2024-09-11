@@ -19,14 +19,14 @@ const Card: React.FC<CardProps> = memo(({
   const cardStyles = classNames(styles.card, {}, ["carrousel-card", className]);
 
   return (
-    <article className={cardStyles} {...props}>
+    <div className={cardStyles} {...props}>
       <div className={styles.header}>
         <Image className={styles.image} src={icon} alt="Medal star" />
         <h3 className={styles.title}>{title}</h3>
       </div>
 
       <p className={styles.text}>{text}</p>
-    </article>
+    </div>
   );
 });
 

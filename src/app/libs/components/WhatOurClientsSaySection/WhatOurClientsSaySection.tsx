@@ -25,7 +25,7 @@ const WhatOurClientsSaySection = () => {
   }, [isTablet, isDesktop]);
 
   return (
-    <section className={styles.section}>
+    <div className={styles.section}>
       <div className={styles.header}>
         <h1 className={styles.title}>What our clients say</h1>
         {!isDesktop && (
@@ -67,7 +67,7 @@ const WhatOurClientsSaySection = () => {
           ))}
         </div>
       )}
-    </section>
+    </div>
   );
 };
 

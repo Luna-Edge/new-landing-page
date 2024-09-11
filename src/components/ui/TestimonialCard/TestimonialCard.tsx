@@ -23,7 +23,7 @@ const TestimonialCard = memo(({
   className = '',
 }: TestimonialCardProps) => {
   return (
-    <article className={classNames(styles.testimonial_card, { className })}>
+    <div className={classNames(styles.testimonial_card, { className })}>
       <p className={styles.testimonial}>
         {testimonial}
       </p>
@@ -32,7 +32,7 @@ const TestimonialCard = memo(({
         <h3 className={styles.author_name}>{name}</h3>
         <h5 className={styles.author_position}>{position}</h5>
       </div>
-    </article>
+    </div>
   );
 });
 
