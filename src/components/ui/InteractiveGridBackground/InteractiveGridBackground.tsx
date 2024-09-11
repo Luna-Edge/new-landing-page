@@ -57,7 +57,7 @@ const InteractiveGridBackground = ({
       ref={ref}
       className={classNames(styles.mask, {}, [className])}
       style={{
-        opacity: isVisible || (x && y) ? 1 : 0,
+        opacity: 1,
         backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(`
           <svg width="${gridSize}" height="${gridSize}" xmlns="http://www.w3.org/2000/svg">
             <line x1="0" y1="0" x2="${gridSize}" y2="0" stroke="${gridColor}" stroke-width="${lineWidth}" />
@@ -65,12 +65,11 @@ const InteractiveGridBackground = ({
           </svg>
         `)}")`,
         backgroundPosition: `-${lineWidth}px -${lineWidth}px`,
-        WebkitMaskSize: isVisible ? "100%" : `${maskSize}px`,
+        WebkitMask: `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,1) 0%, rgba(255,255,255,0.2) ${maskSize}px)`, // Radial mask effect
+        WebkitMaskSize: "100%",
       }}
       animate={{
-        WebkitMaskPosition: isVisible
-          ? "0 0"
-          : `${x - maskSize / 2}px ${y - maskSize / 2}px`,
+        opacity: isVisible ? 1 : 0.5,
       }}
       transition={{ type: "tween", ease: "backOut", duration: 0.2 }}
       {...props}

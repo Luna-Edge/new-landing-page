@@ -70,7 +70,7 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
       )}
 
       <div
-        className={`${styles.linksContainer} ${!isOpened ? styles.close : ""} ${!showMenu ? styles.hidden : ""}`}
+        className={`${styles.linksContainer} ${!isOpened ? styles.close : ""} ${!showMenu && !isDesktop ? styles.hidden : ""}`}
       >
         {NAVIGATION_TABS.map((tab) => {
           return (
