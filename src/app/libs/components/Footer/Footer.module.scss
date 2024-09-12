@@ -1,7 +1,6 @@
 @import "@/styles/variables";
 @import "@/styles/mixins";
 
-
 $border: 50%;
 
 .footer {
@@ -67,7 +66,7 @@ $border: 50%;
     z-index: 1;
 
     @include on-tablet {
-     width: 474px;
+      width: 474px;
     }
 
     @include on-desktop {
@@ -109,24 +108,42 @@ $border: 50%;
   }
 
   &_FormInput {
-    margin-bottom: 8px;
-    @include on-desktop{
-      margin-bottom: 16px;
+    &_error:is(.footer_FormInput_error) {
+      border-color: red;
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
-  &_FormTextarea {
-    margin-bottom: 16px;
-    @include on-desktop{
-      margin-bottom: 25px;
+  &_FormErrorMessage {
+    margin-block: 4px;
+    margin-left: 20px;
+    opacity: 0;
+
+    &:last-of-type {
+      margin-bottom: 12px;
+
+      @include on-desktop {
+        margin-bottom: 18;
+      }
+    }
+
+    @include on-desktop {
+      margin-block: 8px;
+    }
+
+    &_error {
+      opacity: 1;
     }
   }
 
   &_FormSubmit {
     width: 288px;
     margin-inline: auto;
-    
-    @include on-desktop{
+
+    @include on-desktop {
       width: 292px;
     }
   }
@@ -140,13 +157,13 @@ $border: 50%;
     list-style: none;
     margin-bottom: 54px;
 
-    @include on-tablet{
+    @include on-tablet {
       flex-direction: row;
       gap: 40px;
       align-items: start;
       margin-bottom: 0;
     }
-    @include on-desktop{
+    @include on-desktop {
       margin-inline: 32px;
     }
 
@@ -154,9 +171,9 @@ $border: 50%;
       &:last-child {
         order: -1;
         cursor: pointer;
-        @include on-tablet{
+        @include on-tablet {
           margin-left: auto;
-          order:1;
+          order: 1;
         }
       }
     }
@@ -170,7 +187,6 @@ $border: 50%;
   }
 
   &_MainText {
-
     margin-top: -30px;
     font-family: "Lufga", sans-serif;
     font-weight: 300;
@@ -183,7 +199,7 @@ $border: 50%;
     font-size: 19vw;
     text-align: center;
 
-    @include on-desktop{
+    @include on-desktop {
       margin-top: -30px;
     }
   }
@@ -205,7 +221,7 @@ $border: 50%;
       gap: 0;
     }
 
-    @include on-desktop{
+    @include on-desktop {
       margin-top: -40px;
       margin-inline: 32px;
     }

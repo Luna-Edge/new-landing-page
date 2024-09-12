@@ -10,6 +10,7 @@ import {
   contactFormSchema,
 } from "../../features/schemas/contactFormSchema";
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
+import classNames from "@/utils/classNames/classNames";
 
 const Footer = () => {
   const boxShadowVal = useRef(50);
@@ -81,24 +82,36 @@ const Footer = () => {
             to you within 24 hours.
           </p>
           <Input
-            className={styles.footer_FormInput}
+            className={classNames(styles.footer_FormInput, {
+              [styles.footer_FormInput_error]: !!errors.name?.message
+            })}
             {...register("name")}
             placeholder="Full name"
           />
-          <p>{errors.name?.message}</p>
+          <p className={classNames(styles.footer_FormErrorMessage, {
+            [styles.footer_FormErrorMessage_error]: !!errors.name?.message
+          })}>{errors.name?.message || 'No Errors'}</p>
           <Input
-            className={styles.footer_FormInput}
+            className={classNames(styles.footer_FormInput, {
+              [styles.footer_FormInput_error]: !!errors.email?.message
+            })}
             {...register("email")}
             placeholder="Email Address"
           />
-          <p>{errors.email?.message}</p>
+          <p className={classNames(styles.footer_FormErrorMessage, {
+            [styles.footer_FormErrorMessage_error]: !!errors.email?.message
+          })}>{errors.email?.message || 'No Errors'}</p>
           <Textarea
-            className={styles.footer_FormTextarea}
+            className={classNames(styles.footer_FormTextarea, {
+              [styles.footer_FormInput_error]: !!errors.request?.message
+            })}
             rows={5}
             {...register("request")}
             placeholder="Enter your request here"
           />
-          <p>{errors.request?.message}</p>
+          <p className={classNames(styles.footer_FormErrorMessage, {
+            [styles.footer_FormErrorMessage_error]: !!errors.request?.message
+          })}>{errors.request?.message || 'No Errors'}</p>
           <Button className={styles.footer_FormSubmit} type="submit">
             Submit
           </Button>
