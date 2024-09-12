@@ -6,11 +6,8 @@ import { forwardRef, useImperativeHandle, useRef, useMemo, memo } from "react";
 
 interface RotatingSphereProps extends GroupProps {
   radius?: number;
-
   numPoints?: number;
-
   numConnections?: number;
-
   onFrame?: () => void;
 }
 
@@ -72,15 +69,33 @@ const Sphere = memo(forwardRef<
 
     const pointsGeometry = useMemo(() => {
       const geometry = new THREE.BufferGeometry().setFromPoints(initialPoints);
+      const colors = new Float32Array(initialPoints.length * 3);
+      initialPoints.forEach((point, i) => {
+        const t = (point.x + radius) / (2 * radius);
+        const color = new THREE.Color().lerpColors(new THREE.Color("#1480FF"), new THREE.Color("#131AE0"), t);
+        color.toArray(colors, i * 3);
+      });
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
       return geometry;
-    }, [initialPoints]);
+    }, [initialPoints, radius]);
 
     const lineGeometry = useMemo(() => {
       const geometry = new THREE.BufferGeometry().setFromPoints(
         getConnections.flat()
       );
+      const colors = new Float32Array(getConnections.length * 6);
+      getConnections.forEach((connection, i) => {
+        const [start, end] = connection;
+        const startT = (start.x + radius) / (2 * radius);
+        const endT = (end.x + radius) / (2 * radius);
+        const startColor = new THREE.Color().lerpColors(new THREE.Color("#1480FF"), new THREE.Color("#131AE0"), startT);
+        const endColor = new THREE.Color().lerpColors(new THREE.Color("#1480FF"), new THREE.Color("#131AE0"), endT);
+        startColor.toArray(colors, i * 6);
+        endColor.toArray(colors, i * 6 + 3);
+      });
+      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
       return geometry;
-    }, [getConnections]);
+    }, [getConnections, radius]);
 
     const circleTexture = useMemo(() => {
       const size = 64;
@@ -98,13 +113,56 @@ const Sphere = memo(forwardRef<
     }, []);
 
     useFrame(() => {
+      if (groupRef.current) {
+        const colorTransition = 0.05;
+        const rotationSpeed = (window as any).lenis?.isScrolling ? 0.007 : 0.0007;
+
+        groupRef.current.rotation.x = rotationSpeed;
+        groupRef.current.rotation.y = rotationSpeed;
+
+        const rotationMatrix = new THREE.Matrix4().makeRotationY(groupRef.current.rotation.y);
+        pointsGeometry.applyMatrix4(rotationMatrix);
+        lineGeometry.applyMatrix4(rotationMatrix);
+
+        const positions = pointsGeometry.attributes.position;
+        const colors = pointsGeometry.attributes.color;
+
+        for (let i = 0; i < positions.count; i++) {
+          const x = positions.getX(i);
+          const t = (x + radius) / (2 * radius);
+          const targetColor = new THREE.Color().lerpColors(new THREE.Color("#1480FF"), new THREE.Color("#131AE0"), t);
+          const currentColor = new THREE.Color(colors.getX(i), colors.getY(i), colors.getZ(i));
+          currentColor.lerp(targetColor, colorTransition);
+          colors.setXYZ(i, currentColor.r, currentColor.g, currentColor.b);
+        }
+
+        colors.needsUpdate = true;
+
+        const lineColors = lineGeometry.attributes.color;
+        for (let i = 0; i < lineColors.count; i += 2) {
+          const x1 = lineGeometry.attributes.position.getX(i);
+          const x2 = lineGeometry.attributes.position.getX(i + 1);
+          const t1 = (x1 + radius) / (2 * radius);
+          const t2 = (x2 + radius) / (2 * radius);
+          const targetColor1 = new THREE.Color().lerpColors(new THREE.Color("#1480FF"), new THREE.Color("#131AE0"), t1);
+          const targetColor2 = new THREE.Color().lerpColors(new THREE.Color("#1480FF"), new THREE.Color("#131AE0"), t2);
+          const currentColor1 = new THREE.Color(lineColors.getX(i), lineColors.getY(i), lineColors.getZ(i));
+          const currentColor2 = new THREE.Color(lineColors.getX(i + 1), lineColors.getY(i + 1), lineColors.getZ(i + 1));
+          currentColor1.lerp(targetColor1, colorTransition);
+          currentColor2.lerp(targetColor2, colorTransition);
+          lineColors.setXYZ(i, currentColor1.r, currentColor1.g, currentColor1.b);
+          lineColors.setXYZ(i + 1, currentColor2.r, currentColor2.g, currentColor2.b);
+        }
+
+        lineColors.needsUpdate = true;
+      }
       onFrame();
     });
 
     return (
       <group ref={groupRef} {...props}>
         <points geometry={pointsGeometry}>
-          <pointsMaterial color="#1480FF" size={0.2} sizeAttenuation>
+          <pointsMaterial size={0.2} sizeAttenuation vertexColors>
             <canvasTexture
               attach="map"
               image={circleTexture.image}
@@ -114,7 +172,7 @@ const Sphere = memo(forwardRef<
           </pointsMaterial>
         </points>
         <lineSegments geometry={lineGeometry}>
-          <lineBasicMaterial color="#1480FF" />
+          <lineBasicMaterial vertexColors />
         </lineSegments>
       </group>
     );
