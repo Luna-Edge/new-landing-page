@@ -50,10 +50,12 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
       setShowMenu(false);
       setIsOpened(false);
     } else if (scrollY.get() === 0) {
-      setShowMenu(true);
+      if (isDesktop) {
+        setShowMenu(true);
+      }
       setIsOpened(true);
     }
-  }, [isScrolling, scrollY]);
+  }, [isDesktop, isScrolling, scrollY]);
 
   function stopScroll() {
     (window as any).lenis.stop();

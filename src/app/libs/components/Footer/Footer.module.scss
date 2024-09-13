@@ -34,8 +34,7 @@ $border: 50%;
     position: relative;
     margin-inline: auto;
     padding-bottom: 98px;
-    padding-inline: 128px;
-    width: 60%;
+    width: 50%;
     margin-top: 82px;
     padding-top: 12px;
 
@@ -43,6 +42,7 @@ $border: 50%;
       margin-top: 98px;
       padding-top: 47px;
       padding-bottom: 160px;
+      padding-inline: 128px;
       width: 722px;
     }
 
@@ -60,6 +60,7 @@ $border: 50%;
   }
 
   &_Form {
+    width: 100%;
     align-self: center;
     color: white;
     position: relative;

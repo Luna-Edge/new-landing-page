@@ -144,9 +144,6 @@ const Footer = () => {
         <li className={styles.footer_CopyrightItem}>
           © 2024. All rights reserved
         </li>
-        <li className={styles.footer_CopyrightItem}>
-          Made by Mariia Petrovych
-        </li>
       </ul>
     </footer>
   );

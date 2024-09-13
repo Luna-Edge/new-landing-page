@@ -1,6 +1,6 @@
-import luxus from "../../../app/libs/images/caseStudies/luxus.png";
-import wulk from "../../../app/libs/images/caseStudies/wulk.png";
-import schoolHack from "../../../app/libs/images/caseStudies/schoolHack.png";
+import luxus from "../../../app/libs/images/caseStudies/luxus.svg";
+import wulk from "../../../app/libs/images/caseStudies/wult.svg";
+import schoolHack from "../../../app/libs/images/caseStudies/schoolHack.svg";
 
 export const caseStudies = [
   {

@@ -153,12 +153,14 @@ export default function Home() {
         const scaleValue = 1 + scrollY.get() / 300;
         const opacityValue = 1 - scrollY.get() / 600;
 
-        if (headerContentInnerRef.current) {
-          headerContentInnerRef.current.style.opacity = opacityValue.toString();
-        }
+        if (opacityValue > 0) {
+          if (headerContentInnerRef.current) {
+            headerContentInnerRef.current.style.opacity = opacityValue.toString();
+          }
 
-        headerContentRef.current.style.transform = `scale3D(${scaleValue < 1 ? 1 : scaleValue}, ${scaleValue < 1 ? 1 : scaleValue}, 1)`;
-        headerContentRef.current.style.opacity = opacityValue.toString();
+          headerContentRef.current.style.transform = `scale3D(${scaleValue < 1 ? 1 : scaleValue}, ${scaleValue < 1 ? 1 : scaleValue}, 1)`;
+          headerContentRef.current.style.opacity = opacityValue.toString();
+        }
         headerContentRef.current.style.display = opacityValue > 0 ? "" : "none";
       }
     };
@@ -184,8 +186,8 @@ export default function Home() {
 
         if (carrouselMiddle <= 0) {
           if (sphereCanvasRef.current) {
-            sphereCanvasRef.current.style.position = "fixed";
-            sphereCanvasRef.current.style.top = `${carrouselMiddle}px`;
+            sphereCanvasRef.current.style.position = "absolute";
+            sphereCanvasRef.current.style.top = `${carrouselMiddle + window.scrollY}px`;
           }
         } else if (carrouselMiddle > 0) {
           if (sphereCanvasRef.current) {
@@ -281,7 +283,7 @@ export default function Home() {
           height: "100vh",
           left: 0,
           right: 0,
-          position: "fixed",
+          position: "static",
         }}
       >
         <CameraController />
