@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ContactFormSchema,
   contactFormSchema,
-} from "../../features/schemas/contactFormSchema";
+} from "@/features/schemas/contactFormSchema";
 import InteractiveGridBackground from "@/components/ui/InteractiveGridBackground/InteractiveGridBackground";
 import classNames from "@/utils/classNames/classNames";
 
@@ -18,6 +18,7 @@ const Footer = () => {
     register,
     handleSubmit,
     formState: { errors },
+    resetField,
   } = useForm<ContactFormSchema>({
     resolver: zodResolver(contactFormSchema),
   });
@@ -25,6 +26,14 @@ const Footer = () => {
 
   const handleGoToTop = () => {
     window.scroll({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  const handleFormSubmit = (data: ContactFormSchema) => {
+    fetch("/api/form", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    resetField("request");
   };
 
   // Add a scroll listener to the footer to change the box shadow value.
@@ -73,7 +82,7 @@ const Footer = () => {
       <div className={styles.footer_FormWrapper}>
         <InteractiveGridBackground className={styles.footer_Grid} />
         <form
-          onSubmit={handleSubmit(console.dir)}
+          onSubmit={handleSubmit(handleFormSubmit)}
           className={styles.footer_Form}
         >
           <h2 className={styles.footer_FormHeader}>Get in touch</h2>
