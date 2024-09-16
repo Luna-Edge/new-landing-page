@@ -20,7 +20,6 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const { scrollY } = useScroll();
-
   const [, , isDesktop] = useResponsive();
 
   useEffect(() => {
@@ -37,13 +36,12 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
       }, 100);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    scrollY.on("change", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
       clearTimeout(scrollTimeout);
     };
-  }, [isScrolling]);
+  }, [isScrolling, scrollY]);
 
   useMemo(() => {
     if (isScrolling) {
@@ -62,11 +60,21 @@ const NavigationMenu = ({ scrollToSection }: NavigationMenuProps) => {
     (window as any).lenis.start();
   }
 
+  const handleShowMenu = () => {
+    (window as any)?.lenis.stop();
+    (window as any).lenis.start();
+
+    setShowMenu((prevState) => {
+      setIsOpened(!prevState)
+      return !prevState
+    })
+  }
+
   return (
     <div className={styles.wrapper}>
       {!isDesktop && (
         <button
-          onClick={() => setShowMenu((prevState) => !prevState)}
+          onClick={handleShowMenu}
           className={styles.menuButton}
         >
           {showMenu ? <CrossIcon /> : <MenuIcon />}

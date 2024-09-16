@@ -344,6 +344,15 @@
 
         display: flex;
         justify-content: center;
+
+        &:last-child {
+          position: relative;
+          margin-bottom: calc(-100vh + 680px);
+
+          & > * {
+            transform: translateY(-30%);
+          }
+        }
       }
 
       &Number {

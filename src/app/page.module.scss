@@ -98,11 +98,13 @@
 
   &_Logo {
     height: 3.6vh;
+    width: 107px;
     object-fit: contain;
     object-position: left;
 
     @include on-desktop {
       height: 4vh;
+      width: 11.3vw;
     }
   }
 

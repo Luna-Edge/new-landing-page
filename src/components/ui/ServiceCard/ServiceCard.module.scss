@@ -18,10 +18,7 @@
     height: 100%;
     border-radius: $lg-border-radius;
   }
-
-
 }
-
 
 .service_card {
   width: 100%;
@@ -33,9 +30,7 @@
   flex-direction: row;
   border-radius: 16px;
 
-
   background: #080e24;
-  cursor: pointer;
 
   border: none;
 
@@ -44,19 +39,18 @@
     border-radius: $lg-border-radius;
   }
 
-
+  @include on-desktop {
+    padding: 32px;
+  }
 }
 
 .title {
   color: white;
   font-size: 20px;
   font-weight: 400;
-  width: 60%;
   text-align: start;
 
   @include on-desktop {
     font-size: 24px;
   }
-
 }
-

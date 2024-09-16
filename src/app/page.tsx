@@ -146,6 +146,7 @@ export default function Home() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     };
+
     (window as any).lenis = lenis;
 
     const updateHeaderContent = () => {
@@ -164,6 +165,8 @@ export default function Home() {
         headerContentRef.current.style.display = opacityValue > 0 ? "" : "none";
       }
     };
+
+    console.clear()
 
     const updateCanvasAndCamera = () => {
       const cameraZ = Math.max(

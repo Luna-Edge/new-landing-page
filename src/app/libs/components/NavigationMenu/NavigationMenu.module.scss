@@ -57,7 +57,7 @@
   & > :last-child {
     margin-top: -63px;
     z-index: 1;
-    width: 248px;
+    width: 19.375vw;
   }
 }
 
@@ -85,6 +85,7 @@
     & > :first-child {
       position: absolute;
       background: url("../../images/caseStudies/luxus.svg");
+      background-size: cover;
       width: 100%;
       height: 100%;
       border-radius: 12px;
@@ -93,6 +94,7 @@
     & > :nth-child(2) {
       position: absolute;
       background: url("../../images/caseStudies/schoolHack.svg");
+      background-size: cover;
       width: 100%;
       height: 80%;
       top: 20%;
@@ -101,6 +103,7 @@
     & > :last-child {
       position: absolute;
       background: url("../../images/caseStudies/wult.svg");
+      background-size: cover;
       width: 100%;
       height: 60%;
       top: 40%;
@@ -162,14 +165,14 @@
 .close .button:nth-child(1) {
   margin-top: 0;
   box-shadow: 0 4px 12px 0 #0529681A;
-  width: 292px;
+  width: 22.8125vw;
 }
 
 .close .button:nth-child(2) {
   margin-top: -63px;
   z-index: 3;
   box-shadow: 0 4px 12px 0 #0529681A;
-  width: 267px;
+  width: 20.859375vw;
   background: #d7e8ff
 }
 
@@ -177,7 +180,7 @@
   margin-top: -63px;
   z-index: 2;
   box-shadow: 0 4px 12px 0 #0529681A;
-  width: 264px;
+  width: 20.625vw;
   background: #d7e8ff
 }
 .close .button:nth-child(4) {
